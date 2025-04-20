@@ -7,8 +7,8 @@ version: 0.1.0
 appVersion: "1.0.0"
 
 maintainers:
-  - name: OpenHands
-    email: openhands@all-hands.dev
+  - name: Miguel Angel Ajo Pelayo
+    email: miguelangel@ajo.es
 
 keywords:
   - django
