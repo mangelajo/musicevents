@@ -30,7 +30,7 @@ ALLOWED_HOSTS = ['*']
 
 # CSRF Trusted Origins
 CSRF_TRUSTED_ORIGINS = [
-	'http://localhost',
+        'http://localhost',
 ]
 
 
@@ -47,8 +47,23 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_q',
     'events.apps.EventsConfig',
 ]
+
+# Django Q configuration
+Q_CLUSTER = {
+    'name': 'musicevents',
+    'workers': 4,
+    'recycle': 500,
+    'timeout': 300,
+    'compress': True,
+    'save_limit': 250,
+    'queue_limit': 500,
+    'cpu_affinity': 1,
+    'label': 'Django Q',
+    'orm': 'default',
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
