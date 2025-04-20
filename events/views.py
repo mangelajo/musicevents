@@ -41,6 +41,13 @@ class EventDetailView(DetailView):
     template_name = 'events/event_detail.html'
     context_object_name = 'event'
 
+    def get_object(self, queryset=None):
+        return get_object_or_404(Event, pk=self.kwargs['pk'], slug=self.kwargs['slug'])
+
+def event_detail(request, pk, slug):
+    event = get_object_or_404(Event, pk=pk)
+    return render(request, 'events/event_detail.html', {'event': event})
+
 class ArtistListView(ListView):
     model = Artist
     template_name = 'events/artist_list.html'

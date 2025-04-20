@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils import timezone
 from django.core.files.base import ContentFile
+from django.utils.text import slugify
 import os
 from PIL import Image
 from io import BytesIO
@@ -10,7 +11,7 @@ class Artist(models.Model):
     bio = models.TextField(blank=True)
     website = models.URLField(blank=True)
     image = models.ImageField(upload_to='artists/', blank=True, null=True)
-    
+
     def __str__(self):
         return self.name
 
@@ -28,6 +29,7 @@ class Venue(models.Model):
 
 class Event(models.Model):
     title = models.CharField(max_length=200)
+    slug = models.SlugField(unique=False, blank=True, null=True)  # Add this field
     description = models.TextField(blank=True)
     date = models.DateTimeField()
     venue = models.ForeignKey(Venue, on_delete=models.CASCADE, related_name='events')
@@ -78,6 +80,9 @@ class Event(models.Model):
         
     def save(self, *args, **kwargs):
         """Override save to generate thumbnail if image exists"""
+        if not self.slug:
+            self.slug = slugify(self.title)
+        
         # Skip thumbnail generation if 'skip_thumbnail' is in kwargs
         skip_thumbnail = kwargs.pop('skip_thumbnail', False)
         if skip_thumbnail:
