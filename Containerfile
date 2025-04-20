@@ -15,7 +15,13 @@ ENV PATH="/root/.local/bin/:$PATH"
 # Set environment variables
 ENV PYTHONUNBUFFERED=1 \
     PYTHONDONTWRITEBYTECODE=1 \
-    DEBIAN_FRONTEND=noninteractive
+    DEBIAN_FRONTEND=noninteractive \
+    DJANGO_SETTINGS_MODULE=music_events_project.settings \
+    DJANGO_DEBUG=True
+
+# These environment variables must be provided at runtime
+ARG TICKETMASTER_API_KEY
+ENV TICKETMASTER_API_KEY=${TICKETMASTER_API_KEY}
 
 # Set work directory
 WORKDIR /app

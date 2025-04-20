@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      - TICKETMASTER_API_KEY=${TICKETMASTER_API_KEY}
+      - DJANGO_SETTINGS_MODULE=music_events_project.settings
+      - DJANGO_DEBUG=True
+      - DJANGO_SECRET_KEY=${DJANGO_SECRET_KEY:-insecure-development-key-change-in-production}
+    volumes:
+      - ./media:/app/media
+      - ./static:/app/static
