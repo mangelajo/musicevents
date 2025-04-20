@@ -17,9 +17,7 @@ help:
 	@echo "  make test           - Run tests (keeps test database)"
 	@echo "  make test-verbose   - Run tests with verbose output"
 	@echo "  make test-coverage  - Run tests with coverage report"
-	@echo "  make test-parallel  - Run tests in parallel"
 	@echo "  make test-specific  - Run specific test (use TEST=path.to.test)"
-	@echo "  make test-clean     - Run tests and destroy test database"
 	@echo "  make clean          - Remove Python bytecode files and cache"
 	@echo "  make createsuperuser - Create a superuser"
 	@echo ""
@@ -47,29 +45,22 @@ shell:
 	uv run manage.py shell
 
 test:
-	python3 manage.py test --keepdb
+	uv run manage.py test
 
 test-verbose:
-	python3 manage.py test -v 2 --keepdb
+	uv run manage.py test -v 2
 
 test-coverage:
-	pip install coverage
-	coverage run manage.py test --keepdb
-	coverage report
-	coverage html
-
-test-parallel:
-	python3 manage.py test --parallel --keepdb
+	uv run coverage run manage.py test
+	uv run coverage report
+	uv run coverage html
 
 test-specific:
 	@if [ "$(TEST)" = "" ]; then \
 	        echo "Please specify a test with TEST=path.to.test"; \
 	        exit 1; \
 	fi
-	python3 manage.py test $(TEST) --keepdb
-
-test-clean:
-	python3 manage.py test --noinput --keepdb=false
+	uv run manage.py test $(TEST)
 
 clean:
 	find . -type f -name "*.pyc" -delete
