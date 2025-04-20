@@ -1,0 +1,81 @@
+{% extends 'events/base.html' %}
+
+{% block title %}{{ event.title }} - Music Events{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-8">
+        <h1>{{ event.title }}</h1>
+        <p class="lead">{{ event.date|date:"F j, Y, g:i a" }}</p>
+        
+        {% if event.is_past %}
+            <div class="alert alert-secondary" role="alert">
+                This event has already taken place.
+            </div>
+        {% endif %}
+        
+        <div class="mb-4">
+            {% if event.image %}
+                <img src="{{ event.image.url }}" class="img-fluid rounded" alt="{{ event.title }}">
+            {% elif event.image_url %}
+                <img src="{{ event.image_url }}" class="img-fluid rounded" alt="{{ event.title }}">
+            {% elif event.thumbnail %}
+                <img src="{{ event.thumbnail.url }}" class="img-fluid rounded" alt="{{ event.title }}">
+            {% endif %}
+        </div>
+        
+        <h3>Description</h3>
+        <p>{{ event.description|linebreaks }}</p>
+        
+        <h3>Artists</h3>
+        <div class="row">
+            {% for artist in event.artists.all %}
+                <div class="col-md-6 mb-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ artist.name }}</h5>
+                            <p class="card-text">{{ artist.bio|truncatewords:30 }}</p>
+                            <a href="{% url 'events:artist_detail' artist.pk %}" class="btn btn-outline-primary">View Artist</a>
+                        </div>
+                    </div>
+                </div>
+            {% empty %}
+                <p>No artists listed for this event.</p>
+            {% endfor %}
+        </div>
+    </div>
+    
+    <div class="col-md-4">
+        <div class="card mb-4">
+            <div class="card-header">
+                <h3 class="card-title">Event Details</h3>
+            </div>
+            <div class="card-body">
+                <p><strong>Date:</strong> {{ event.date|date:"F j, Y" }}</p>
+                <p><strong>Time:</strong> {{ event.date|date:"g:i a" }}</p>
+                {% if event.ticket_price %}
+                    <p><strong>Ticket Price:</strong> ${{ event.ticket_price }}</p>
+                {% endif %}
+                {% if event.ticket_url %}
+                    <a href="{{ event.ticket_url }}" class="btn btn-success btn-block" target="_blank">Buy Tickets</a>
+                {% endif %}
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">Venue</h3>
+            </div>
+            <div class="card-body">
+                <h5>{{ event.venue.name }}</h5>
+                <p>{{ event.venue.address }}<br>
+                {{ event.venue.city }}, {{ event.venue.state }} {{ event.venue.zip_code }}</p>
+                {% if event.venue.website %}
+                    <a href="{{ event.venue.website }}" class="btn btn-outline-primary" target="_blank">Visit Venue Website</a>
+                {% endif %}
+                <a href="{% url 'events:venue_detail' event.venue.pk %}" class="btn btn-outline-secondary mt-2">View Venue Details</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
