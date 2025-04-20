@@ -341,8 +341,16 @@ def sync_riviera_events():
                 elif event.image and not event.thumbnail: # Generate thumbnail if missing
                     event.generate_thumbnail()
 
-                # Only save if changes were made or thumbnail generated
-                if event.is_dirty() or (event.image and not event.thumbnail):
+                # Get the original event from database to check for changes
+                original_event = Event.objects.get(pk=event.pk)
+                fields_to_check = ['title', 'date', 'description', 'ticket_url', 'image_url']
+                has_changes = any(
+                    getattr(event, field) != getattr(original_event, field)
+                    for field in fields_to_check
+                )
+
+                # Save if there are changes or thumbnail needs to be generated
+                if has_changes or (event.image and not event.thumbnail):
                     event.save() 
                     updated_count += 1
                     logger.info(f"Updated event: {event.title}")

@@ -18,25 +18,28 @@
             <div class="row">
                 {% for event in upcoming_events %}
                     <div class="col-md-6 mb-4">
-                        <div class="card h-100">
-                            {% if event.image %}
-                                <img src="{{ event.image.url }}" class="card-img-top" alt="{{ event.title }}">
-                            {% else %}
-                                <div class="bg-secondary text-white text-center p-5">No Image</div>
-                            {% endif %}
-                            <div class="card-body">
-                                <h5 class="card-title">{{ event.title }}</h5>
-                                <h6 class="card-subtitle mb-2 text-muted">{{ event.date|date:"F j, Y, g:i a" }}</h6>
-                                <p class="card-text">{{ event.description|truncatewords:20 }}</p>
-                                <p><strong>Venue:</strong> {{ event.venue.name }}</p>
-                                <p><strong>Artists:</strong> 
-                                    {% for artist in event.artists.all %}
-                                        {{ artist.name }}{% if not forloop.last %}, {% endif %}
-                                    {% endfor %}
-                                </p>
-                                <a href="{% url 'events:event_detail' event.pk event.slug %}" class="btn btn-primary">View Details</a>
+                        <a href="{% url 'events:event_detail' event.pk event.slug %}" class="text-decoration-none">
+                            <div class="card h-100 hover-shadow">
+                                {% if event.thumbnail %}
+                                    <img src="{{ event.thumbnail.url }}" class="card-img-top" alt="{{ event.title }}">
+                                {% elif event.image %}
+                                    <img src="{{ event.image.url }}" class="card-img-top" alt="{{ event.title }}">
+                                {% else %}
+                                    <div class="bg-secondary text-white text-center p-5">No Image</div>
+                                {% endif %}
+                                <div class="card-body">
+                                    <h5 class="card-title text-primary">{{ event.title }}</h5>
+                                    <h6 class="card-subtitle mb-2 text-muted">{{ event.date|date:"F j, Y, g:i a" }}</h6>
+                                    <p class="card-text text-dark">{{ event.description|truncatewords:20 }}</p>
+                                    <p class="text-dark"><strong>Venue:</strong> {{ event.venue.name }}</p>
+                                    <p class="text-dark"><strong>Artists:</strong> 
+                                        {% for artist in event.artists.all %}
+                                            {{ artist.name }}{% if not forloop.last %}, {% endif %}
+                                        {% endfor %}
+                                    </p>
+                                </div>
                             </div>
-                        </div>
+                        </a>
                     </div>
                 {% endfor %}
             </div>
