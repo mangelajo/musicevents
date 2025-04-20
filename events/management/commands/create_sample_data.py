@@ -2,7 +2,6 @@ from django.core.management.base import BaseCommand
 from django.utils import timezone
 from events.models import Artist, Venue, Event
 import datetime
-import random
 
 class Command(BaseCommand):
     help = 'Creates sample data for the Music Events application'
