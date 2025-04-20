@@ -32,6 +32,8 @@ ALLOWED_HOSTS = ['*']
 CSRF_TRUSTED_ORIGINS = [
     'https://work-1-rqghrvtgtorvwifq.prod-runtime.all-hands.dev',
     'https://work-2-rqghrvtgtorvwifq.prod-runtime.all-hands.dev',
+    'https://work-1-qxiqfxzlbiumsfes.prod-runtime.all-hands.dev',
+    'https://work-2-qxiqfxzlbiumsfes.prod-runtime.all-hands.dev',
 ]
 
 # CSRF Exempt URLs
