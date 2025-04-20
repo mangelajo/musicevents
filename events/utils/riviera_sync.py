@@ -10,6 +10,7 @@ from django.utils import timezone
 from django.utils.text import slugify
 from django.core.files.base import ContentFile
 from events.models import Event, Venue, Artist
+from events.utils.image_utils import download_and_save_image
 from events.utils.thumbnails import generate_thumbnail
 
 logger = logging.getLogger(__name__)
@@ -19,7 +20,7 @@ RIVIERA_URL = "https://salariviera.com/conciertossalariviera/"
 
 # Venue information for Sala Riviera
 VENUE_INFO = {
-    "name": "Sala Riviera",
+    "name": "La Riviera",
     "address": "Paseo Bajo de la Virgen del Puerto, s/n",
     "city": "Madrid",
     "state": "Madrid",
@@ -325,11 +326,32 @@ def sync_riviera_events():
                     event.date = date
                 event.description = description
                 event.ticket_url = ticket_url
-                if image_url:
+                
+                should_save = True # Flag to check if save is needed
+                if image_url and event.image_url != image_url:
                     event.image_url = image_url
-                event.save(skip_thumbnail=True)
-                updated_count += 1
-                logger.info(f"Updated event: {event.title}")
+                    # Download image only if URL changed or no image exists
+                    if not event.image: 
+                        download_and_save_image(image_url, event)
+                        # Generate thumbnail only if image was downloaded
+                        if event.image:
+                            event.generate_thumbnail()
+                    else:
+                        # If image exists but URL changed, maybe redownload? 
+                        # For now, just update URL, assume image is same or user handles manually
+                        logger.info(f"Image URL changed for {event.title}, but image already exists. Skipping download.")
+                        
+                elif event.image and not event.thumbnail: # Generate thumbnail if missing
+                    event.generate_thumbnail()
+
+                # Only save if changes were made or thumbnail generated
+                if event.is_dirty() or (event.image and not event.thumbnail):
+                    event.save() 
+                    updated_count += 1
+                    logger.info(f"Updated event: {event.title}")
+                else:
+                    logger.info(f"No changes detected for event: {event.title}")
+
             except Event.DoesNotExist:
                 # Create new event
                 event = Event(
@@ -339,9 +361,20 @@ def sync_riviera_events():
                     venue=venue,
                     ticket_url=ticket_url,
                     external_id=external_id,
-                    image_url=image_url
+                    image_url=image_url # Store the original URL
                 )
-                event.save(skip_thumbnail=True)
+                # Save initially to get a PK for image association
+                event.save(skip_thumbnail=True) 
+                
+                # Now download the image if URL exists
+                if image_url:
+                    download_and_save_image(image_url, event)
+                    # Generate thumbnail if image download was successful
+                    if event.image:
+                        event.generate_thumbnail()
+                
+                # Save again to store the image and thumbnail fields
+                event.save() 
                 created_count += 1
                 logger.info(f"Created event: {event.title}")
             
