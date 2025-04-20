@@ -65,13 +65,17 @@ class Artist(models.Model):
 
     def save(self, *args, **kwargs):
         """Override save to get an image from events if none exists"""
+        # First save to ensure we have an ID
+        super().save(*args, **kwargs)
+        
+        # Then look for event images if needed
         if not self.image:
-            # Look for an event with an image before saving
+            # Look for an event with an image
             event_with_image = self.events.exclude(image='').filter(image__isnull=False).first()
             if event_with_image and event_with_image.image:
                 self.save_event_image(event_with_image)
-
-        super().save(*args, **kwargs)
+                # Save again with the new image
+                super().save(*args, **kwargs)
 
 class Venue(models.Model):
     name = models.CharField(max_length=200)
