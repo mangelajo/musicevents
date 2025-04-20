@@ -1,10 +1,10 @@
 #!/bin/bash
 
 # Run migrations
-python manage.py migrate
+uv run manage.py migrate
 
 # Start Django Q cluster in the background
-python manage.py qcluster &
+uv run manage.py qcluster &
 
 # Start Django development server
-python manage.py runserver 0.0.0.0:8000
+uv run manage.py runserver 0.0.0.0:8000

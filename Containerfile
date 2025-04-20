@@ -31,7 +31,7 @@ RUN uv pip install --system -r requirements.txt
 COPY . .
 
 # Collect static files
-RUN python manage.py collectstatic --noinput
+RUN uv run manage.py collectstatic --noinput
 
 # Expose port
 EXPOSE 8000
