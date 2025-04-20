@@ -30,11 +30,9 @@ ALLOWED_HOSTS = ['*']
 
 # CSRF Trusted Origins
 CSRF_TRUSTED_ORIGINS = [
-    'https://work-1-rqghrvtgtorvwifq.prod-runtime.all-hands.dev',
-    'https://work-2-rqghrvtgtorvwifq.prod-runtime.all-hands.dev',
-    'https://work-1-qxiqfxzlbiumsfes.prod-runtime.all-hands.dev',
-    'https://work-2-qxiqfxzlbiumsfes.prod-runtime.all-hands.dev',
+	'http://localhost',
 ]
+
 
 # CSRF Exempt URLs
 CSRF_EXEMPT_URLS = [r'^admin/login/$']
