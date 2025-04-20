@@ -17,85 +17,85 @@ COMPOSE_PROJECT_NAME = musicevents
 COMPOSE ?= docker compose
 
 help:
-	@echo "Available commands:"
-	@echo "  make server          - Run development server"
-	@echo "  make sync           - Run uv sync to update dependencies"
-	@echo "  make migrate        - Run database migrations"
-	@echo "  make shell          - Start Django shell"
-	@echo "  make test           - Run tests (keeps test database)"
-	@echo "  make test-verbose   - Run tests with verbose output"
-	@echo "  make test-coverage  - Run tests with coverage report"
-	@echo "  make test-specific  - Run specific test (use TEST=path.to.test)"
-	@echo "  make clean          - Remove Python bytecode files and cache"
-	@echo "  make createsuperuser - Create a superuser"
-	@echo ""
-	@echo "Container commands (using $(CONTAINER_TOOL)):"
-	@echo "  make container-build - Build container image"
-	@echo "  make container-run  - Run container"
-	@echo "  make container-stop - Stop and remove container"
-	@echo "  make container-all  - Run all container commands"
-	@echo "  make container-logs - Show container logs"
-	@echo ""
-	@echo "Docker Compose commands:"
-	@echo "  make compose-up    - Start services with docker compose"
-	@echo "  make compose-down  - Stop services"
-	@echo "  make compose-build - Build services"
-	@echo "  make compose-logs  - Show service logs"
-	@echo "  make compose-ps    - List running services"
-	@echo ""
-	@echo "Environment variables:"
-	@echo "  CONTAINER_TOOL     - Container tool to use (default: podman)"
-	@echo "                       Supported: podman, docker"
-	@echo "  ENV_FILE          - Environment file to use (default: .env)"
-	@echo "  COMPOSE           - Docker compose command (default: docker compose)"
+        @echo "Available commands:"
+        @echo "  make server          - Run development server"
+        @echo "  make sync           - Run uv sync to update dependencies"
+        @echo "  make migrate        - Run database migrations"
+        @echo "  make shell          - Start Django shell"
+        @echo "  make test           - Run tests (keeps test database)"
+        @echo "  make test-verbose   - Run tests with verbose output"
+        @echo "  make test-coverage  - Run tests with coverage report"
+        @echo "  make test-specific  - Run specific test (use TEST=path.to.test)"
+        @echo "  make clean          - Remove Python bytecode files and cache"
+        @echo "  make createsuperuser - Create a superuser"
+        @echo ""
+        @echo "Container commands (using $(CONTAINER_TOOL)):"
+        @echo "  make container-build - Build container image"
+        @echo "  make container-run  - Run container"
+        @echo "  make container-stop - Stop and remove container"
+        @echo "  make container-all  - Run all container commands"
+        @echo "  make container-logs - Show container logs"
+        @echo ""
+        @echo "Docker Compose commands:"
+        @echo "  make compose-up    - Start services with docker compose"
+        @echo "  make compose-down  - Stop services"
+        @echo "  make compose-build - Build services"
+        @echo "  make compose-logs  - Show service logs"
+        @echo "  make compose-ps    - List running services"
+        @echo ""
+        @echo "Environment variables:"
+        @echo "  CONTAINER_TOOL     - Container tool to use (default: podman)"
+        @echo "                       Supported: podman, docker"
+        @echo "  ENV_FILE          - Environment file to use (default: .env)"
+        @echo "  COMPOSE           - Docker compose command (default: docker compose)"
 
 server:
-	uv run manage.py runserver 0.0.0.0:53324
+        uv run manage.py runserver 0.0.0.0:53324
 
 sync:
-	uv sync
+        uv sync
 
 migrate:
-	uv run manage.py migrate
+        uv run manage.py migrate
 
 shell:
-	uv run manage.py shell
+        uv run manage.py shell
 
 test:
-	uv run manage.py test
+        uv run manage.py test
 
 test-verbose:
-	uv run manage.py test -v 2
+        uv run manage.py test -v 2
 
 test-coverage:
-	uv run coverage run manage.py test
-	uv run coverage report
-	uv run coverage html
+        uv run coverage run manage.py test
+        uv run coverage report
+        uv run coverage html
 
 test-specific:
-	@if [ "$(TEST)" = "" ]; then \
-		echo "Please specify a test with TEST=path.to.test"; \
-		exit 1; \
-	fi
-	uv run manage.py test $(TEST)
+        @if [ "$(TEST)" = "" ]; then \
+                echo "Please specify a test with TEST=path.to.test"; \
+                exit 1; \
+        fi
+        uv run manage.py test $(TEST)
 
 clean:
-	find . -type f -name "*.pyc" -delete
-	find . -type d -name "__pycache__" -delete
-	find . -type d -name ".pytest_cache" -delete
-	find . -type d -name "htmlcov" -delete
-	find . -type f -name ".coverage" -delete
+        find . -type f -name "*.pyc" -delete
+        find . -type d -name "__pycache__" -delete
+        find . -type d -name ".pytest_cache" -delete
+        find . -type d -name "htmlcov" -delete
+        find . -type f -name ".coverage" -delete
 
 createsuperuser:
-	uv run manage.py createsuperuser
+        uv run manage.py createsuperuser
 
 # Add migrations command to create new migrations
 makemigrations:
-	uv run manage.py makemigrations
+        uv run manage.py makemigrations
 
 # Add a command to collect static files
 collectstatic:
-	uv run manage.py collectstatic --noinput
+        uv run manage.py collectstatic --noinput
 
 # Add a command to run both makemigrations and migrate
 migrateall: makemigrations migrate
@@ -108,49 +108,48 @@ fresh: clean sync
 
 # Check if .env file exists, if not create from example
 check-env:
-	@if [ ! -f "$(ENV_FILE)" ]; then \
-		echo "Creating $(ENV_FILE) from .env.example..."; \
-		cp .env.example $(ENV_FILE); \
-		echo "Please edit $(ENV_FILE) and set your environment variables."; \
-		exit 1; \
-	fi
+        @if [ ! -f "$(ENV_FILE)" ]; then \
+                echo "Creating $(ENV_FILE) from .env.example..."; \
+                cp .env.example $(ENV_FILE); \
+                echo "Please edit $(ENV_FILE) and set your environment variables."; \
+                exit 1; \
+        fi
 
-container-build: check-env
-	$(CONTAINER_TOOL) build \
-		--build-arg TICKETMASTER_API_KEY=$(TICKETMASTER_API_KEY) \
-		-t $(CONTAINER_NAME):$(CONTAINER_TAG) \
-		-f Containerfile .
+container-build:
+        $(CONTAINER_TOOL) build \
+                -t $(CONTAINER_NAME):$(CONTAINER_TAG) \
+                -f Containerfile .
 
 container-run: check-env
-	$(CONTAINER_TOOL) run --name $(CONTAINER_NAME) \
-		-p $(CONTAINER_PORT):8000 \
-		-v $(PWD)/media:/app/media \
-		-e TICKETMASTER_API_KEY=$(TICKETMASTER_API_KEY) \
-		-d $(CONTAINER_NAME):$(CONTAINER_TAG)
+        $(CONTAINER_TOOL) run --name $(CONTAINER_NAME) \
+                -p $(CONTAINER_PORT):8000 \
+                -v $(PWD)/media:/app/media \
+                -e TICKETMASTER_API_KEY=$(TICKETMASTER_API_KEY) \
+                -d $(CONTAINER_NAME):$(CONTAINER_TAG)
 
 container-stop:
-	-$(CONTAINER_TOOL) stop $(CONTAINER_NAME)
-	-$(CONTAINER_TOOL) rm $(CONTAINER_NAME)
+        -$(CONTAINER_TOOL) stop $(CONTAINER_NAME)
+        -$(CONTAINER_TOOL) rm $(CONTAINER_NAME)
 
 # Run all container commands in sequence
 container-all: container-stop container-build container-run
 
 # Show container logs
 container-logs:
-	$(CONTAINER_TOOL) logs -f $(CONTAINER_NAME)
+        $(CONTAINER_TOOL) logs -f $(CONTAINER_NAME)
 
 # Docker Compose commands
 compose-up: check-env
-	$(COMPOSE) up -d
+        $(COMPOSE) up -d
 
 compose-down:
-	$(COMPOSE) down
+        $(COMPOSE) down
 
 compose-build: check-env
-	$(COMPOSE) build
+        $(COMPOSE) build
 
 compose-logs:
-	$(COMPOSE) logs -f
+        $(COMPOSE) logs -f
 
 compose-ps:
-	$(COMPOSE) ps
+        $(COMPOSE) ps

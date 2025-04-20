@@ -19,9 +19,7 @@ ENV PYTHONUNBUFFERED=1 \
     DJANGO_SETTINGS_MODULE=music_events_project.settings \
     DJANGO_DEBUG=True
 
-# These environment variables must be provided at runtime
-ARG TICKETMASTER_API_KEY
-ENV TICKETMASTER_API_KEY=${TICKETMASTER_API_KEY}
+# Runtime environment variables should be provided via docker run -e or docker-compose.yml
 
 # Set work directory
 WORKDIR /app
