@@ -1,0 +1,76 @@
+{% extends 'events/base.html' %}
+
+{% block title %}{{ venue.name }} - Music Events{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-4">
+        <div class="card mb-4">
+            <div class="card-header">
+                <h3 class="card-title">Venue Information</h3>
+            </div>
+            <div class="card-body">
+                <h5>{{ venue.name }}</h5>
+                <p>{{ venue.address }}<br>
+                {{ venue.city }}, {{ venue.state }} {{ venue.zip_code }}</p>
+                
+                {% if venue.capacity %}
+                    <p><strong>Capacity:</strong> {{ venue.capacity }}</p>
+                {% endif %}
+                
+                {% if venue.website %}
+                    <a href="{{ venue.website }}" class="btn btn-primary" target="_blank">Visit Venue Website</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-8">
+        <h1>{{ venue.name }}</h1>
+        
+        {% if upcoming_events %}
+            <h3>Upcoming Events</h3>
+            <div class="list-group mb-4">
+                {% for event in upcoming_events %}
+                    <a href="{% url 'events:event_detail' event.pk %}" class="list-group-item list-group-item-action">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1">{{ event.title }}</h5>
+                            <small>{{ event.date|date:"F j, Y" }}</small>
+                        </div>
+                        <p class="mb-1">
+                            Artists: 
+                            {% for artist in event.artists.all %}
+                                {{ artist.name }}{% if not forloop.last %}, {% endif %}
+                            {% endfor %}
+                        </p>
+                    </a>
+                {% endfor %}
+            </div>
+        {% else %}
+            <div class="alert alert-info">
+                No upcoming events at this venue.
+            </div>
+        {% endif %}
+        
+        {% if past_events %}
+            <h3>Past Events</h3>
+            <div class="list-group">
+                {% for event in past_events %}
+                    <a href="{% url 'events:event_detail' event.pk %}" class="list-group-item list-group-item-action">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1">{{ event.title }}</h5>
+                            <small>{{ event.date|date:"F j, Y" }}</small>
+                        </div>
+                        <p class="mb-1">
+                            Artists: 
+                            {% for artist in event.artists.all %}
+                                {{ artist.name }}{% if not forloop.last %}, {% endif %}
+                            {% endfor %}
+                        </p>
+                    </a>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,72 @@
+{% extends 'events/base.html' %}
+
+{% block title %}Sync Ticketmaster Events{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h2 class="mb-0">Sync Events from Ticketmaster</h2>
+                </div>
+                <div class="card-body">
+                    <p class="lead">
+                        Use this form to synchronize music events from Ticketmaster API for a specific city.
+                    </p>
+                    
+                    {% if messages %}
+                    <div class="messages">
+                        {% for message in messages %}
+                        <div class="alert alert-{{ message.tags }}">
+                            {{ message }}
+                        </div>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                    
+                    <form method="post">
+                        {% csrf_token %}
+                        
+                        <div class="mb-3">
+                            <label for="{{ form.city.id_for_label }}" class="form-label">City</label>
+                            {{ form.city }}
+                            <div class="form-text">{{ form.city.help_text }}</div>
+                            {% if form.city.errors %}
+                            <div class="invalid-feedback d-block">
+                                {% for error in form.city.errors %}
+                                {{ error }}
+                                {% endfor %}
+                            </div>
+                            {% endif %}
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="{{ form.state.id_for_label }}" class="form-label">State Code (optional)</label>
+                            {{ form.state }}
+                            <div class="form-text">{{ form.state.help_text }}</div>
+                            {% if form.state.errors %}
+                            <div class="invalid-feedback d-block">
+                                {% for error in form.state.errors %}
+                                {{ error }}
+                                {% endfor %}
+                            </div>
+                            {% endif %}
+                        </div>
+                        
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-primary">Sync Events</button>
+                            <a href="{% url 'events:event_list' %}" class="btn btn-secondary">Cancel</a>
+                        </div>
+                    </form>
+                </div>
+                <div class="card-footer">
+                    <small class="text-muted">
+                        Note: This operation may take some time depending on the number of events available.
+                    </small>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
