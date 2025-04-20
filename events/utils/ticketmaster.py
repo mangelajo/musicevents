@@ -1,66 +1,16 @@
 import requests
 import logging
-import os
-import tempfile
 from django.conf import settings
-from django.core.files import File
 from events.models import Artist, Venue, Event
 from django.utils import timezone
 from datetime import datetime
 import pytz
-from urllib.parse import urlparse
+from .image_utils import download_and_save_image  # Import the function
 
 logger = logging.getLogger(__name__)
 
 # Ticketmaster API base URL
 
-def download_and_save_image(url, model_instance, field_name='image'):
-    """
-    Download an image from a URL and save it to a model instance's ImageField
-    
-    Args:
-        url (str): URL of the image to download
-        model_instance: Django model instance to save the image to
-        field_name (str): Name of the ImageField on the model
-        
-    Returns:
-        bool: True if successful, False otherwise
-    """
-    if not url:
-        return False
-        
-    try:
-        # Get the image file name from the URL
-        parsed_url = urlparse(url)
-        image_name = os.path.basename(parsed_url.path)
-        
-        # Download the image
-        response = requests.get(url, stream=True)
-        response.raise_for_status()
-        
-        # Save the image to a temporary file
-        with tempfile.NamedTemporaryFile(delete=False) as temp_file:
-            for chunk in response.iter_content(chunk_size=1024):
-                if chunk:
-                    temp_file.write(chunk)
-        
-        # Open the temporary file and save it to the model
-        with open(temp_file.name, 'rb') as f:
-            # Get the model's field
-            field = getattr(model_instance, field_name)
-            # Save the file to the field
-            field.save(image_name, File(f), save=False)
-            
-        # Save the model
-        model_instance.save()
-        
-        # Clean up the temporary file
-        os.unlink(temp_file.name)
-        
-        return True
-    except Exception as e:
-        logger.error(f"Error downloading image from {url}: {e}")
-        return False
 TICKETMASTER_API_URL = "https://app.ticketmaster.com/discovery/v2/events.json"
 
 def fetch_events_for_city(city, state=None, api_key=None, size=20):

@@ -29,7 +29,7 @@ class Venue(models.Model):
 
 class Event(models.Model):
     title = models.CharField(max_length=200)
-    slug = models.SlugField(unique=False, blank=True, null=True)  # Add this field
+    slug = models.SlugField(unique=False, blank=True, null=True)
     description = models.TextField(blank=True)
     date = models.DateTimeField()
     venue = models.ForeignKey(Venue, on_delete=models.CASCADE, related_name='events')
@@ -53,73 +53,69 @@ class Event(models.Model):
     def generate_thumbnail(self, size=(300, 200), quality=85):
         """Generate a thumbnail for the event image"""
         if not self.image:
-            return None
-            
-        # Open the image
-        img = Image.open(self.image)
-        
-        # Convert to RGB if needed
-        if img.mode not in ('L', 'RGB', 'RGBA'):
-            img = img.convert('RGB')
-        
-        # Create a thumbnail
-        img.thumbnail(size, Image.LANCZOS)
-        
-        # Save the thumbnail to a BytesIO object
-        thumb_io = BytesIO()
-        img.save(thumb_io, format='JPEG', quality=quality, optimize=True)
-        thumb_io.seek(0)
-        
-        # Get the original filename and create a new filename for the thumbnail
-        original_name = os.path.basename(self.image.name)
-        name, ext = os.path.splitext(original_name)
-        thumbnail_name = f"thumb_{name}.jpg"
-        
-        # Save the thumbnail to the thumbnail field
-        self.thumbnail.save(thumbnail_name, ContentFile(thumb_io.read()), save=False)
-        
+            self.thumbnail = None
+            return
+
+        try:
+            # Open the image
+            img = Image.open(self.image)
+
+            # Convert to RGB if it's RGBA or P (palette) mode to remove alpha channel
+            if img.mode == 'RGBA' or img.mode == 'P':
+                img = img.convert('RGB')
+            elif img.mode != 'RGB':
+                # Handle other modes like L (grayscale) if necessary, or convert non-RGB to RGB
+                img = img.convert('RGB')
+
+            # Create a thumbnail
+            img.thumbnail(size, Image.LANCZOS)
+
+            # Save the thumbnail to a BytesIO object
+            thumb_io = BytesIO()
+            # Ensure saving as JPEG
+            img.save(thumb_io, format='JPEG', quality=quality, optimize=True)
+            thumb_io.seek(0)
+
+            # Get the original filename and create a new filename for the thumbnail
+            original_name = os.path.basename(self.image.name)
+            name, ext = os.path.splitext(original_name)
+            # Ensure the thumbnail name uses .jpg extension
+            thumbnail_name = f"thumb_{name}.jpg"
+
+            # Save the thumbnail to the thumbnail field
+            # Use save=False as the main model save will handle saving the field
+            self.thumbnail.save(thumbnail_name, ContentFile(thumb_io.read()), save=False)
+
+        except Exception as e:
+            import logging
+            logger = logging.getLogger(__name__)
+            logger.error(f"Error generating thumbnail for event {self.title} (Image: {self.image.name}): {e}")
+            self.thumbnail = None  # Ensure thumbnail field is cleared on error
+
     def save(self, *args, **kwargs):
         """Override save to generate thumbnail if image exists"""
         if not self.slug:
             self.slug = slugify(self.title)
-        
+
         # Skip thumbnail generation if 'skip_thumbnail' is in kwargs
         skip_thumbnail = kwargs.pop('skip_thumbnail', False)
         if skip_thumbnail:
             return super().save(*args, **kwargs)
-            
-        # Check if this is a new image or the image has changed
-        if self.pk:
+
+        # Generate thumbnail if needed
+        generate_thumb = False
+        if self.image and not self.thumbnail:
+            generate_thumb = True
+        elif self.pk:
             try:
                 old_instance = Event.objects.get(pk=self.pk)
                 if old_instance.image != self.image and self.image:
-                    # Image has changed, generate new thumbnail
-                    super().save(*args, **kwargs)  # Save first to ensure image is saved
-                    try:
-                        self.generate_thumbnail()
-                        super().save(*args, **kwargs)  # Save again with thumbnail
-                    except Exception as e:
-                        # Log error but don't fail the save
-                        import logging
-                        logger = logging.getLogger(__name__)
-                        logger.error(f"Error generating thumbnail for event {self.title}: {e}")
-                    return
+                    generate_thumb = True
             except Event.DoesNotExist:
-                pass
-        
-        # For new instances with an image
-        is_new_with_image = not self.pk and self.image
-        
-        # Save the instance first
-        super().save(*args, **kwargs)
-        
-        # Generate thumbnail if needed
-        if is_new_with_image or (not self.thumbnail and self.image):
-            try:
-                self.generate_thumbnail()
-                super().save(*args, **kwargs)  # Save again with thumbnail
-            except Exception as e:
-                # Log error but don't fail the save
-                import logging
-                logger = logging.getLogger(__name__)
-                logger.error(f"Error generating thumbnail for event {self.title}: {e}")
+                if self.image:  # Handle case where instance is being created with image
+                    generate_thumb = True
+
+        if generate_thumb:
+            self.generate_thumbnail()  # This will set self.thumbnail if successful
+
+        super().save(*args, **kwargs)  # Save the instance with the potentially updated thumbnail field
