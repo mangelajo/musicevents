@@ -1,11 +1,7 @@
 from django.contrib import admin
 from django.urls import path
 from django.shortcuts import redirect
-from django.urls import reverse
-from django.utils.html import format_html
-from django.template.response import TemplateResponse
 from .models import Artist, Venue, Event
-from .utils.ticketmaster import sync_events_for_city
 
 
 class MusicEventsAdminSite(admin.AdminSite):

@@ -1,7 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
 import re
-from datetime import datetime
 import logging
 import json
 

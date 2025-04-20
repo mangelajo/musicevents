@@ -2,7 +2,6 @@ import os
 from io import BytesIO
 from PIL import Image
 from django.core.files.base import ContentFile
-from django.conf import settings
 
 def generate_thumbnail(image_field, size=(300, 200), format='JPEG', quality=85, prefix='thumb_'):
     """

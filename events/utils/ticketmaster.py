@@ -4,7 +4,6 @@ from django.conf import settings
 from events.models import Artist, Venue, Event
 from django.utils import timezone
 from datetime import datetime
-import pytz
 from .image_utils import download_and_save_image  # Import the function
 
 logger = logging.getLogger(__name__)

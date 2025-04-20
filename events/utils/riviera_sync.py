@@ -8,10 +8,8 @@ from datetime import datetime
 from bs4 import BeautifulSoup
 from django.utils import timezone
 from django.utils.text import slugify
-from django.core.files.base import ContentFile
 from events.models import Event, Venue, Artist
 from events.utils.image_utils import download_and_save_image
-from events.utils.thumbnails import generate_thumbnail
 
 logger = logging.getLogger(__name__)
 
@@ -327,7 +325,6 @@ def sync_riviera_events():
                 event.description = description
                 event.ticket_url = ticket_url
                 
-                should_save = True # Flag to check if save is needed
                 if image_url and event.image_url != image_url:
                     event.image_url = image_url
                     # Download image only if URL changed or no image exists
