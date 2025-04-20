@@ -10,8 +10,8 @@
         {% for artist in artists %}
             <div class="col-md-4 mb-4">
                 <div class="card h-100">
-                    {% if artist.image %}
-                        <img src="{{ artist.image.url }}" class="card-img-top" alt="{{ artist.name }}">
+                    {% if artist.get_image %}
+                        <img src="{{ artist.get_image.url }}" class="card-img-top" alt="{{ artist.name }}">
                     {% else %}
                         <div class="bg-secondary text-white text-center p-5">No Image</div>
                     {% endif %}

@@ -5,8 +5,8 @@
 {% block content %}
 <div class="row">
     <div class="col-md-4">
-        {% if artist.image %}
-            <img src="{{ artist.image.url }}" class="img-fluid rounded mb-4" alt="{{ artist.name }}">
+        {% if artist.get_image %}
+            <img src="{{ artist.get_image.url }}" class="img-fluid rounded mb-4" alt="{{ artist.name }}">
         {% else %}
             <div class="bg-secondary text-white text-center p-5 mb-4">No Image</div>
         {% endif %}

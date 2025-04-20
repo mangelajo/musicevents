@@ -15,6 +15,64 @@ class Artist(models.Model):
     def __str__(self):
         return self.name
 
+    @property
+    def get_image(self):
+        """Get the artist's image, falling back to an event image if none exists"""
+        if self.image:
+            return self.image
+        
+        # Look for the first event with an image
+        event_with_image = self.events.exclude(image='').filter(image__isnull=False).first()
+        if event_with_image and event_with_image.image:
+            # Save the image for future use
+            self.save_event_image(event_with_image)
+            return self.image
+        
+        return None
+
+    def save_event_image(self, event):
+        """Save an event's image as the artist's image"""
+        if not event.image:
+            return
+
+        try:
+            # Get the original filename and create a new filename for the artist
+            original_name = os.path.basename(event.image.name)
+            name, ext = os.path.splitext(original_name)
+            artist_image_name = f"{slugify(self.name)}{ext}"
+
+            # Open the event image and save it to BytesIO
+            img = Image.open(event.image)
+            
+            # Convert to RGB if needed
+            if img.mode == 'RGBA' or img.mode == 'P':
+                img = img.convert('RGB')
+            elif img.mode != 'RGB':
+                img = img.convert('RGB')
+
+            # Save to BytesIO
+            img_io = BytesIO()
+            img.save(img_io, format=img.format or 'JPEG')
+            img_io.seek(0)
+
+            # Save the image to the artist's image field
+            self.image.save(artist_image_name, ContentFile(img_io.read()), save=True)
+
+        except Exception as e:
+            import logging
+            logger = logging.getLogger(__name__)
+            logger.error(f"Error saving event image for artist {self.name}: {e}")
+
+    def save(self, *args, **kwargs):
+        """Override save to get an image from events if none exists"""
+        if not self.image:
+            # Look for an event with an image before saving
+            event_with_image = self.events.exclude(image='').filter(image__isnull=False).first()
+            if event_with_image and event_with_image.image:
+                self.save_event_image(event_with_image)
+
+        super().save(*args, **kwargs)
+
 class Venue(models.Model):
     name = models.CharField(max_length=200)
     address = models.CharField(max_length=300)
