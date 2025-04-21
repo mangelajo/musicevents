@@ -70,7 +70,7 @@ test: compile-messages
 test-verbose: compile-messages
 	uv run manage.py test -v 2
 
-test-coverage: compile-messages
+test-coverage:
 	uv run coverage run manage.py test
 	uv run coverage report
 	uv run coverage html
@@ -82,7 +82,8 @@ test-specific: compile-messages
 	fi
 	uv run manage.py test $(TEST)
 
-test-functional: compile-messages
+test-functional:
+	uv run playwright install --with-deps
 	uv run pytest events/tests/functional/
 
 clean:
