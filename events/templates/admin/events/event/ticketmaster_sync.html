@@ -1,0 +1,49 @@
+{% extends "admin/base_site.html" %}
+{% load i18n admin_urls static admin_modify %}
+
+{% block extrahead %}{{ block.super }}
+<style type="text/css">
+    .form-row { padding: 8px; margin: 0; border-bottom: 1px solid #eee; }
+    .form-row label { display: block; padding: 0 10px 0 0; float: left; width: 150px; word-wrap: break-word; }
+    .form-row .help { padding-left: 160px; font-size: 11px; color: #999; }
+    .submit-row { padding: 15px; margin: 0; text-align: right; }
+</style>
+{% endblock %}
+
+{% block breadcrumbs %}
+<div class="breadcrumbs">
+    <a href="{% url 'admin:index' %}">{% trans 'Home' %}</a>
+    &rsaquo; <a href="{% url 'admin:app_list' app_label='events' %}">Events</a>
+    &rsaquo; <a href="{% url 'admin:events_event_changelist' %}">Events</a>
+    &rsaquo; Sync Ticketmaster Events
+</div>
+{% endblock %}
+
+{% block content %}
+<div id="content-main">
+    <form method="post">
+        {% csrf_token %}
+        <fieldset class="module aligned">
+            <h2>Sync Events from Ticketmaster</h2>
+            <div class="description">Enter a city and optionally a state to sync events from Ticketmaster.</div>
+            
+            {% for field in form %}
+                <div class="form-row">
+                    <div>
+                        {{ field.label_tag }}
+                        {{ field }}
+                        {% if field.help_text %}
+                            <div class="help">{{ field.help_text }}</div>
+                        {% endif %}
+                        {{ field.errors }}
+                    </div>
+                </div>
+            {% endfor %}
+        </fieldset>
+        
+        <div class="submit-row">
+            <input type="submit" value="Sync Events" class="default" name="_save">
+        </div>
+    </form>
+</div>
+{% endblock %}
