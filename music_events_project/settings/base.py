@@ -159,4 +159,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 TICKETMASTER_API_KEY = os.environ.get('TICKETMASTER_API_KEY', 'YOUR_API_KEY_HERE')
 
 # Site branding settings
-SITE_LOGO = 'images/logo.png'  # Default logo path relative to static directory
+SITE_LOGO = os.environ.get('SITE_LOGO', 'images/logo.png')  # Default logo path relative to static directory
+SITE_NAME = os.environ.get('SITE_NAME', 'music.madrid')  # Default site name

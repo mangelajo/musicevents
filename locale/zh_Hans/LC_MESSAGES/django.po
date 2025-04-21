@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-21 12:26+0000\n"
+"POT-Creation-Date: 2025-04-21 12:41+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,9 +17,10 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+
 #: events/templates/events/base.html:16
-msgid "Music Events Logo"
-msgstr "音乐活动标志"
+msgid "Logo"
+msgstr ""
 
 #: events/templates/events/base.html:24 events/templates/events/home.html:4
 msgid "Home"
@@ -57,11 +58,6 @@ msgstr "管理"
 msgid "Events Admin"
 msgstr "活动管理"
 
-#: events/templates/events/base.html:68 events/templates/events/base.html:72
-#: events/templates/events/home.html:4
-msgid "Music Events"
-msgstr "音乐活动"
-
 #: events/templates/events/base.html:69
 msgid "Your source for the best music events in town."
 msgstr "您城市最佳音乐活动的来源。"
@@ -71,8 +67,8 @@ msgid "All rights reserved."
 msgstr "版权所有。"
 
 #: events/templates/events/home.html:8
-msgid "Welcome to Music Events"
-msgstr "欢迎来到音乐活动"
+msgid "Welcome to"
+msgstr "欢迎来到"
 
 #: events/templates/events/home.html:9
 msgid "Discover the best music events in your area."
@@ -149,3 +145,9 @@ msgstr "简体中文"
 #: music_events_project/settings/base.py:128
 msgid "Japanese"
 msgstr "日语"
+
+#~ msgid "Music Events Logo"
+#~ msgstr "音乐活动标志"
+
+#~ msgid "Music Events"
+#~ msgstr "音乐活动"

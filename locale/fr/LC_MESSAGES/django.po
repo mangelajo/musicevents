@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-21 12:26+0000\n"
+"POT-Creation-Date: 2025-04-21 12:41+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,9 +17,10 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
 #: events/templates/events/base.html:16
-msgid "Music Events Logo"
-msgstr "Logo Événements Musicaux"
+msgid "Logo"
+msgstr ""
 
 #: events/templates/events/base.html:24 events/templates/events/home.html:4
 msgid "Home"
@@ -57,11 +58,6 @@ msgstr "Administration"
 msgid "Events Admin"
 msgstr "Administration des Événements"
 
-#: events/templates/events/base.html:68 events/templates/events/base.html:72
-#: events/templates/events/home.html:4
-msgid "Music Events"
-msgstr "Événements Musicaux"
-
 #: events/templates/events/base.html:69
 msgid "Your source for the best music events in town."
 msgstr "Votre source pour les meilleurs événements musicaux en ville."
@@ -71,8 +67,8 @@ msgid "All rights reserved."
 msgstr "Tous droits réservés."
 
 #: events/templates/events/home.html:8
-msgid "Welcome to Music Events"
-msgstr "Bienvenue sur Événements Musicaux"
+msgid "Welcome to"
+msgstr "Bienvenue sur"
 
 #: events/templates/events/home.html:9
 msgid "Discover the best music events in your area."
@@ -80,7 +76,9 @@ msgstr "Découvrez les meilleurs événements musicaux dans votre région."
 
 #: events/templates/events/home.html:11
 msgid "Browse upcoming events, artists, and venues all in one place."
-msgstr "Parcourez les événements à venir, les artistes et les lieux en un seul endroit."
+msgstr ""
+"Parcourez les événements à venir, les artistes et les lieux en un seul "
+"endroit."
 
 #: events/templates/events/home.html:12
 msgid "View Events"
@@ -149,3 +147,9 @@ msgstr "Chinois simplifié"
 #: music_events_project/settings/base.py:128
 msgid "Japanese"
 msgstr "Japonais"
+
+#~ msgid "Music Events Logo"
+#~ msgstr "Logo Événements Musicaux"
+
+#~ msgid "Music Events"
+#~ msgstr "Événements Musicaux"
