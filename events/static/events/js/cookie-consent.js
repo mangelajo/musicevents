@@ -25,20 +25,52 @@ function getCookie(name) {
 
 function showCookieConsent() {
     if (!getCookie('cookieConsent')) {
-        const consentBanner = document.getElementById('cookie-consent-banner');
-        if (consentBanner) {
-            consentBanner.style.display = 'block';
+        const overlay = document.getElementById('cookie-consent-overlay');
+        const modal = document.getElementById('cookie-consent-modal');
+        const body = document.body;
+
+        if (overlay && modal) {
+            overlay.style.display = 'block';
+            modal.style.display = 'block';
+            body.classList.add('cookie-consent-active');
+
+            // Prevent scrolling on the background
+            body.style.overflow = 'hidden';
+
+            // Disable all interactive elements outside the modal
+            const interactiveElements = document.querySelectorAll('a, button, input, select, textarea');
+            interactiveElements.forEach(element => {
+                if (!modal.contains(element)) {
+                    element.setAttribute('tabindex', '-1');
+                    element.setAttribute('aria-hidden', 'true');
+                }
+            });
         }
     }
 }
 
 function acceptCookies() {
     setCookie('cookieConsent', 'accepted', 365);
-    const consentBanner = document.getElementById('cookie-consent-banner');
-    if (consentBanner) {
-        consentBanner.style.display = 'none';
+    const overlay = document.getElementById('cookie-consent-overlay');
+    const modal = document.getElementById('cookie-consent-modal');
+    const body = document.body;
+
+    if (overlay && modal) {
+        overlay.style.display = 'none';
+        modal.style.display = 'none';
+        body.classList.remove('cookie-consent-active');
+
+        // Re-enable scrolling
+        body.style.overflow = '';
+
+        // Re-enable all interactive elements
+        const interactiveElements = document.querySelectorAll('a, button, input, select, textarea');
+        interactiveElements.forEach(element => {
+            element.removeAttribute('tabindex');
+            element.removeAttribute('aria-hidden');
+        });
     }
 }
 
-// Show the cookie consent banner when the page loads
+// Show the cookie consent modal when the page loads
 document.addEventListener('DOMContentLoaded', showCookieConsent);

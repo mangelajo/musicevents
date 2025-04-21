@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-21 16:31+0000\n"
+"POT-Creation-Date: 2025-04-21 17:09+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -67,13 +67,29 @@ msgstr "Tu fuente para los mejores eventos musicales en la ciudad."
 msgid "All rights reserved."
 msgstr "Todos los derechos reservados."
 
-#: events/templates/events/base.html:84
-msgid ""
-"This website uses cookies to ensure you get the best experience on our "
-"website."
-msgstr "Este sitio web utiliza cookies para asegurar que obtengas la mejor experiencia en nuestro sitio web."
-
 #: events/templates/events/base.html:85
+msgid "Cookie Consent Required"
+msgstr "Se Requiere Consentimiento de Cookies"
+
+#: events/templates/events/base.html:88
+msgid ""
+"This website uses essential cookies to enable basic functionality like page "
+"navigation and access to secure areas. These cookies are necessary for the "
+"website to function properly and cannot be disabled."
+msgstr "Este sitio web utiliza cookies esenciales para permitir funcionalidades básicas como la navegación de páginas y el acceso a áreas seguras. Estas cookies son necesarias para que el sitio web funcione correctamente y no se pueden desactivar."
+
+#: events/templates/events/base.html:89
+msgid ""
+"We do not use any tracking or analytics cookies, and we do not share any "
+"information with third parties."
+msgstr "No utilizamos cookies de seguimiento o análisis, y no compartimos ninguna información con terceros."
+
+#: events/templates/events/base.html:90
+msgid ""
+"By clicking 'Accept', you consent to the use of these essential cookies."
+msgstr "Al hacer clic en 'Aceptar', consientes el uso de estas cookies esenciales."
+
+#: events/templates/events/base.html:93
 msgid "Accept"
 msgstr "Aceptar"
 
@@ -156,6 +172,13 @@ msgstr ""
 #: music_events_project/settings/base.py:128
 msgid "Japanese"
 msgstr ""
+
+#~ msgid ""
+#~ "This website uses cookies to ensure you get the best experience on our "
+#~ "website."
+#~ msgstr ""
+#~ "Este sitio web utiliza cookies para asegurar que obtengas la mejor "
+#~ "experiencia en nuestro sitio web."
 
 #~ msgid "Music Events Logo"
 #~ msgstr "Logo de Eventos Musicales"
