@@ -3,11 +3,11 @@
     {% csrf_token %}
     {% get_current_language as CURRENT_LANGUAGE %}
     {% get_language_info_list for LANGUAGES as languages %}
-    <input name="next" type="hidden" value="{% if CURRENT_LANGUAGE == 'es' %}{{ request.path|slice:'3:' }}{% else %}{{ request.path }}{% endif %}">
+    <input name="next" type="hidden" value="{% if CURRENT_LANGUAGE != 'en' %}{{ request.path|slice:'3:' }}{% else %}{{ request.path }}{% endif %}">
     <select name="language" class="form-select form-select-sm bg-dark text-white border-secondary mt-2" style="width: auto; min-width: 100px; margin-left: 0.5rem;" onchange="this.form.submit()">
         {% for language in languages %}
             <option value="{{ language.code }}" {% if language.code == CURRENT_LANGUAGE %}selected{% endif %}>
-                {{ language.name_local }}
+                {{ language.name_local|title }}
             </option>
         {% endfor %}
     </select>
