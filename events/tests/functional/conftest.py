@@ -1,7 +1,7 @@
 import os
 import pytest
 from django.test import LiveServerTestCase
-from playwright.sync_api import sync_playwright
+from playwright.sync_api import sync_playwright, Browser
 
 # Allow Django to run in async context for tests
 os.environ["DJANGO_ALLOW_ASYNC_UNSAFE"] = "true"
@@ -22,6 +22,17 @@ def browser_type_launch_args():
         "headless": True,
         "args": ["--no-sandbox"],
     }
+
+@pytest.fixture(scope="session")
+def browser() -> Browser:
+    playwright = sync_playwright().start()
+    browser = playwright.chromium.launch(
+        headless=True,
+        args=["--no-sandbox"]
+    )
+    yield browser
+    browser.close()
+    playwright.stop()
 
 @pytest.fixture(scope="function")
 def page(browser):
