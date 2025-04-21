@@ -80,6 +80,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'events.context_processors.site_settings',
             ],
         },
     },
@@ -140,3 +141,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Ticketmaster API settings
 TICKETMASTER_API_KEY = os.environ.get('TICKETMASTER_API_KEY', 'YOUR_API_KEY_HERE')
+
+# Site branding settings
+SITE_LOGO = 'images/logo.png'  # Default logo path relative to static directory
