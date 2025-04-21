@@ -259,7 +259,7 @@ def fetch_riviera_events():
                     'description': description,
                     'image_url': image_url,
                     'ticket_url': event_url,
-                    'external_id': f"riviera-{slugify(title)}"
+                    'external_id': f"riviera-{slugify(title)}-{event_date.strftime('%Y-%m-%d')}"
                 }
                 
                 events_data.append(event_data)
