@@ -123,6 +123,9 @@ LANGUAGE_CODE = 'en'
 LANGUAGES = [
     ('en', _('English')),
     ('es', _('Spanish')),
+    ('fr', _('French')),
+    ('zh-hans', _('Simplified Chinese')),
+    ('ja', _('Japanese')),
 ]
 
 LOCALE_PATHS = [

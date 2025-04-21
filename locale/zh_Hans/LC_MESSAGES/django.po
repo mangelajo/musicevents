@@ -1,0 +1,151 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-04-21 12:26+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+#: events/templates/events/base.html:16
+msgid "Music Events Logo"
+msgstr "音乐活动标志"
+
+#: events/templates/events/base.html:24 events/templates/events/home.html:4
+msgid "Home"
+msgstr "首页"
+
+#: events/templates/events/base.html:27
+msgid "Events"
+msgstr "活动"
+
+#: events/templates/events/base.html:30 events/templates/events/home.html:36
+msgid "Artists"
+msgstr "艺术家"
+
+#: events/templates/events/base.html:33
+msgid "Venues"
+msgstr "场地"
+
+#: events/templates/events/base.html:38
+msgid "Sync Sources"
+msgstr "同步来源"
+
+#: events/templates/events/base.html:41
+msgid "Sync Ticketmaster"
+msgstr "同步Ticketmaster"
+
+#: events/templates/events/base.html:42
+msgid "Sync Sala Riviera"
+msgstr "同步Sala Riviera"
+
+#: events/templates/events/base.html:46
+msgid "Admin"
+msgstr "管理"
+
+#: events/templates/events/base.html:49
+msgid "Events Admin"
+msgstr "活动管理"
+
+#: events/templates/events/base.html:68 events/templates/events/base.html:72
+#: events/templates/events/home.html:4
+msgid "Music Events"
+msgstr "音乐活动"
+
+#: events/templates/events/base.html:69
+msgid "Your source for the best music events in town."
+msgstr "您城市最佳音乐活动的来源。"
+
+#: events/templates/events/base.html:72
+msgid "All rights reserved."
+msgstr "版权所有。"
+
+#: events/templates/events/home.html:8
+msgid "Welcome to Music Events"
+msgstr "欢迎来到音乐活动"
+
+#: events/templates/events/home.html:9
+msgid "Discover the best music events in your area."
+msgstr "发现您所在地区最好的音乐活动。"
+
+#: events/templates/events/home.html:11
+msgid "Browse upcoming events, artists, and venues all in one place."
+msgstr "在一处浏览即将举行的活动、艺术家和场地。"
+
+#: events/templates/events/home.html:12
+msgid "View Events"
+msgstr "查看活动"
+
+#: events/templates/events/home.html:17
+msgid "Upcoming Events"
+msgstr "即将举行的活动"
+
+#: events/templates/events/home.html:29
+msgid "No Image"
+msgstr "无图片"
+
+#: events/templates/events/home.html:35
+msgid "Venue"
+msgstr "场地"
+
+#: events/templates/events/home.html:48
+msgid "View All Events"
+msgstr "查看所有活动"
+
+#: events/templates/events/home.html:51
+msgid "No upcoming events at this time."
+msgstr "目前没有即将举行的活动。"
+
+#: events/templates/events/home.html:56
+msgid "Featured Artists"
+msgstr "特色艺术家"
+
+#: events/templates/events/home.html:69
+msgid "View All Artists"
+msgstr "查看所有艺术家"
+
+#: events/templates/events/home.html:72
+msgid "No featured artists at this time."
+msgstr "目前没有特色艺术家。"
+
+#: events/templates/events/home.html:75
+msgid "Featured Venues"
+msgstr "特色场地"
+
+#: events/templates/events/home.html:88
+msgid "View All Venues"
+msgstr "查看所有场地"
+
+#: events/templates/events/home.html:91
+msgid "No featured venues at this time."
+msgstr "目前没有特色场地。"
+
+#: music_events_project/settings/base.py:124
+msgid "English"
+msgstr "英语"
+
+#: music_events_project/settings/base.py:125
+msgid "Spanish"
+msgstr "西班牙语"
+
+#: music_events_project/settings/base.py:126
+msgid "French"
+msgstr "法语"
+
+#: music_events_project/settings/base.py:127
+msgid "Simplified Chinese"
+msgstr "简体中文"
+
+#: music_events_project/settings/base.py:128
+msgid "Japanese"
+msgstr "日语"

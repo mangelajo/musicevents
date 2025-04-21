@@ -1,0 +1,151 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-04-21 12:26+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+#: events/templates/events/base.html:16
+msgid "Music Events Logo"
+msgstr "Logo Événements Musicaux"
+
+#: events/templates/events/base.html:24 events/templates/events/home.html:4
+msgid "Home"
+msgstr "Accueil"
+
+#: events/templates/events/base.html:27
+msgid "Events"
+msgstr "Événements"
+
+#: events/templates/events/base.html:30 events/templates/events/home.html:36
+msgid "Artists"
+msgstr "Artistes"
+
+#: events/templates/events/base.html:33
+msgid "Venues"
+msgstr "Lieux"
+
+#: events/templates/events/base.html:38
+msgid "Sync Sources"
+msgstr "Sources de Synchronisation"
+
+#: events/templates/events/base.html:41
+msgid "Sync Ticketmaster"
+msgstr "Synchroniser Ticketmaster"
+
+#: events/templates/events/base.html:42
+msgid "Sync Sala Riviera"
+msgstr "Synchroniser Sala Riviera"
+
+#: events/templates/events/base.html:46
+msgid "Admin"
+msgstr "Administration"
+
+#: events/templates/events/base.html:49
+msgid "Events Admin"
+msgstr "Administration des Événements"
+
+#: events/templates/events/base.html:68 events/templates/events/base.html:72
+#: events/templates/events/home.html:4
+msgid "Music Events"
+msgstr "Événements Musicaux"
+
+#: events/templates/events/base.html:69
+msgid "Your source for the best music events in town."
+msgstr "Votre source pour les meilleurs événements musicaux en ville."
+
+#: events/templates/events/base.html:72
+msgid "All rights reserved."
+msgstr "Tous droits réservés."
+
+#: events/templates/events/home.html:8
+msgid "Welcome to Music Events"
+msgstr "Bienvenue sur Événements Musicaux"
+
+#: events/templates/events/home.html:9
+msgid "Discover the best music events in your area."
+msgstr "Découvrez les meilleurs événements musicaux dans votre région."
+
+#: events/templates/events/home.html:11
+msgid "Browse upcoming events, artists, and venues all in one place."
+msgstr "Parcourez les événements à venir, les artistes et les lieux en un seul endroit."
+
+#: events/templates/events/home.html:12
+msgid "View Events"
+msgstr "Voir les Événements"
+
+#: events/templates/events/home.html:17
+msgid "Upcoming Events"
+msgstr "Événements à Venir"
+
+#: events/templates/events/home.html:29
+msgid "No Image"
+msgstr "Pas d'Image"
+
+#: events/templates/events/home.html:35
+msgid "Venue"
+msgstr "Lieu"
+
+#: events/templates/events/home.html:48
+msgid "View All Events"
+msgstr "Voir Tous les Événements"
+
+#: events/templates/events/home.html:51
+msgid "No upcoming events at this time."
+msgstr "Aucun événement à venir pour le moment."
+
+#: events/templates/events/home.html:56
+msgid "Featured Artists"
+msgstr "Artistes en Vedette"
+
+#: events/templates/events/home.html:69
+msgid "View All Artists"
+msgstr "Voir Tous les Artistes"
+
+#: events/templates/events/home.html:72
+msgid "No featured artists at this time."
+msgstr "Aucun artiste en vedette pour le moment."
+
+#: events/templates/events/home.html:75
+msgid "Featured Venues"
+msgstr "Lieux en Vedette"
+
+#: events/templates/events/home.html:88
+msgid "View All Venues"
+msgstr "Voir Tous les Lieux"
+
+#: events/templates/events/home.html:91
+msgid "No featured venues at this time."
+msgstr "Aucun lieu en vedette pour le moment."
+
+#: music_events_project/settings/base.py:124
+msgid "English"
+msgstr "Anglais"
+
+#: music_events_project/settings/base.py:125
+msgid "Spanish"
+msgstr "Espagnol"
+
+#: music_events_project/settings/base.py:126
+msgid "French"
+msgstr "Français"
+
+#: music_events_project/settings/base.py:127
+msgid "Simplified Chinese"
+msgstr "Chinois simplifié"
+
+#: music_events_project/settings/base.py:128
+msgid "Japanese"
+msgstr "Japonais"
