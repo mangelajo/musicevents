@@ -53,7 +53,7 @@ help:
 	    @echo "  COMPOSE           - Docker compose command (default: docker compose)"
 
 server:
-	    TICKETMASTER_API_KEY=$(TICKETMASTER_API_KEY) ./start_dev.sh
+	    TICKETMASTER_API_KEY=$(TICKETMASTER_API_KEY) ./start.sh
 
 sync:
 	    uv sync
