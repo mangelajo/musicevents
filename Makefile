@@ -1,6 +1,6 @@
 # Makefile for Music Events project
 
-.PHONY: help server sync migrate shell createsuperuser test test-coverage test-verbose test-parallel clean
+.PHONY: help server sync migrate shell createsuperuser test test-coverage test-verbose test-parallel test-functional clean
 
 # Container configuration
 CONTAINER_TOOL ?= podman
@@ -26,6 +26,7 @@ help:
 	@echo "  make test-verbose   - Run tests with verbose output"
 	@echo "  make test-coverage  - Run tests with coverage report"
 	@echo "  make test-specific  - Run specific test (use TEST=path.to.test)"
+	@echo "  make test-functional - Run functional tests with Playwright"
 	@echo "  make clean          - Remove Python bytecode files and cache"
 	@echo "  make createsuperuser - Create a superuser"
 	@echo ""
@@ -74,10 +75,13 @@ test-coverage:
 
 test-specific:
 	@if [ "$(TEST)" = "" ]; then \
-	        echo "Please specify a test with TEST=path.to.test"; \
-	        exit 1; \
+		echo "Please specify a test with TEST=path.to.test"; \
+		exit 1; \
 	fi
 	uv run manage.py test $(TEST)
+
+test-functional:
+	uv run pytest events/tests/functional/
 
 clean:
 	find . -type f -name "*.pyc" -delete
@@ -109,23 +113,23 @@ fresh: clean sync
 # Check if .env file exists, if not create from example
 check-env:
 	@if [ ! -f "$(ENV_FILE)" ]; then \
-	        echo "Creating $(ENV_FILE) from .env.example..."; \
-	        cp .env.example $(ENV_FILE); \
-	        echo "Please edit $(ENV_FILE) and set your environment variables."; \
-	        exit 1; \
+		echo "Creating $(ENV_FILE) from .env.example..."; \
+		cp .env.example $(ENV_FILE); \
+		echo "Please edit $(ENV_FILE) and set your environment variables."; \
+		exit 1; \
 	fi
 
 container-build:
 	$(CONTAINER_TOOL) build \
-	        -t $(CONTAINER_NAME):$(CONTAINER_TAG) \
-	        -f Containerfile .
+		-t $(CONTAINER_NAME):$(CONTAINER_TAG) \
+		-f Containerfile .
 
 container-run: check-env
 	$(CONTAINER_TOOL) run --name $(CONTAINER_NAME) \
-	        -p $(CONTAINER_PORT):8000 \
-	        -v $(PWD)/media:/app/media \
-	        -e TICKETMASTER_API_KEY=$(TICKETMASTER_API_KEY) \
-	        -d $(CONTAINER_NAME):$(CONTAINER_TAG)
+		-p $(CONTAINER_PORT):8000 \
+		-v $(PWD)/media:/app/media \
+		-e TICKETMASTER_API_KEY=$(TICKETMASTER_API_KEY) \
+		-d $(CONTAINER_NAME):$(CONTAINER_TAG)
 
 container-stop:
 	-$(CONTAINER_TOOL) stop $(CONTAINER_NAME)

@@ -135,7 +135,7 @@ LOCALE_PATHS = [
 TIME_ZONE = 'UTC'
 
 USE_I18N = True
-USE_L10N = True
+# USE_L10N = True , do not use, deprecated in Django 5.x
 USE_TZ = True
 
 
