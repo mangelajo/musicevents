@@ -1,11 +1,11 @@
-
 from django.test import TestCase
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.utils import timezone
-from .models import Artist, Event, Venue
+from events.models import Artist, Event, Venue
 import os
 from PIL import Image
 from io import BytesIO
+
 
 class ArtistImageTests(TestCase):
     def setUp(self):
