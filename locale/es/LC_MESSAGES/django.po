@@ -1,0 +1,140 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-04-21 08:07+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? "
+"1 : 2;\n"
+#: events/templates/events/base.html:16
+msgid "Music Events Logo"
+msgstr "Logo de Eventos Musicales"
+
+#: events/templates/events/base.html:24 events/templates/events/home.html:4
+msgid "Home"
+msgstr "Inicio"
+
+#: events/templates/events/base.html:27
+msgid "Events"
+msgstr "Eventos"
+
+#: events/templates/events/base.html:30 events/templates/events/home.html:36
+msgid "Artists"
+msgstr "Artistas"
+
+#: events/templates/events/base.html:33
+msgid "Venues"
+msgstr "Locales"
+
+#: events/templates/events/base.html:38
+msgid "Sync Sources"
+msgstr "Sincronizar Fuentes"
+
+#: events/templates/events/base.html:41
+msgid "Sync Ticketmaster"
+msgstr "Sincronizar Ticketmaster"
+
+#: events/templates/events/base.html:42
+msgid "Sync Sala Riviera"
+msgstr "Sincronizar Sala Riviera"
+
+#: events/templates/events/base.html:46
+msgid "Admin"
+msgstr "Administración"
+
+#: events/templates/events/base.html:49
+msgid "Events Admin"
+msgstr "Administración de Eventos"
+
+#: events/templates/events/base.html:66 events/templates/events/base.html:70
+#: events/templates/events/home.html:4
+msgid "Music Events"
+msgstr "Eventos Musicales"
+
+#: events/templates/events/base.html:67
+msgid "Your source for the best music events in town."
+msgstr "Tu fuente para los mejores eventos musicales en la ciudad."
+
+#: events/templates/events/base.html:70
+msgid "All rights reserved."
+msgstr "Todos los derechos reservados."
+
+#: events/templates/events/home.html:8
+msgid "Welcome to Music Events"
+msgstr "Bienvenido a Eventos Musicales"
+
+#: events/templates/events/home.html:9
+msgid "Discover the best music events in your area."
+msgstr "Descubre los mejores eventos musicales en tu área."
+
+#: events/templates/events/home.html:11
+msgid "Browse upcoming events, artists, and venues all in one place."
+msgstr "Explora próximos eventos, artistas y locales, todo en un solo lugar."
+
+#: events/templates/events/home.html:12
+msgid "View Events"
+msgstr "Ver Eventos"
+
+#: events/templates/events/home.html:17
+msgid "Upcoming Events"
+msgstr "Próximos Eventos"
+
+#: events/templates/events/home.html:29
+msgid "No Image"
+msgstr "Sin Imagen"
+
+#: events/templates/events/home.html:35
+msgid "Venue"
+msgstr "Local"
+
+#: events/templates/events/home.html:48
+msgid "View All Events"
+msgstr "Ver Todos los Eventos"
+
+#: events/templates/events/home.html:51
+msgid "No upcoming events at this time."
+msgstr "No hay próximos eventos en este momento."
+
+#: events/templates/events/home.html:56
+msgid "Featured Artists"
+msgstr "Artistas Destacados"
+
+#: events/templates/events/home.html:69
+msgid "View All Artists"
+msgstr "Ver Todos los Artistas"
+
+#: events/templates/events/home.html:72
+msgid "No featured artists at this time."
+msgstr "No hay artistas destacados en este momento."
+
+#: events/templates/events/home.html:75
+msgid "Featured Venues"
+msgstr "Locales Destacados"
+
+#: events/templates/events/home.html:88
+msgid "View All Venues"
+msgstr "Ver Todos los Locales"
+
+#: events/templates/events/home.html:91
+msgid "No featured venues at this time."
+msgstr "No hay locales destacados en este momento."
+
+#: music_events_project/settings/base.py:123
+msgid "English"
+msgstr "Inglés"
+
+#: music_events_project/settings/base.py:124
+msgid "Spanish"
+msgstr "Español"

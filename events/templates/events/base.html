@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
+{% load i18n %}
+<html lang="{{ LANGUAGE_CODE }}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,7 +13,7 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
             <a class="navbar-brand" href="{% url 'events:home' %}">
-                <img src="{% static SITE_LOGO %}" alt="Music Events Logo" height="40" class="d-inline-block align-text-top">
+                <img src="{% static SITE_LOGO %}" alt="{% trans 'Music Events Logo' %}" height="40" class="d-inline-block align-text-top">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
@@ -20,35 +21,36 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'events:home' %}">Home</a>
+                        <a class="nav-link" href="{% url 'events:home' %}">{% trans "Home" %}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'events:event_list' %}">Events</a>
+                        <a class="nav-link" href="{% url 'events:event_list' %}">{% trans "Events" %}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'events:artist_list' %}">Artists</a>
+                        <a class="nav-link" href="{% url 'events:artist_list' %}">{% trans "Artists" %}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'events:venue_list' %}">Venues</a>
+                        <a class="nav-link" href="{% url 'events:venue_list' %}">{% trans "Venues" %}</a>
                     </li>
                     {% if user.is_staff %}
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="syncDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Sync Sources
+                            {% trans "Sync Sources" %}
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="syncDropdown">
-                            <li><a class="dropdown-item" href="{% url 'events:ticketmaster_sync' %}">Sync Ticketmaster</a></li>
-                            <li><a class="dropdown-item" href="{% url 'events:riviera_sync' %}">Sync Sala Riviera</a></li>
+                            <li><a class="dropdown-item" href="{% url 'events:ticketmaster_sync' %}">{% trans "Sync Ticketmaster" %}</a></li>
+                            <li><a class="dropdown-item" href="{% url 'events:riviera_sync' %}">{% trans "Sync Sala Riviera" %}</a></li>
                         </ul>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'admin:index' %}">Admin</a>
+                        <a class="nav-link" href="{% url 'admin:index' %}">{% trans "Admin" %}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/events-admin/">Events Admin</a>
+                        <a class="nav-link" href="/events-admin/">{% trans "Events Admin" %}</a>
                     </li>
                     {% endif %}
                 </ul>
+                {% include "events/language_selector.html" %}
             </div>
         </div>
     </nav>
@@ -61,11 +63,11 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
-                    <h5>Music Events</h5>
-                    <p>Your source for the best music events in town.</p>
+                    <h5>{% trans "Music Events" %}</h5>
+                    <p>{% trans "Your source for the best music events in town." %}</p>
                 </div>
                 <div class="col-md-6 text-md-end">
-                    <p>&copy; {% now "Y" %} Music Events. All rights reserved.</p>
+                    <p>&copy; {% now "Y" %} {% trans "Music Events" %}. {% trans "All rights reserved." %}</p>
                 </div>
             </div>
         </div>

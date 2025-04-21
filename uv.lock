@@ -185,6 +185,19 @@ wheels = [
 ]
 
 [[package]]
+name = "django-q2"
+version = "1.7.6"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "django" },
+    { name = "django-picklefield" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/dc/48/e4dc1d22ec1c366347b59c4eb9a65c2337d3cfc6139f00778d25464ae591/django_q2-1.7.6.tar.gz", hash = "sha256:5210b121573cf65b97d495dbebefe6cfac394d8c0aec9ca2117e8e56e2fda17d", size = 76849 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/72/ee/5c292a0d30b8a250a2389cc31bfa4a13c8c41a9fc29f4678ca6de882e23e/django_q2-1.7.6-py3-none-any.whl", hash = "sha256:9060f4d68e1f3a8a748e0ebd0bd83c8c24bc13036105035873faab9d85b0e8f6", size = 89478 },
+]
+
+[[package]]
 name = "idna"
 version = "3.10"
 source = { registry = "https://pypi.org/simple" }
@@ -214,6 +227,7 @@ dependencies = [
     { name = "coverage" },
     { name = "django" },
     { name = "django-q" },
+    { name = "django-q2" },
     { name = "pillow" },
     { name = "pillow-avif-plugin" },
     { name = "pytz" },
@@ -229,6 +243,7 @@ requires-dist = [
     { name = "coverage", specifier = ">=7.8.0" },
     { name = "django", specifier = ">=4.2,<5.0" },
     { name = "django-q", specifier = "==1.3.4" },
+    { name = "django-q2", specifier = ">=1.7.6" },
     { name = "pillow", specifier = ">=11.2.1" },
     { name = "pillow-avif-plugin", specifier = ">=1.5.1" },
     { name = "pytz", specifier = ">=2025.2" },

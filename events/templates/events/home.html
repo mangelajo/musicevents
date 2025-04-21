@@ -1,19 +1,20 @@
 {% extends 'events/base.html' %}
+{% load i18n %}
 
-{% block title %}Home - Music Events{% endblock %}
+{% block title %}{% trans "Home" %} - {% trans "Music Events" %}{% endblock %}
 
 {% block content %}
 <div class="jumbotron bg-light p-5 rounded">
-    <h1 class="display-4">Welcome to Music Events</h1>
-    <p class="lead">Discover the best music events in your area.</p>
+    <h1 class="display-4">{% trans "Welcome to Music Events" %}</h1>
+    <p class="lead">{% trans "Discover the best music events in your area." %}</p>
     <hr class="my-4">
-    <p>Browse upcoming events, artists, and venues all in one place.</p>
-    <a class="btn btn-primary btn-lg" href="{% url 'events:event_list' %}" role="button">View Events</a>
+    <p>{% trans "Browse upcoming events, artists, and venues all in one place." %}</p>
+    <a class="btn btn-primary btn-lg" href="{% url 'events:event_list' %}" role="button">{% trans "View Events" %}</a>
 </div>
 
 <div class="row mt-5">
     <div class="col-md-8">
-        <h2>Upcoming Events</h2>
+        <h2>{% trans "Upcoming Events" %}</h2>
         {% if upcoming_events %}
             <div class="row">
                 {% for event in upcoming_events %}
@@ -25,14 +26,14 @@
                                 {% elif event.image %}
                                     <img src="{{ event.image.url }}" class="card-img-top" alt="{{ event.title }}">
                                 {% else %}
-                                    <div class="bg-secondary text-white text-center p-5">No Image</div>
+                                    <div class="bg-secondary text-white text-center p-5">{% trans "No Image" %}</div>
                                 {% endif %}
                                 <div class="card-body">
                                     <h5 class="card-title text-primary">{{ event.title }}</h5>
                                     <h6 class="card-subtitle mb-2 text-muted">{{ event.date|date:"F j, Y, g:i a" }}</h6>
                                     <p class="card-text text-dark">{{ event.description|truncatewords:20 }}</p>
-                                    <p class="text-dark"><strong>Venue:</strong> {{ event.venue.name }}</p>
-                                    <p class="text-dark"><strong>Artists:</strong> 
+                                    <p class="text-dark"><strong>{% trans "Venue" %}:</strong> {{ event.venue.name }}</p>
+                                    <p class="text-dark"><strong>{% trans "Artists" %}:</strong> 
                                         {% for artist in event.artists.all %}
                                             {{ artist.name }}{% if not forloop.last %}, {% endif %}
                                         {% endfor %}
@@ -44,15 +45,15 @@
                 {% endfor %}
             </div>
             <div class="text-center mt-3">
-                <a href="{% url 'events:event_list' %}" class="btn btn-outline-primary">View All Events</a>
+                <a href="{% url 'events:event_list' %}" class="btn btn-outline-primary">{% trans "View All Events" %}</a>
             </div>
         {% else %}
-            <p>No upcoming events at this time.</p>
+            <p>{% trans "No upcoming events at this time." %}</p>
         {% endif %}
     </div>
     
     <div class="col-md-4">
-        <h2>Featured Artists</h2>
+        <h2>{% trans "Featured Artists" %}</h2>
         {% if featured_artists %}
             <div class="list-group">
                 {% for artist in featured_artists %}
@@ -65,13 +66,13 @@
                 {% endfor %}
             </div>
             <div class="text-center mt-3">
-                <a href="{% url 'events:artist_list' %}" class="btn btn-outline-primary">View All Artists</a>
+                <a href="{% url 'events:artist_list' %}" class="btn btn-outline-primary">{% trans "View All Artists" %}</a>
             </div>
         {% else %}
-            <p>No featured artists at this time.</p>
+            <p>{% trans "No featured artists at this time." %}</p>
         {% endif %}
         
-        <h2 class="mt-4">Featured Venues</h2>
+        <h2 class="mt-4">{% trans "Featured Venues" %}</h2>
         {% if featured_venues %}
             <div class="list-group">
                 {% for venue in featured_venues %}
@@ -84,10 +85,10 @@
                 {% endfor %}
             </div>
             <div class="text-center mt-3">
-                <a href="{% url 'events:venue_list' %}" class="btn btn-outline-primary">View All Venues</a>
+                <a href="{% url 'events:venue_list' %}" class="btn btn-outline-primary">{% trans "View All Venues" %}</a>
             </div>
         {% else %}
-            <p>No featured venues at this time.</p>
+            <p>{% trans "No featured venues at this time." %}</p>
         {% endif %}
     </div>
 </div>

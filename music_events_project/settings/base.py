@@ -46,6 +46,7 @@ INSTALLED_APPS = [
 # Django Q configuration
 Q_CLUSTER = {
     'name': 'musicevents',
+    'retry': 400,
     'workers': 4,
     'recycle': 500,
     'timeout': 300,
@@ -60,6 +61,7 @@ Q_CLUSTER = {
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware',  # Add LocaleMiddleware after SessionMiddleware
     'django.middleware.common.CommonMiddleware',
     # Replace the default CSRF middleware with our custom one
     'events.middleware.CustomCsrfMiddleware',
@@ -114,12 +116,23 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+from django.utils.translation import gettext_lazy as _
+
+LANGUAGE_CODE = 'en'
+
+LANGUAGES = [
+    ('en', _('English')),
+    ('es', _('Spanish')),
+]
+
+LOCALE_PATHS = [
+    BASE_DIR / 'locale',
+]
 
 TIME_ZONE = 'UTC'
 
 USE_I18N = True
-
+USE_L10N = True
 USE_TZ = True
 
 
