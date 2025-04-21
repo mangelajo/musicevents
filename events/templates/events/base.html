@@ -34,15 +34,6 @@
                         <a class="nav-link" href="{% url 'events:venue_list' %}">{% trans "Venues" %}</a>
                     </li>
                     {% if user.is_staff %}
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="syncDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            {% trans "Sync Sources" %}
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="syncDropdown">
-                            <li><a class="dropdown-item" href="{% url 'events:ticketmaster_sync' %}">{% trans "Sync Ticketmaster" %}</a></li>
-                            <li><a class="dropdown-item" href="{% url 'events:riviera_sync' %}">{% trans "Sync Sala Riviera" %}</a></li>
-                        </ul>
-                    </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'admin:index' %}">{% trans "Admin" %}</a>
                     </li>
