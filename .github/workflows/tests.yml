@@ -25,6 +25,9 @@ jobs:
         
     - name: Install dependencies
       run: |
+        sudo apt-get update && sudo apt-get install -y gettext
+    - name: Install python dependencies (uv)
+      run: |
         make sync
         
     - name: Run tests with coverage
