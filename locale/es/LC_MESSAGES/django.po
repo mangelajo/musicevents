@@ -72,8 +72,8 @@ msgid "All rights reserved."
 msgstr "Todos los derechos reservados."
 
 #: events/templates/events/home.html:8
-msgid "Welcome to Music Events"
-msgstr "Bienvenido a Eventos Musicales"
+msgid "Welcome to"
+msgstr "Bienvenido/a a"
 
 #: events/templates/events/home.html:9
 msgid "Discover the best music events in your area."
