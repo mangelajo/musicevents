@@ -1,4 +1,6 @@
 import os
+import pillow_avif
+
 from io import BytesIO
 from PIL import Image
 from django.core.files.base import ContentFile
