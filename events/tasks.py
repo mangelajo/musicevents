@@ -1,4 +1,3 @@
-from django_q.tasks import schedule
 from django_q.models import Schedule
 from .utils.riviera_sync import sync_riviera_events
 from .utils.ticketmaster import sync_events_for_city as sync_ticketmaster_events

@@ -49,8 +49,10 @@
                         <a class="nav-link" href="/events-admin/">{% trans "Events Admin" %}</a>
                     </li>
                     {% endif %}
+                    <li class="nav-item d-flex align-items-center">
+                        {% include "events/language_selector.html" %}
+                    </li>
                 </ul>
-                {% include "events/language_selector.html" %}
             </div>
         </div>
     </nav>

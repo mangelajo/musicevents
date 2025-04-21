@@ -20,4 +20,6 @@ urlpatterns = [
     # Sala Riviera sync views
     path('riviera/sync/', views.RivieraSyncView.as_view(), name='riviera_sync'),
     path('riviera/sync-func/', views.riviera_sync_view, name='riviera_sync_func'),
+    
+
 ]

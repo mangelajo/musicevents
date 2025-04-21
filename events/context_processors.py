@@ -6,4 +6,5 @@ def site_settings(request):
     """
     return {
         'SITE_LOGO': settings.SITE_LOGO,
+        'LANGUAGES': settings.LANGUAGES,
     }

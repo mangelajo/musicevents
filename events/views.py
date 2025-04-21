@@ -163,3 +163,6 @@ def riviera_sync_view(request):
         return redirect('events:event_list')
     
     return render(request, 'events/riviera_sync.html')
+
+
+

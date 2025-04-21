@@ -1,5 +1,4 @@
 import os
-import pillow_avif
 
 from io import BytesIO
 from PIL import Image
