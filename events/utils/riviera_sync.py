@@ -347,16 +347,5 @@ def sync_riviera_events():
     """
     syncer = RivieraEventSync()
     return syncer.sync_events()
-                )
-                logger.info(f"Created artist: {artist.name}")
-            
-            # Add artist to event if not already added
-            if artist not in event.artists.all():
-                event.artists.add(artist)
-                logger.info(f"Added artist {artist.name} to event {event.title}")
-            
-        except Exception as e:
-            logger.error(f"Error processing event data: {e}")
-            error_count += 1
-    
-    return created_count, updated_count, error_count
+
+

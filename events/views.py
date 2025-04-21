@@ -139,10 +139,10 @@ class RivieraSyncView(View):
         return render(request, 'events/riviera_sync.html')
     
     def post(self, request):
-        created, updated, errors = sync_riviera_events()
+        created, updated, error = sync_riviera_events()
         
-        if errors > 0:
-            messages.warning(request, f"Synchronized Sala Riviera events with {errors} errors. Created: {created}, Updated: {updated}")
+        if error:
+            messages.warning(request, f"Synchronized Sala Riviera events with error: {error}. Created: {created}, Updated: {updated}")
         else:
             messages.success(request, f"Successfully synchronized Sala Riviera events. Created: {created}, Updated: {updated}")
         
@@ -153,10 +153,10 @@ class RivieraSyncView(View):
 def riviera_sync_view(request):
     """Function-based view for synchronizing events from Sala Riviera website."""
     if request.method == 'POST':
-        created, updated, errors = sync_riviera_events()
+        created, updated, error = sync_riviera_events()
         
-        if errors > 0:
-            messages.warning(request, f"Synchronized Sala Riviera events with {errors} errors. Created: {created}, Updated: {updated}")
+        if error:
+            messages.warning(request, f"Synchronized Sala Riviera events with error: {error}. Created: {created}, Updated: {updated}")
         else:
             messages.success(request, f"Successfully synchronized Sala Riviera events. Created: {created}, Updated: {updated}")
         
