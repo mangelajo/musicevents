@@ -48,7 +48,7 @@ class EventAdmin(admin.ModelAdmin):
     date_hierarchy = 'date'
     filter_horizontal = ('artists',)
     readonly_fields = ('external_id',)
-    actions = ['sync_ticketmaster', 'sync_riviera']
+    change_list_template = 'admin/events/event/change_list.html'
     
     def display_artists(self, obj):
         return ", ".join([artist.name for artist in obj.artists.all()[:3]])
@@ -93,13 +93,7 @@ class EventAdmin(admin.ModelAdmin):
         
         return render(request, 'admin/events/event/riviera_sync.html', {})
     
-    def sync_ticketmaster(self, request, queryset):
-        return redirect('admin:ticketmaster_sync')
-    sync_ticketmaster.short_description = "Sync events from Ticketmaster"
-    
-    def sync_riviera(self, request, queryset):
-        return redirect('admin:riviera_sync')
-    sync_riviera.short_description = "Sync events from Sala Riviera"
+
 
 
 # Register with the default admin site
