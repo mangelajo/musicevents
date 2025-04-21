@@ -50,7 +50,7 @@ help:
 	@echo "  COMPOSE           - Docker compose command (default: docker compose)"
 
 server:
-	uv run manage.py runserver 0.0.0.0:53324
+	TICKETMASTER_API_KEY=$(TICKETMASTER_API_KEY) uv run manage.py runserver 0.0.0.0:53324
 
 sync:
 	uv sync
