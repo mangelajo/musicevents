@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-21 08:07+0000\n"
+"POT-Creation-Date: 2025-04-21 16:31+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,58 +18,64 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? "
 "1 : 2;\n"
-#: events/templates/events/base.html:16
-msgid "Music Events Logo"
-msgstr "Logo de Eventos Musicales"
 
-#: events/templates/events/base.html:24 events/templates/events/home.html:4
+#: events/templates/events/base.html:17
+msgid "Logo"
+msgstr ""
+
+#: events/templates/events/base.html:25 events/templates/events/home.html:4
 msgid "Home"
 msgstr "Inicio"
 
-#: events/templates/events/base.html:27
+#: events/templates/events/base.html:28
 msgid "Events"
 msgstr "Eventos"
 
-#: events/templates/events/base.html:30 events/templates/events/home.html:36
+#: events/templates/events/base.html:31 events/templates/events/home.html:36
 msgid "Artists"
 msgstr "Artistas"
 
-#: events/templates/events/base.html:33
+#: events/templates/events/base.html:34
 msgid "Venues"
 msgstr "Locales"
 
-#: events/templates/events/base.html:38
+#: events/templates/events/base.html:39
 msgid "Sync Sources"
 msgstr "Sincronizar Fuentes"
 
-#: events/templates/events/base.html:41
+#: events/templates/events/base.html:42
 msgid "Sync Ticketmaster"
 msgstr "Sincronizar Ticketmaster"
 
-#: events/templates/events/base.html:42
+#: events/templates/events/base.html:43
 msgid "Sync Sala Riviera"
 msgstr "Sincronizar Sala Riviera"
 
-#: events/templates/events/base.html:46
+#: events/templates/events/base.html:47
 msgid "Admin"
 msgstr "Administración"
 
-#: events/templates/events/base.html:49
+#: events/templates/events/base.html:50
 msgid "Events Admin"
 msgstr "Administración de Eventos"
 
-#: events/templates/events/base.html:66 events/templates/events/base.html:70
-#: events/templates/events/home.html:4
-msgid "Music Events"
-msgstr "Eventos Musicales"
-
-#: events/templates/events/base.html:67
+#: events/templates/events/base.html:70
 msgid "Your source for the best music events in town."
 msgstr "Tu fuente para los mejores eventos musicales en la ciudad."
 
-#: events/templates/events/base.html:70
+#: events/templates/events/base.html:73
 msgid "All rights reserved."
 msgstr "Todos los derechos reservados."
+
+#: events/templates/events/base.html:84
+msgid ""
+"This website uses cookies to ensure you get the best experience on our "
+"website."
+msgstr "Este sitio web utiliza cookies para asegurar que obtengas la mejor experiencia en nuestro sitio web."
+
+#: events/templates/events/base.html:85
+msgid "Accept"
+msgstr "Aceptar"
 
 #: events/templates/events/home.html:8
 msgid "Welcome to"
@@ -131,10 +137,28 @@ msgstr "Ver Todos los Locales"
 msgid "No featured venues at this time."
 msgstr "No hay locales destacados en este momento."
 
-#: music_events_project/settings/base.py:123
+#: music_events_project/settings/base.py:124
 msgid "English"
 msgstr "Inglés"
 
-#: music_events_project/settings/base.py:124
+#: music_events_project/settings/base.py:125
 msgid "Spanish"
 msgstr "Español"
+
+#: music_events_project/settings/base.py:126
+msgid "French"
+msgstr ""
+
+#: music_events_project/settings/base.py:127
+msgid "Simplified Chinese"
+msgstr ""
+
+#: music_events_project/settings/base.py:128
+msgid "Japanese"
+msgstr ""
+
+#~ msgid "Music Events Logo"
+#~ msgstr "Logo de Eventos Musicales"
+
+#~ msgid "Music Events"
+#~ msgstr "Eventos Musicales"
