@@ -2,7 +2,6 @@
 Base classes and utilities for event synchronization.
 """
 import logging
-from django.utils import timezone
 from events.models import Event, Venue, Artist
 from .image_utils import download_and_save_image
 

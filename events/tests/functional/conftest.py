@@ -1,6 +1,5 @@
 import os
 import pytest
-from django.test import LiveServerTestCase
 from playwright.sync_api import sync_playwright, Browser
 
 # Allow Django to run in async context for tests

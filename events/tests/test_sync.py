@@ -1,15 +1,11 @@
 """Tests for event synchronization functionality."""
 from django.test import TestCase
 from django.utils import timezone
-from django.core.files.uploadedfile import SimpleUploadedFile
-from unittest.mock import patch, MagicMock
+from unittest.mock import patch
 from events.utils.sync_base import EventSyncBase
 from events.utils.ticketmaster import TicketmasterEventSync
 from events.utils.riviera_sync import RivieraEventSync
 from events.models import Event, Venue, Artist
-from datetime import datetime
-import json
-import os
 
 class EventSyncBaseTests(TestCase):
     """Test the base event synchronization functionality."""
