@@ -83,3 +83,9 @@ jobs:
     - name: Run functional tests with headless browser
       run: |
         make test-functional
+
+    - uses: actions/upload-artifact@v4
+      if: ${{ !cancelled() }}
+      with:
+        name: playwright-traces
+        path: test-results/

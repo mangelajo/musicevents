@@ -84,7 +84,7 @@ test-specific: compile-messages
 
 test-functional:
 	uv run playwright install --with-deps
-	uv run pytest events/tests/functional/
+	uv run pytest events/tests/functional/ --tracing=retain-on-failure
 
 clean:
 	find . -type f -name "*.pyc" -delete
