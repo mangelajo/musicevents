@@ -1,6 +1,7 @@
 # Makefile for Music Events project
 
 .PHONY: help server sync migrate shell createsuperuser test test-coverage test-verbose test-parallel test-functional clean
+.PHONY: compile-messages
 
 # Container configuration
 CONTAINER_TOOL ?= podman
@@ -18,17 +19,18 @@ COMPOSE ?= docker compose
 
 help:
 	@echo "Available commands:"
-	@echo "  make server          - Run development server"
-	@echo "  make sync           - Run uv sync to update dependencies"
-	@echo "  make migrate        - Run database migrations"
-	@echo "  make shell          - Start Django shell"
-	@echo "  make test           - Run tests (keeps test database)"
-	@echo "  make test-verbose   - Run tests with verbose output"
-	@echo "  make test-coverage  - Run tests with coverage report"
-	@echo "  make test-specific  - Run specific test (use TEST=path.to.test)"
-	@echo "  make test-functional - Run functional tests with Playwright"
-	@echo "  make clean          - Remove Python bytecode files and cache"
-	@echo "  make createsuperuser - Create a superuser"
+	@echo "  make server           - Run development server"
+	@echo "  make sync             - Run uv sync to update dependencies"
+	@echo "  make migrate          - Run database migrations"
+	@echo "  make compile-messages - Compile i18n message files"
+	@echo "  make shell            - Start Django shell"
+	@echo "  make test             - Run tests (keeps test database)"
+	@echo "  make test-verbose     - Run tests with verbose output"
+	@echo "  make test-coverage    - Run tests with coverage report"
+	@echo "  make test-specific    - Run specific test (use TEST=path.to.test)"
+	@echo "  make test-functional  - Run functional tests with Playwright"
+	@echo "  make clean            - Remove Python bytecode files and cache"
+	@echo "  make createsuperuser  - Create a superuser"
 	@echo ""
 	@echo "Container commands (using $(CONTAINER_TOOL)):"
 	@echo "  make container-build - Build container image"
@@ -62,25 +64,25 @@ migrate:
 shell:
 	uv run manage.py shell
 
-test:
+test: compile-messages
 	uv run manage.py test
 
-test-verbose:
+test-verbose: compile-messages
 	uv run manage.py test -v 2
 
-test-coverage:
+test-coverage: compile-messages
 	uv run coverage run manage.py test
 	uv run coverage report
 	uv run coverage html
 
-test-specific:
+test-specific: compile-messages
 	@if [ "$(TEST)" = "" ]; then \
 		echo "Please specify a test with TEST=path.to.test"; \
 		exit 1; \
 	fi
 	uv run manage.py test $(TEST)
 
-test-functional:
+test-functional: compile-messages
 	uv run pytest events/tests/functional/
 
 clean:
@@ -92,6 +94,9 @@ clean:
 
 createsuperuser:
 	uv run manage.py createsuperuser
+
+compile-messages:
+	uv run manage.py compilemessages
 
 # Add migrations command to create new migrations
 makemigrations:
