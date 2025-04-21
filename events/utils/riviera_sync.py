@@ -8,8 +8,7 @@ from datetime import datetime
 from bs4 import BeautifulSoup
 from django.utils import timezone
 from django.utils.text import slugify
-from events.models import Event, Venue, Artist
-from events.utils.image_utils import download_and_save_image
+from .sync_base import EventSyncBase
 
 logger = logging.getLogger(__name__)
 
@@ -274,131 +273,80 @@ def fetch_riviera_events():
         logger.error(f"Error fetching events from Sala Riviera: {e}")
         return []
 
+class RivieraEventSync(EventSyncBase):
+    """Sala Riviera event synchronization implementation."""
+
+    def __init__(self):
+        super().__init__('riviera')
+        self.venue = None
+
+    def sync_events(self):
+        """
+        Synchronize events from Sala Riviera website to the database.
+        
+        Returns:
+            tuple: (created_count, updated_count, error_message)
+        """
+        # Get or create the Sala Riviera venue
+        self.venue, venue_created = self.create_or_update_venue(VENUE_INFO)
+        if not self.venue:
+            return 0, 0, "Failed to create/get venue"
+        
+        if venue_created:
+            logger.info(f"Created venue: {self.venue.name}")
+        
+        # Fetch events from Sala Riviera
+        events_data = fetch_riviera_events()
+        logger.info(f"Fetched {len(events_data)} events from Sala Riviera website")
+        
+        for event_data in events_data:
+            try:
+                # Process event
+                event, created = self.create_or_update_event(event_data, self.venue)
+                if not event:
+                    continue
+
+                # Extract and create artist
+                artist_name = self._extract_artist_name(event.title)
+                artist_data = {
+                    'name': artist_name,
+                    'bio': f"Artist performing at {self.venue.name}"
+                }
+                artist, _ = self.create_or_update_artist(artist_data)
+                if artist:
+                    event.artists.add(artist)
+
+                logger.info(f"{'Created' if created else 'Updated'} event: {event.title}")
+                
+            except Exception as e:
+                logger.error(f"Error processing event: {e}")
+                self.error_count += 1
+                continue
+        
+        return self.created_count, self.updated_count, self.error_count if self.error_count > 0 else None
+
+    def _extract_artist_name(self, title):
+        """Extract artist name from event title."""
+        artist_name = title
+        if ' - ' in artist_name:
+            artist_name = artist_name.split(' - ')[0].strip()
+        elif ' + ' in artist_name:
+            artist_name = artist_name.split(' + ')[0].strip()
+        elif ' con ' in artist_name.lower():
+            artist_name = artist_name.split(' con ')[0].strip()
+        return artist_name
+
+
 def sync_riviera_events():
     """
     Synchronize events from Sala Riviera website to the database.
+    Wrapper function for backward compatibility.
     
     Returns:
         tuple: (created_count, updated_count, error_count)
     """
-    # Get or create the Sala Riviera venue
-    venue, venue_created = Venue.objects.get_or_create(
-        name=VENUE_INFO["name"],
-        defaults=VENUE_INFO
-    )
-    
-    if venue_created:
-        logger.info(f"Created venue: {venue.name}")
-    
-    # Fetch events from Sala Riviera
-    events_data = fetch_riviera_events()
-    logger.info(f"Fetched {len(events_data)} events from Sala Riviera website")
-    
-    created_count = 0
-    updated_count = 0
-    error_count = 0
-    
-    for event_data in events_data:
-        try:
-            # Extract data from event_data
-            title = event_data.get('title', '')
-            date = event_data.get('date')
-            description = event_data.get('description', '')
-            ticket_url = event_data.get('ticket_url', '')
-            external_id = event_data.get('external_id', '')
-            image_url = event_data.get('image_url', '')
-            
-            logger.info(f"Processing event: {title} with date {date}")
-            
-            # Skip if missing essential data
-            if not title or not external_id:
-                logger.warning(f"Skipping event with missing title or external_id: {title}")
-                continue
-            
-            # Check if event already exists by external_id
-            try:
-                event = Event.objects.get(external_id=external_id)
-                # Update existing event
-                event.title = title
-                if date:
-                    event.date = date
-                event.description = description
-                event.ticket_url = ticket_url
-                
-                if image_url and event.image_url != image_url:
-                    event.image_url = image_url
-                    # Download image only if URL changed or no image exists
-                    if not event.image: 
-                        download_and_save_image(image_url, event)
-                        # Generate thumbnail only if image was downloaded
-                        if event.image:
-                            event.generate_thumbnail()
-                    else:
-                        # If image exists but URL changed, maybe redownload? 
-                        # For now, just update URL, assume image is same or user handles manually
-                        logger.info(f"Image URL changed for {event.title}, but image already exists. Skipping download.")
-                        
-                elif event.image and not event.thumbnail: # Generate thumbnail if missing
-                    event.generate_thumbnail()
-
-                # Get the original event from database to check for changes
-                original_event = Event.objects.get(pk=event.pk)
-                fields_to_check = ['title', 'date', 'description', 'ticket_url', 'image_url']
-                has_changes = any(
-                    getattr(event, field) != getattr(original_event, field)
-                    for field in fields_to_check
-                )
-
-                # Save if there are changes or thumbnail needs to be generated
-                if has_changes or (event.image and not event.thumbnail):
-                    event.save() 
-                    updated_count += 1
-                    logger.info(f"Updated event: {event.title}")
-                else:
-                    logger.info(f"No changes detected for event: {event.title}")
-
-            except Event.DoesNotExist:
-                # Create new event
-                event = Event(
-                    title=title,
-                    date=date,
-                    description=description,
-                    venue=venue,
-                    ticket_url=ticket_url,
-                    external_id=external_id,
-                    image_url=image_url # Store the original URL
-                )
-                # Save initially to get a PK for image association
-                event.save(skip_thumbnail=True) 
-                
-                # Now download the image if URL exists
-                if image_url:
-                    download_and_save_image(image_url, event)
-                    # Generate thumbnail if image download was successful
-                    if event.image:
-                        event.generate_thumbnail()
-                
-                # Save again to store the image and thumbnail fields
-                event.save() 
-                created_count += 1
-                logger.info(f"Created event: {event.title}")
-            
-            # Extract artist name from title
-            artist_name = title
-            if ' - ' in artist_name:
-                artist_name = artist_name.split(' - ')[0].strip()
-            elif ' + ' in artist_name:
-                artist_name = artist_name.split(' + ')[0].strip()
-            elif ' con ' in artist_name.lower():
-                artist_name = artist_name.split(' con ')[0].strip()
-            
-            # Create artist if not exists
-            try:
-                artist = Artist.objects.get(name=artist_name)
-            except Artist.DoesNotExist:
-                artist = Artist.objects.create(
-                    name=artist_name,
-                    bio=f"Artist performing at {venue.name}"
+    syncer = RivieraEventSync()
+    return syncer.sync_events()
                 )
                 logger.info(f"Created artist: {artist.name}")
             
