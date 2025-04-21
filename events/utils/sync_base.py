@@ -118,6 +118,14 @@ class EventSyncBase:
                 name=venue_data['name'],
                 defaults=venue_data
             )
+            
+            if not created:
+                # Update existing venue
+                for field, value in venue_data.items():
+                    if hasattr(venue, field):
+                        setattr(venue, field, value)
+                venue.save()
+            
             return venue, created
         except Exception as e:
             logger.error(f"Error creating/updating venue {venue_data.get('name')}: {e}")
@@ -138,6 +146,14 @@ class EventSyncBase:
                 name=artist_data['name'],
                 defaults=artist_data
             )
+            
+            if not created:
+                # Update existing artist
+                for field, value in artist_data.items():
+                    if hasattr(artist, field):
+                        setattr(artist, field, value)
+                artist.save()
+            
             return artist, created
         except Exception as e:
             logger.error(f"Error creating/updating artist {artist_data.get('name')}: {e}")
