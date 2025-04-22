@@ -12,5 +12,10 @@
             {% trans 'Sync Riviera Events' %}
         </a>
     </li>
+    <li>
+        <a href="{% url 'admin:cafeberlin_sync' %}" class="addlink">
+            {% trans 'Sync Cafe Berlin Events' %}
+        </a>
+    </li>
     {{ block.super }}
 {% endblock %}
