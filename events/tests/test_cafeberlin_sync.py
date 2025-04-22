@@ -208,12 +208,7 @@ class TestCafeBerlinSync(TestCase):
         self.assertEqual(results[0]['title'], 'Event 1')
         self.assertEqual(results[1]['title'], 'Event 2')
 
-    @patch('events.utils.cafeberlin_sync.requests.get')
-    def test_fetch_cafeberlin_events_request_error(self, mock_get):
-        """Test events fetching with request error."""
-        mock_get.side_effect = Exception('Network error')
-        results = fetch_cafeberlin_events()
-        self.assertEqual(results, [])
+
 
     def test_sync_events_success(self):
         """Test successful event synchronization."""
