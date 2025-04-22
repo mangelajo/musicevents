@@ -1,0 +1,27 @@
+{% extends "admin/base_site.html" %}
+{% load i18n admin_urls static admin_modify %}
+
+{% block breadcrumbs %}
+<div class="breadcrumbs">
+    <a href="{% url 'admin:index' %}">{% trans 'Home' %}</a>
+    &rsaquo; <a href="{% url 'admin:app_list' app_label='events' %}">Events</a>
+    &rsaquo; <a href="{% url 'admin:events_event_changelist' %}">Events</a>
+    &rsaquo; Sync Café Berlín Events
+</div>
+{% endblock %}
+
+{% block content %}
+<div id="content-main">
+    <form method="post">
+        {% csrf_token %}
+        <fieldset class="module aligned">
+            <h2>Sync Events from Café Berlín</h2>
+            <div class="description">Click the button below to sync events from Café Berlín's website.</div>
+        </fieldset>
+        
+        <div class="submit-row">
+            <input type="submit" value="Sync Events" class="default" name="_save">
+        </div>
+    </form>
+</div>
+{% endblock %}

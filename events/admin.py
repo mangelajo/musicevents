@@ -5,6 +5,7 @@ from django.contrib import messages
 from .models import Artist, Venue, Event
 from .utils.ticketmaster import sync_events_for_city
 from .utils.riviera_sync import sync_riviera_events
+from .utils.cafeberlin_sync import sync_cafeberlin_events
 from django import forms
 
 
@@ -62,6 +63,8 @@ class EventAdmin(admin.ModelAdmin):
                  name='ticketmaster_sync'),
             path('riviera-sync/', self.admin_site.admin_view(self.riviera_sync_view),
                  name='riviera_sync'),
+            path('cafeberlin-sync/', self.admin_site.admin_view(self.cafeberlin_sync_view),
+                 name='cafeberlin_sync'),
         ]
         return custom_urls + urls
     
@@ -93,7 +96,16 @@ class EventAdmin(admin.ModelAdmin):
         
         return render(request, 'admin/events/event/riviera_sync.html', {})
     
-
+    def cafeberlin_sync_view(self, request):
+        if request.method == 'POST':
+            created, updated, error = sync_cafeberlin_events()
+            if error:
+                self.message_user(request, f"Error syncing Cafe Berlin events: {error}", level=messages.ERROR)
+            else:
+                self.message_user(request, f"Successfully synced Cafe Berlin events. Created: {created}, Updated: {updated}")
+            return redirect('..')
+        
+        return render(request, 'admin/events/event/cafeberlin_sync.html', {})
 
 
 # Register with the default admin site
