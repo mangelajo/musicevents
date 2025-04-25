@@ -9,7 +9,7 @@ from io import BytesIO
 class Artist(models.Model):
     name = models.CharField(max_length=200)
     bio = models.TextField(blank=True)
-    website = models.URLField(blank=True)
+    website = models.URLField(max_length=1000, blank=True)
     image = models.ImageField(upload_to='artists/', blank=True, null=True)
 
     def __str__(self):
@@ -83,7 +83,7 @@ class Venue(models.Model):
     city = models.CharField(max_length=100)
     state = models.CharField(max_length=100)
     zip_code = models.CharField(max_length=20)
-    website = models.URLField(blank=True)
+    website = models.URLField(max_length=1000, blank=True)
     capacity = models.PositiveIntegerField(null=True, blank=True)
     
     def __str__(self):
@@ -91,17 +91,17 @@ class Venue(models.Model):
 
 class Event(models.Model):
     title = models.CharField(max_length=200)
-    slug = models.SlugField(unique=False, blank=True, null=True)
+    slug = models.SlugField(max_length=200, unique=False, blank=True, null=True)
     description = models.TextField(blank=True)
     date = models.DateTimeField()
     venue = models.ForeignKey(Venue, on_delete=models.CASCADE, related_name='events')
     artists = models.ManyToManyField(Artist, related_name='events')
     ticket_price = models.DecimalField(max_digits=8, decimal_places=2, null=True, blank=True)
-    ticket_url = models.URLField(blank=True)
+    ticket_url = models.URLField(max_length=1000, blank=True)
     image = models.ImageField(upload_to='events/', blank=True, null=True)
-    image_url = models.URLField(blank=True, help_text="Original image URL from external source")
+    image_url = models.URLField(max_length=1000, blank=True, help_text="Original image URL from external source")
     thumbnail = models.ImageField(upload_to='events/thumbnails/', blank=True, null=True, help_text="Thumbnail version of the image")
-    external_id = models.CharField(max_length=100, blank=True, null=True, help_text="ID from external API (e.g., Ticketmaster)")
+    external_id = models.CharField(max_length=200, blank=True, null=True, help_text="ID from external API (e.g., Ticketmaster)")
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     

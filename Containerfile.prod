@@ -37,8 +37,8 @@ RUN groupadd -r django && useradd -r -g django -d /app django
 COPY --from=builder /app /app
 COPY --from=builder /.venv /.venv
 
-RUN mkdir -p /app/staticfiles
-RUN chown django:django /app/staticfiles
+RUN mkdir -p /app/staticfiles /app/media
+RUN chown django:django /app/staticfiles /app/media
 
 WORKDIR /app
 
