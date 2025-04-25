@@ -49,6 +49,9 @@ class ArtistListView(ListView):
     template_name = 'events/artist_list.html'
     context_object_name = 'artists'
     paginate_by = 12  # Show 12 artists per page
+    
+    def get_queryset(self):
+        return Artist.objects.all().order_by('name')
 
 class ArtistDetailView(DetailView):
     model = Artist
@@ -66,6 +69,9 @@ class VenueListView(ListView):
     template_name = 'events/venue_list.html'
     context_object_name = 'venues'
     paginate_by = 12  # Show 12 venues per page
+    
+    def get_queryset(self):
+        return Venue.objects.all().order_by('name')
 
 class VenueDetailView(DetailView):
     model = Venue
