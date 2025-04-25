@@ -1,0 +1,11 @@
+# ignore local virtualenv
+.venv
+__pycache__
+*.py[cod]
+charts
+db.sqlite3
+media/*
+*.mo
+*.pot
+Containerfile.prod
+Containerfile

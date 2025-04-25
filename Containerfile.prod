@@ -1,0 +1,57 @@
+FROM registry.access.redhat.com/ubi9/python-312:latest AS builder
+
+USER 0
+
+RUN dnf -y upgrade --nodocs && \
+    dnf -y --setopt=install_weak_deps=False install \
+        gcc gcc-c++ make redhat-rpm-config postgresql-devel && \
+    dnf clean all
+
+RUN pip install uv
+RUN mkdir /app /.venv
+RUN chown 1001:1001 /app /.venv
+
+USER 1001
+
+# uv runtime tweaks
+ENV UV_LINK_MODE=copy \
+    UV_COMPILE_BYTECODE=1 \
+    UV_PYTHON_DOWNLOADS=never \
+    UV_PROJECT_ENVIRONMENT=/.venv
+
+WORKDIR /app
+
+COPY . .
+# Resolve & download *only* third-party deps (no project source yet)
+RUN uv sync --locked --no-editable 
+
+
+FROM registry.access.redhat.com/ubi9/python-312:latest
+
+
+USER 0
+# unprivileged UID/GID expected by most OpenShift PSPs
+RUN groupadd -r django && useradd -r -g django -d /app django
+
+USER django
+# copy the ready-made virtual-env and project code
+COPY --from=builder /app /app
+COPY --from=builder /.venv /.venv
+
+WORKDIR /app
+
+# put the env binaries first on PATH
+ENV PATH="/.venv/bin:$PATH" \
+    PORT=8000 \
+    DJANGO_SETTINGS_MODULE=music_events_project.settings.prod
+
+RUN python3 manage.py compilemessages --verbosity 3
+
+
+
+EXPOSE 8000
+
+# Gunicorn stays inside the .venv, uv is *not* needed in final image
+CMD ["gunicorn", "config.wsgi:application", \
+     "--bind", "0.0.0.0:${PORT}", \
+     "--workers", "3", "--threads", "4", "--timeout", "30", "--preload"]
