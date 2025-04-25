@@ -22,6 +22,7 @@ help:
 	    @echo "  make server           - Run development server"
 	    @echo "  make sync             - Run uv sync to update dependencies"
 	    @echo "  make migrate          - Run database migrations"
+	    @echo "  make migrations       - Create new migrations in the database"
 	    @echo "  make compile-messages - Compile i18n message files"
 	    @echo "  make shell            - Start Django shell"
 	    @echo "  make test             - Run tests (keeps test database)"
@@ -42,6 +43,7 @@ help:
 	    @echo ""
 	    @echo "Docker Compose commands:"
 	    @echo "  make compose-up    - Start services with docker compose"
+	    @echo "  make compose-watch - Start Watch services"
 	    @echo "  make compose-down  - Stop services"
 	    @echo "  make compose-build - Build services"
 	    @echo "  make compose-logs  - Show service logs"
@@ -61,6 +63,9 @@ sync:
 
 migrate:
 	    uv run manage.py migrate
+
+migrations:
+	    uv run manage.py makemigrations
 
 shell:
 	    uv run manage.py shell
@@ -116,6 +121,7 @@ fresh: clean sync
 
 # Container related commands
 .PHONY: container-build container-build-prod container-run container-stop container-all container-logs compose-up compose-down compose-build compose-logs compose-ps
+.PHONY: migrations
 
 # Check if .env file exists, if not create from example
 check-env:
@@ -157,6 +163,9 @@ container-logs:
 # Docker Compose commands
 compose-up: check-env
 	    $(COMPOSE) up -d
+
+compose-watch: check-env
+	    $(COMPOSE)  up --build --watch
 
 compose-down:
 	    $(COMPOSE) down
