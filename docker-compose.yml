@@ -21,6 +21,9 @@ services:
       - POSTGRES_PORT=5432
       - CORS_ALLOWED_ORIGINS=http://localhost:8001
       - DJANGO_SECURE_SSL_REDIRECT=False
+      - ADMIN_USERNAME=${ADMIN_USERNAME:-admin}
+      - ADMIN_PASSWORD=${ADMIN_PASSWORD:-admin}
+      - ADMIN_EMAIL=${ADMIN_EMAIL:-admin@example.com}
     volumes:
       - django_media:/app/media
       - django_staticfiles:/app/staticfiles
@@ -29,6 +32,7 @@ services:
     command: >
       bash -c "/.venv/bin/python3 manage.py migrate --noinput &&
                /.venv/bin/python3 manage.py collectstatic --noinput &&
+               /.venv/bin/python3 manage.py ensure_admin &&
                gunicorn music_events_project.wsgi:application --bind 0.0.0.0:8000 --workers 3 --threads 4 --timeout 30 --preload"
 
   db:
