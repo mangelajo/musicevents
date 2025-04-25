@@ -10,7 +10,7 @@ services:
     environment:
       - TICKETMASTER_API_KEY=${TICKETMASTER_API_KEY}
       - DJANGO_SETTINGS_MODULE=music_events_project.settings.prod
-      - DJANGO_DEBUG=False
+      - DJANGO_DEBUG=True
       - DJANGO_SECRET_KEY=${DJANGO_SECRET_KEY:-secure-production-key}
       - DJANGO_ALLOWED_HOSTS=localhost,127.0.0.1
       - ALLOWED_HOSTS=localhost,127.0.0.1
