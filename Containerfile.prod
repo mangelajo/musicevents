@@ -47,8 +47,6 @@ ENV PATH="/.venv/bin:$PATH" \
 
 RUN python3 manage.py compilemessages --verbosity 3
 
-
-
 EXPOSE 8000
 
 # Gunicorn stays inside the .venv, uv is *not* needed in final image
