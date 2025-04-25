@@ -52,6 +52,6 @@ RUN python3 manage.py compilemessages --verbosity 3
 EXPOSE 8000
 
 # Gunicorn stays inside the .venv, uv is *not* needed in final image
-CMD ["gunicorn", "config.wsgi:application", \
+CMD ["gunicorn", "music_events_project.wsgi:application", \
      "--bind", "0.0.0.0:${PORT}", \
      "--workers", "3", "--threads", "4", "--timeout", "30", "--preload"]

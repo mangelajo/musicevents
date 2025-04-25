@@ -33,11 +33,12 @@ help:
 	    @echo "  make createsuperuser  - Create a superuser"
 	    @echo ""
 	    @echo "Container commands (using $(CONTAINER_TOOL)):"
-	    @echo "  make container-build - Build container image"
-	    @echo "  make container-run  - Run container"
-	    @echo "  make container-stop - Stop and remove container"
-	    @echo "  make container-all  - Run all container commands"
-	    @echo "  make container-logs - Show container logs"
+	    @echo "  make container-build      - Build development container image"
+	    @echo "  make container-build-prod - Build production container image"
+	    @echo "  make container-run        - Run container"
+	    @echo "  make container-stop       - Stop and remove container"
+	    @echo "  make container-all        - Run all container commands"
+	    @echo "  make container-logs       - Show container logs"
 	    @echo ""
 	    @echo "Docker Compose commands:"
 	    @echo "  make compose-up    - Start services with docker compose"
@@ -114,7 +115,7 @@ migrateall: makemigrations migrate
 fresh: clean sync
 
 # Container related commands
-.PHONY: container-build container-run container-stop container-all container-logs compose-up compose-down compose-build compose-logs compose-ps
+.PHONY: container-build container-build-prod container-run container-stop container-all container-logs compose-up compose-down compose-build compose-logs compose-ps
 
 # Check if .env file exists, if not create from example
 check-env:
@@ -129,6 +130,11 @@ container-build:
 	    $(CONTAINER_TOOL) build \
 	            -t $(CONTAINER_NAME):$(CONTAINER_TAG) \
 	            -f Containerfile .
+
+container-build-prod:
+	    $(CONTAINER_TOOL) build \
+	            -t $(CONTAINER_NAME)-prod:$(CONTAINER_TAG) \
+	            -f Containerfile.prod .
 
 container-run: check-env
 	    $(CONTAINER_TOOL) run --name $(CONTAINER_NAME) \
