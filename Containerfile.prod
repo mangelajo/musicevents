@@ -37,6 +37,9 @@ RUN groupadd -r django && useradd -r -g django -d /app django
 COPY --from=builder /app /app
 COPY --from=builder /.venv /.venv
 
+RUN mkdir -p /app/staticfiles
+RUN chown django:django /app/staticfiles
+
 WORKDIR /app
 
 # put the env binaries first on PATH
