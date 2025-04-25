@@ -33,7 +33,6 @@ USER 0
 # unprivileged UID/GID expected by most OpenShift PSPs
 RUN groupadd -r django && useradd -r -g django -d /app django
 
-USER django
 # copy the ready-made virtual-env and project code
 COPY --from=builder /app /app
 COPY --from=builder /.venv /.venv
@@ -46,6 +45,8 @@ ENV PATH="/.venv/bin:$PATH" \
     DJANGO_SETTINGS_MODULE=music_events_project.settings.prod
 
 RUN python3 manage.py compilemessages --verbosity 3
+
+USER django
 
 EXPOSE 8000
 

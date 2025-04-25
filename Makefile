@@ -57,7 +57,7 @@ server:
 	    TICKETMASTER_API_KEY=$(TICKETMASTER_API_KEY) ./start.sh
 
 sync:
-	    uv sync
+	    uv sync --all-extras
 
 migrate:
 	    uv run manage.py migrate
