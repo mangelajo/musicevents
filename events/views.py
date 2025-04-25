@@ -20,6 +20,7 @@ class EventListView(ListView):
     model = Event
     template_name = 'events/event_list.html'
     context_object_name = 'events'
+    paginate_by = 9  # Show 9 events per page (3 rows of 3 events)
     
     def get_queryset(self):
         queryset = Event.objects.filter(date__gte=timezone.now()).order_by('date')
@@ -27,6 +28,7 @@ class EventListView(ListView):
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        # Get past events separately (not paginated)
         context['past_events'] = Event.objects.filter(date__lt=timezone.now()).order_by('-date')[:5]
         return context
 
@@ -46,6 +48,7 @@ class ArtistListView(ListView):
     model = Artist
     template_name = 'events/artist_list.html'
     context_object_name = 'artists'
+    paginate_by = 12  # Show 12 artists per page
 
 class ArtistDetailView(DetailView):
     model = Artist
@@ -62,6 +65,7 @@ class VenueListView(ListView):
     model = Venue
     template_name = 'events/venue_list.html'
     context_object_name = 'venues'
+    paginate_by = 12  # Show 12 venues per page
 
 class VenueDetailView(DetailView):
     model = Venue

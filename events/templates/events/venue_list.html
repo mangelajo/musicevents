@@ -23,6 +23,9 @@
             </div>
         {% endfor %}
     </div>
+    
+    <!-- Pagination -->
+    {% include "events/includes/pagination.html" %}
 {% else %}
     <p>No venues available.</p>
 {% endif %}

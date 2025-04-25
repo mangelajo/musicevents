@@ -24,6 +24,9 @@
             </div>
         {% endfor %}
     </div>
+    
+    <!-- Pagination -->
+    {% include "events/includes/pagination.html" %}
 {% else %}
     <p>No artists available.</p>
 {% endif %}
