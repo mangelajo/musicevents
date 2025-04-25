@@ -12,7 +12,6 @@ dependencies = [
     "django-q2>=1.7.6",
     "pillow>=11.2.1",
     "pillow-avif-plugin>=1.5.1",
-    "playwright>=1.51.0",
     "pytest>=8.3.5",
     "pytest-django>=4.11.1",
     "pytz>=2025.2",
@@ -20,4 +19,9 @@ dependencies = [
     "requests>=2.32.3",
     "ruff>=0.11.6",
     "setuptools>=79.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "playwright>=1.51.0",
 ]
