@@ -1,0 +1,27 @@
+name: Test Container Build
+
+on:
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test-build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Build Docker image
+        uses: docker/build-push-action@v4
+        with:
+          context: .
+          file: ./Containerfile.prod
+          push: false
+          tags: test-build:${{ github.sha }}
+          load: true
+
+      - name: Test image
+        run: |
+          docker image inspect test-build:${{ github.sha }}
+          echo "✅ Container image built successfully"
