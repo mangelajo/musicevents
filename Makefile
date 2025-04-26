@@ -103,7 +103,7 @@ createsuperuser:
 	    uv run manage.py createsuperuser
 
 compile-messages:
-	    uv run manage.py compilemessages
+	    uv run manage.py compilemessages >/dev/null
 
 # Add migrations command to create new migrations
 makemigrations:
