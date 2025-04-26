@@ -4,7 +4,7 @@
 replicaCount: 1
 
 image:
-  repository: musicevents
+  repository: ghcr.io/mangelajo/music-events
   tag: latest
   pullPolicy: IfNotPresent
 
@@ -52,6 +52,24 @@ domain: musicevents.local
 ticketmasterApiKey: ""
 djangoSecretKey: ""
 djangoDebug: "False"
+spotifyClientId: ""
+spotifyClientSecret: ""
+djangoSettingsModule: "music_events_project.settings.prod"
+djangoSecureSslRedirect: "False"
+corsAllowedOrigins: ""
+
+# Admin configuration
+adminUsername: "admin"
+adminPassword: "admin"
+adminEmail: "admin@example.com"
+
+# Database configuration
+database:
+  host: "postgres-service"
+  port: "5432"
+  name: "musicevents"
+  user: "musicevents"
+  password: "musicevents"
 
 service:
   type: ClusterIP
@@ -87,6 +105,10 @@ persistence:
     storageClass: ""
     accessMode: ReadWriteOnce
     size: 1Gi
+  postgres:
+    storageClass: ""
+    accessMode: ReadWriteOnce
+    size: 5Gi
 
 # This is to setup the liveness and readiness probes more information can be found here: https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/
 livenessProbe:

@@ -1,0 +1,17 @@
+{{- if .Values.persistence.enabled }}
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ include "musicevents.fullname" . }}-postgres-data
+  labels:
+    {{- include "musicevents.labels" . | nindent 4 }}
+spec:
+  accessModes:
+    - ReadWriteOnce
+  {{- if .Values.persistence.postgres.storageClass }}
+  storageClassName: {{ .Values.persistence.postgres.storageClass }}
+  {{- end }}
+  resources:
+    requests:
+      storage: {{ .Values.persistence.postgres.size }}
+{{- end }}
