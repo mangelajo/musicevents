@@ -219,7 +219,7 @@ msgid ""
 "representation or warranty, whether express, implied, or statutory. We make "
 "no claims as to the reliability, availability, or performance of our service."
 msgstr ""
-"本服务按"现状"和"可用性"提供，不作任何明示、暗示或法定的陈述或保证。"
+"本服务按\"现状\"和\"可用性\"提供，不作任何明示、暗示或法定的陈述或保证。"
 "我们对服务的可靠性、可用性或性能不作任何声明。"
 
 #: events/templates/events/terms.html:28
