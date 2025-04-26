@@ -158,6 +158,10 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Ticketmaster API settings
 TICKETMASTER_API_KEY = os.environ.get('TICKETMASTER_API_KEY', 'YOUR_API_KEY_HERE')
 
+# Spotify API settings
+SPOTIFY_CLIENT_ID = os.environ.get('SPOTIFY_CLIENT_ID', '')
+SPOTIFY_CLIENT_SECRET = os.environ.get('SPOTIFY_CLIENT_SECRET', '')
+
 # Site branding settings
 SITE_LOGO = os.environ.get('SITE_LOGO', 'images/logo.png')  # Default logo path relative to static directory
 SITE_NAME = os.environ.get('SITE_NAME', 'music.madrid')  # Default site name

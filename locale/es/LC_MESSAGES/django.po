@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-21 17:09+0000\n"
+"POT-Creation-Date: 2025-04-26 13:25+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,79 +19,131 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? "
 "1 : 2;\n"
 
-#: events/templates/events/base.html:17
-msgid "Logo"
-msgstr ""
-
-#: events/templates/events/base.html:25 events/templates/events/home.html:4
+#: events/templates/admin/events/event/cafeberlin_sync.html:6
+#: events/templates/admin/events/event/riviera_sync.html:6
+#: events/templates/admin/events/event/ticketmaster_sync.html:15
+#: events/templates/events/base.html:26 events/templates/events/home.html:4
 msgid "Home"
 msgstr "Inicio"
 
-#: events/templates/events/base.html:28
+#: events/templates/admin/events/event/change_list.html:7
+#, fuzzy
+#| msgid "Sync Ticketmaster"
+msgid "Sync Ticketmaster Events"
+msgstr "Sincronizar Ticketmaster"
+
+#: events/templates/admin/events/event/change_list.html:12
+#, fuzzy
+#| msgid "Sync Sala Riviera"
+msgid "Sync Riviera Events"
+msgstr "Sincronizar Sala Riviera"
+
+#: events/templates/admin/events/event/change_list.html:17
+msgid "Sync Cafe Berlin Events"
+msgstr ""
+
+#: events/templates/events/artist_detail.html:12
+#: events/templates/events/home.html:29
+msgid "No Image"
+msgstr "Sin Imagen"
+
+#: events/templates/events/artist_detail.html:17
+msgid "Visit Artist Website"
+msgstr "Visitar Sitio Web del Artista"
+
+#: events/templates/events/artist_detail.html:22
+msgid "Open in Spotify"
+msgstr "Abrir en Spotify"
+
+#: events/templates/events/artist_detail.html:30
+#: events/templates/events/event_detail.html:43
+msgid "Spotify"
+msgstr "Spotify"
+
+#: events/templates/events/artist_detail.html:46
+msgid "Spotify Stats"
+msgstr "Estadísticas de Spotify"
+
+#: events/templates/events/artist_detail.html:51
+msgid "Followers"
+msgstr "Seguidores"
+
+#: events/templates/events/artist_detail.html:58
+msgid "Popularity"
+msgstr "Popularidad"
+
+#: events/templates/events/artist_detail.html:99
+msgid "No upcoming events for this artist."
+msgstr "No hay próximos eventos para este artista."
+
+#: events/templates/events/base.html:18
+msgid "Logo"
+msgstr ""
+
+#: events/templates/events/base.html:29
 msgid "Events"
 msgstr "Eventos"
 
-#: events/templates/events/base.html:31 events/templates/events/home.html:36
+#: events/templates/events/base.html:32 events/templates/events/home.html:36
 msgid "Artists"
 msgstr "Artistas"
 
-#: events/templates/events/base.html:34
+#: events/templates/events/base.html:35
 msgid "Venues"
 msgstr "Locales"
 
 #: events/templates/events/base.html:39
-msgid "Sync Sources"
-msgstr "Sincronizar Fuentes"
-
-#: events/templates/events/base.html:42
-msgid "Sync Ticketmaster"
-msgstr "Sincronizar Ticketmaster"
-
-#: events/templates/events/base.html:43
-msgid "Sync Sala Riviera"
-msgstr "Sincronizar Sala Riviera"
-
-#: events/templates/events/base.html:47
 msgid "Admin"
 msgstr "Administración"
 
-#: events/templates/events/base.html:50
+#: events/templates/events/base.html:42
 msgid "Events Admin"
 msgstr "Administración de Eventos"
 
-#: events/templates/events/base.html:70
+#: events/templates/events/base.html:62
 msgid "Your source for the best music events in town."
 msgstr "Tu fuente para los mejores eventos musicales en la ciudad."
 
-#: events/templates/events/base.html:73
+#: events/templates/events/base.html:65
 msgid "All rights reserved."
 msgstr "Todos los derechos reservados."
 
-#: events/templates/events/base.html:85
+#: events/templates/events/base.html:77
 msgid "Cookie Consent Required"
 msgstr "Se Requiere Consentimiento de Cookies"
 
-#: events/templates/events/base.html:88
+#: events/templates/events/base.html:80
 msgid ""
 "This website uses essential cookies to enable basic functionality like page "
 "navigation and access to secure areas. These cookies are necessary for the "
 "website to function properly and cannot be disabled."
-msgstr "Este sitio web utiliza cookies esenciales para permitir funcionalidades básicas como la navegación de páginas y el acceso a áreas seguras. Estas cookies son necesarias para que el sitio web funcione correctamente y no se pueden desactivar."
+msgstr ""
+"Este sitio web utiliza cookies esenciales para permitir funcionalidades "
+"básicas como la navegación de páginas y el acceso a áreas seguras. Estas "
+"cookies son necesarias para que el sitio web funcione correctamente y no se "
+"pueden desactivar."
 
-#: events/templates/events/base.html:89
+#: events/templates/events/base.html:81
 msgid ""
 "We do not use any tracking or analytics cookies, and we do not share any "
 "information with third parties."
-msgstr "No utilizamos cookies de seguimiento o análisis, y no compartimos ninguna información con terceros."
+msgstr ""
+"No utilizamos cookies de seguimiento o análisis, y no compartimos ninguna "
+"información con terceros."
 
-#: events/templates/events/base.html:90
+#: events/templates/events/base.html:82
 msgid ""
 "By clicking 'Accept', you consent to the use of these essential cookies."
-msgstr "Al hacer clic en 'Aceptar', consientes el uso de estas cookies esenciales."
+msgstr ""
+"Al hacer clic en 'Aceptar', consientes el uso de estas cookies esenciales."
 
-#: events/templates/events/base.html:93
+#: events/templates/events/base.html:85
 msgid "Accept"
 msgstr "Aceptar"
+
+#: events/templates/events/event_detail.html:40
+msgid "View Artist"
+msgstr "Ver Artista"
 
 #: events/templates/events/home.html:8
 msgid "Welcome to"
@@ -112,10 +164,6 @@ msgstr "Ver Eventos"
 #: events/templates/events/home.html:17
 msgid "Upcoming Events"
 msgstr "Próximos Eventos"
-
-#: events/templates/events/home.html:29
-msgid "No Image"
-msgstr "Sin Imagen"
 
 #: events/templates/events/home.html:35
 msgid "Venue"
@@ -172,6 +220,9 @@ msgstr ""
 #: music_events_project/settings/base.py:128
 msgid "Japanese"
 msgstr ""
+
+#~ msgid "Sync Sources"
+#~ msgstr "Sincronizar Fuentes"
 
 #~ msgid ""
 #~ "This website uses cookies to ensure you get the best experience on our "

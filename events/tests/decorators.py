@@ -32,7 +32,7 @@ def mock_download_image(format='JPEG', size=(1, 1), color='blue'):
         def wrapper(*args, **kwargs):
             fake_response = create_fake_image_response(format=format, size=size, color=color)
             # Patch the target function within the image_utils module
-            with patch('events.utils.image_utils._download_image', return_value=fake_response) as mock_download:
+            with patch('events.utils.image_utils._download_image', return_value=fake_response):
                 # You can optionally pass the mock into the test function if needed
                 # return func(mock_download, *args, **kwargs) 
                 return func(*args, **kwargs)

@@ -2,18 +2,130 @@ from django.db import models
 from django.utils import timezone
 from django.core.files.base import ContentFile
 from django.utils.text import slugify
+from django.conf import settings
 import os
+import logging
+import spotipy
+from spotipy.oauth2 import SpotifyClientCredentials
 from PIL import Image
 from io import BytesIO
+
+logger = logging.getLogger(__name__)
 
 class Artist(models.Model):
     name = models.CharField(max_length=200)
     bio = models.TextField(blank=True)
     website = models.URLField(max_length=1000, blank=True)
     image = models.ImageField(upload_to='artists/', blank=True, null=True)
+    
+    # Spotify fields
+    spotify_id = models.CharField(max_length=100, blank=True, null=True, help_text="Spotify artist ID")
+    spotify_uri = models.CharField(max_length=100, blank=True, null=True, help_text="Spotify artist URI")
+    spotify_url = models.URLField(max_length=1000, blank=True, null=True, help_text="Spotify artist URL")
+    spotify_popularity = models.IntegerField(blank=True, null=True, help_text="Spotify artist popularity score (0-100)")
+    spotify_followers = models.IntegerField(blank=True, null=True, help_text="Number of Spotify followers")
+    spotify_image_url = models.URLField(max_length=1000, blank=True, null=True, help_text="URL to artist image on Spotify")
+    spotify_last_updated = models.DateTimeField(blank=True, null=True, help_text="When Spotify data was last updated")
 
     def __str__(self):
         return self.name
+
+    def fetch_spotify_data(self, force_update=False):
+        """
+        Fetch artist data from Spotify API and update the model
+        Returns True if successful, False otherwise
+        """
+        # Skip if we already have Spotify data and not forcing an update
+        if self.spotify_id and not force_update:
+            # Only update if data is older than 7 days
+            if self.spotify_last_updated and (timezone.now() - self.spotify_last_updated).days < 7:
+                return True
+
+        try:
+            # Initialize Spotify client
+            client_id = getattr(settings, 'SPOTIFY_CLIENT_ID', None)
+            client_secret = getattr(settings, 'SPOTIFY_CLIENT_SECRET', None)
+
+            if not client_id or not client_secret:
+                logger.warning("Spotify API credentials not configured")
+                return False
+
+            client_credentials_manager = SpotifyClientCredentials(
+                client_id=client_id,
+                client_secret=client_secret
+            )
+
+            sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
+            
+            # Search for the artist
+            results = sp.search(q=f'artist:{self.name}', type='artist', limit=5)
+            
+            if not results['artists']['items']:
+                logger.info(f"No Spotify results found for artist: {self.name}")
+                return False
+                
+            # Find the best match
+            best_match = None
+            for item in results['artists']['items']:
+                # Exact match is best
+                if item['name'].lower() == self.name.lower():
+                    best_match = item
+                    break
+                # Otherwise take the first result
+                elif not best_match:
+                    best_match = item
+            
+            if not best_match:
+                return False
+                
+            # Update artist with Spotify data
+            self.spotify_id = best_match['id']
+            self.spotify_uri = best_match['uri']
+            self.spotify_url = best_match['external_urls'].get('spotify', '')
+            self.spotify_popularity = best_match['popularity']
+            self.spotify_followers = best_match['followers']['total']
+            
+            # Get the largest image if available
+            if best_match['images'] and len(best_match['images']) > 0:
+                # Sort by size (largest first)
+                sorted_images = sorted(best_match['images'], key=lambda x: x.get('width', 0) or 0, reverse=True)
+                self.spotify_image_url = sorted_images[0]['url']
+                
+                # If we don't have an image, download from Spotify
+                if not self.image and self.spotify_image_url:
+                    self._download_spotify_image()
+            
+            self.spotify_last_updated = timezone.now()
+            self.save()
+            return True
+            
+        except Exception as e:
+            logger.error(f"Error fetching Spotify data for {self.name}: {str(e)}")
+            return False
+            
+    def _download_spotify_image(self):
+        """Download artist image from Spotify and save it to the model"""
+        if not self.spotify_image_url:
+            return
+            
+        try:
+            import requests
+            response = requests.get(self.spotify_image_url)
+            if response.status_code == 200:
+                # Create a filename
+                filename = f"{slugify(self.name)}_spotify.jpg"
+                
+                # Save the image
+                self.image.save(filename, ContentFile(response.content), save=False)
+                
+        except Exception as e:
+            logger.error(f"Error downloading Spotify image for {self.name}: {str(e)}")
+            
+    def get_spotify_embed_url(self):
+        """Return the URL for embedding a Spotify player for this artist"""
+        if self.spotify_id:
+            return f"https://open.spotify.com/embed/artist/{self.spotify_id}"
+        return None
 
     @property
     def get_image(self):
@@ -64,7 +176,13 @@ class Artist(models.Model):
             logger.error(f"Error saving event image for artist {self.name}: {e}")
 
     def save(self, *args, **kwargs):
-        """Override save to get an image from events if none exists"""
+        """Override save to get an image from events if none exists and fetch Spotify data"""
+        # Check if this is a new instance (no ID yet)
+        is_new = not self.pk
+        
+        # Skip Spotify update if specified
+        skip_spotify = kwargs.pop('skip_spotify', False)
+        
         # First save to ensure we have an ID
         super().save(*args, **kwargs)
         
@@ -76,6 +194,12 @@ class Artist(models.Model):
                 self.save_event_image(event_with_image)
                 # Save again with the new image
                 super().save(*args, **kwargs)
+        
+        # Fetch Spotify data for new artists or when forced
+        if (is_new or not self.spotify_id) and not skip_spotify:
+            # Use a separate thread or task queue for production
+            # For simplicity, we'll call it directly here
+            self.fetch_spotify_data()
 
 class Venue(models.Model):
     name = models.CharField(max_length=200)

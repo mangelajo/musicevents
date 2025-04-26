@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-21 12:41+0000\n"
+"POT-Creation-Date: 2025-04-26 13:25+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,53 +18,124 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: events/templates/events/base.html:16
-msgid "Logo"
-msgstr ""
-
-#: events/templates/events/base.html:24 events/templates/events/home.html:4
+#: events/templates/admin/events/event/cafeberlin_sync.html:6
+#: events/templates/admin/events/event/riviera_sync.html:6
+#: events/templates/admin/events/event/ticketmaster_sync.html:15
+#: events/templates/events/base.html:26 events/templates/events/home.html:4
 msgid "Home"
 msgstr "Accueil"
 
-#: events/templates/events/base.html:27
+#: events/templates/admin/events/event/change_list.html:7
+#, fuzzy
+#| msgid "Sync Ticketmaster"
+msgid "Sync Ticketmaster Events"
+msgstr "Synchroniser Ticketmaster"
+
+#: events/templates/admin/events/event/change_list.html:12
+#, fuzzy
+#| msgid "Sync Sala Riviera"
+msgid "Sync Riviera Events"
+msgstr "Synchroniser Sala Riviera"
+
+#: events/templates/admin/events/event/change_list.html:17
+msgid "Sync Cafe Berlin Events"
+msgstr ""
+
+#: events/templates/events/artist_detail.html:12
+#: events/templates/events/home.html:29
+msgid "No Image"
+msgstr "Pas d'Image"
+
+#: events/templates/events/artist_detail.html:17
+msgid "Visit Artist Website"
+msgstr "Visiter le Site Web de l'Artiste"
+
+#: events/templates/events/artist_detail.html:22
+msgid "Open in Spotify"
+msgstr "Ouvrir dans Spotify"
+
+#: events/templates/events/artist_detail.html:30
+#: events/templates/events/event_detail.html:43
+msgid "Spotify"
+msgstr "Spotify"
+
+#: events/templates/events/artist_detail.html:46
+msgid "Spotify Stats"
+msgstr "Statistiques Spotify"
+
+#: events/templates/events/artist_detail.html:51
+msgid "Followers"
+msgstr "Abonnés"
+
+#: events/templates/events/artist_detail.html:58
+msgid "Popularity"
+msgstr "Popularité"
+
+#: events/templates/events/artist_detail.html:99
+msgid "No upcoming events for this artist."
+msgstr "Aucun événement à venir pour cet artiste."
+
+#: events/templates/events/base.html:18
+msgid "Logo"
+msgstr ""
+
+#: events/templates/events/base.html:29
 msgid "Events"
 msgstr "Événements"
 
-#: events/templates/events/base.html:30 events/templates/events/home.html:36
+#: events/templates/events/base.html:32 events/templates/events/home.html:36
 msgid "Artists"
 msgstr "Artistes"
 
-#: events/templates/events/base.html:33
+#: events/templates/events/base.html:35
 msgid "Venues"
 msgstr "Lieux"
 
-#: events/templates/events/base.html:38
-msgid "Sync Sources"
-msgstr "Sources de Synchronisation"
-
-#: events/templates/events/base.html:41
-msgid "Sync Ticketmaster"
-msgstr "Synchroniser Ticketmaster"
-
-#: events/templates/events/base.html:42
-msgid "Sync Sala Riviera"
-msgstr "Synchroniser Sala Riviera"
-
-#: events/templates/events/base.html:46
+#: events/templates/events/base.html:39
 msgid "Admin"
 msgstr "Administration"
 
-#: events/templates/events/base.html:49
+#: events/templates/events/base.html:42
 msgid "Events Admin"
 msgstr "Administration des Événements"
 
-#: events/templates/events/base.html:69
+#: events/templates/events/base.html:62
 msgid "Your source for the best music events in town."
 msgstr "Votre source pour les meilleurs événements musicaux en ville."
 
-#: events/templates/events/base.html:72
+#: events/templates/events/base.html:65
 msgid "All rights reserved."
 msgstr "Tous droits réservés."
+
+#: events/templates/events/base.html:77
+msgid "Cookie Consent Required"
+msgstr ""
+
+#: events/templates/events/base.html:80
+msgid ""
+"This website uses essential cookies to enable basic functionality like page "
+"navigation and access to secure areas. These cookies are necessary for the "
+"website to function properly and cannot be disabled."
+msgstr ""
+
+#: events/templates/events/base.html:81
+msgid ""
+"We do not use any tracking or analytics cookies, and we do not share any "
+"information with third parties."
+msgstr ""
+
+#: events/templates/events/base.html:82
+msgid ""
+"By clicking 'Accept', you consent to the use of these essential cookies."
+msgstr ""
+
+#: events/templates/events/base.html:85
+msgid "Accept"
+msgstr ""
+
+#: events/templates/events/event_detail.html:40
+msgid "View Artist"
+msgstr "Voir l'Artiste"
 
 #: events/templates/events/home.html:8
 msgid "Welcome to"
@@ -87,10 +158,6 @@ msgstr "Voir les Événements"
 #: events/templates/events/home.html:17
 msgid "Upcoming Events"
 msgstr "Événements à Venir"
-
-#: events/templates/events/home.html:29
-msgid "No Image"
-msgstr "Pas d'Image"
 
 #: events/templates/events/home.html:35
 msgid "Venue"
@@ -147,6 +214,9 @@ msgstr "Chinois simplifié"
 #: music_events_project/settings/base.py:128
 msgid "Japanese"
 msgstr "Japonais"
+
+#~ msgid "Sync Sources"
+#~ msgstr "Sources de Synchronisation"
 
 #~ msgid "Music Events Logo"
 #~ msgstr "Logo Événements Musicaux"
