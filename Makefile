@@ -12,6 +12,8 @@ CONTAINER_PORT = 8000
 # Environment variables
 ENV_FILE ?= .env
 TICKETMASTER_API_KEY ?= $(shell grep TICKETMASTER_API_KEY $(ENV_FILE) 2>/dev/null | cut -d '=' -f2)
+SPOTIFY_CLIENT_ID ?= $(shell grep SPOTIFY_CLIENT_ID $(ENV_FILE) 2>/dev/null | cut -d '=' -f2)
+SPOTIFY_CLIENT_SECRET ?= $(shell grep SPOTIFY_CLIENT_SECRET $(ENV_FILE) 2>/dev/null | cut -d '=' -f2)
 
 # Docker Compose configuration
 COMPOSE_PROJECT_NAME = musicevents
@@ -54,9 +56,15 @@ help:
 	    @echo "                       Supported: podman, docker"
 	    @echo "  ENV_FILE          - Environment file to use (default: .env)"
 	    @echo "  COMPOSE           - Docker compose command (default: docker compose)"
+	    @echo "  TICKETMASTER_API_KEY - Ticketmaster API key (from $(ENV_FILE))"
+	    @echo "  SPOTIFY_CLIENT_ID    - Spotify Client ID (from $(ENV_FILE))"
+	    @echo "  SPOTIFY_CLIENT_SECRET - Spotify Client Secret (from $(ENV_FILE))"
 
 server:
-	    TICKETMASTER_API_KEY=$(TICKETMASTER_API_KEY) ./start.sh
+	    TICKETMASTER_API_KEY=$(TICKETMASTER_API_KEY) \
+	    SPOTIFY_CLIENT_ID=$(SPOTIFY_CLIENT_ID) \
+	    SPOTIFY_CLIENT_SECRET=$(SPOTIFY_CLIENT_SECRET) \
+	    ./start.sh
 
 sync:
 	    uv sync --all-extras
@@ -147,6 +155,8 @@ container-run: check-env
 	            -p $(CONTAINER_PORT):8000 \
 	            -v $(PWD)/media:/app/media \
 	            -e TICKETMASTER_API_KEY=$(TICKETMASTER_API_KEY) \
+	            -e SPOTIFY_CLIENT_ID=$(SPOTIFY_CLIENT_ID) \
+	            -e SPOTIFY_CLIENT_SECRET=$(SPOTIFY_CLIENT_SECRET) \
 	            -d $(CONTAINER_NAME):$(CONTAINER_TAG)
 
 container-stop:
