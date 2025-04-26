@@ -29,7 +29,7 @@ class Artist(models.Model):
 
     def __str__(self):
         return self.name
-        
+
     def fetch_spotify_data(self, force_update=False):
         """
         Fetch artist data from Spotify API and update the model
@@ -40,20 +40,21 @@ class Artist(models.Model):
             # Only update if data is older than 7 days
             if self.spotify_last_updated and (timezone.now() - self.spotify_last_updated).days < 7:
                 return True
-                
+
         try:
             # Initialize Spotify client
             client_id = getattr(settings, 'SPOTIFY_CLIENT_ID', None)
             client_secret = getattr(settings, 'SPOTIFY_CLIENT_SECRET', None)
-            
+
             if not client_id or not client_secret:
                 logger.warning("Spotify API credentials not configured")
                 return False
-                
+
             client_credentials_manager = SpotifyClientCredentials(
-                client_id=client_id, 
+                client_id=client_id,
                 client_secret=client_secret
             )
+
             sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
             
             # Search for the artist
