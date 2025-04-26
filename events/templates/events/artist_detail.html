@@ -11,8 +11,66 @@
             <div class="bg-secondary text-white text-center p-5 mb-4">No Image</div>
         {% endif %}
         
-        {% if artist.website %}
-            <a href="{{ artist.website }}" class="btn btn-primary mb-4" target="_blank">Visit Artist Website</a>
+        <div class="mb-4">
+            {% if artist.website %}
+                <a href="{{ artist.website }}" class="btn btn-primary mb-2" target="_blank">Visit Artist Website</a>
+            {% endif %}
+            
+            {% if artist.spotify_url %}
+                <a href="{{ artist.spotify_url }}" class="btn btn-success mb-2" target="_blank">
+                    <i class="bi bi-spotify"></i> Open in Spotify
+                </a>
+            {% endif %}
+        </div>
+        
+        {% if artist.spotify_id %}
+            <div class="card mb-4">
+                <div class="card-header bg-success text-white">
+                    <i class="bi bi-spotify"></i> Spotify
+                </div>
+                <div class="card-body p-0">
+                    <iframe src="{{ artist.get_spotify_embed_url }}" 
+                            width="100%" 
+                            height="380" 
+                            frameborder="0" 
+                            allowtransparency="true" 
+                            allow="encrypted-media"
+                            class="rounded-bottom">
+                    </iframe>
+                </div>
+            </div>
+            
+            {% if artist.spotify_followers or artist.spotify_popularity %}
+                <div class="card mb-4">
+                    <div class="card-header">Spotify Stats</div>
+                    <div class="card-body">
+                        <ul class="list-group list-group-flush">
+                            {% if artist.spotify_followers %}
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    Followers
+                                    <span class="badge bg-primary rounded-pill">{{ artist.spotify_followers }}</span>
+                                </li>
+                            {% endif %}
+                            
+                            {% if artist.spotify_popularity %}
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    Popularity
+                                    <div class="progress" style="width: 60%;">
+                                        <div class="progress-bar bg-success" 
+                                             role="progressbar" 
+                                             style="width: {{ artist.spotify_popularity }}%;" 
+                                             aria-valuenow="{{ artist.spotify_popularity }}" 
+                                             aria-valuemin="0" 
+                                             aria-valuemax="100">
+                                            {{ artist.spotify_popularity }}%
+                                        </div>
+                                    </div>
+                                </li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                </div>
+            {% endif %}
         {% endif %}
     </div>
     

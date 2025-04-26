@@ -30,8 +30,41 @@ class MusicEventsAdminSite(admin.AdminSite):
 admin_site = MusicEventsAdminSite(name='music_events_admin')
 
 class ArtistAdmin(admin.ModelAdmin):
-    list_display = ('name', 'website')
-    search_fields = ('name',)
+    list_display = ('name', 'website', 'has_spotify_data', 'spotify_followers', 'spotify_popularity')
+    search_fields = ('name', 'spotify_id')
+    list_filter = ('spotify_last_updated',)
+    readonly_fields = ('spotify_id', 'spotify_uri', 'spotify_url', 'spotify_popularity', 
+                      'spotify_followers', 'spotify_image_url', 'spotify_last_updated')
+    fieldsets = (
+        (None, {
+            'fields': ('name', 'bio', 'website', 'image')
+        }),
+        ('Spotify Information', {
+            'fields': ('spotify_id', 'spotify_uri', 'spotify_url', 'spotify_popularity', 
+                      'spotify_followers', 'spotify_image_url', 'spotify_last_updated'),
+            'classes': ('collapse',),
+        }),
+    )
+    
+    def has_spotify_data(self, obj):
+        return bool(obj.spotify_id)
+    has_spotify_data.boolean = True
+    has_spotify_data.short_description = 'Spotify'
+    
+    actions = ['fetch_spotify_data']
+    
+    def fetch_spotify_data(self, request, queryset):
+        updated = 0
+        for artist in queryset:
+            if artist.fetch_spotify_data(force_update=True):
+                updated += 1
+        
+        if updated:
+            self.message_user(request, f"Successfully updated Spotify data for {updated} artists.")
+        else:
+            self.message_user(request, "Could not find Spotify data for any of the selected artists.", level=messages.WARNING)
+    
+    fetch_spotify_data.short_description = "Fetch Spotify data for selected artists"
 
 class VenueAdmin(admin.ModelAdmin):
     list_display = ('name', 'city', 'state', 'capacity')
