@@ -188,3 +188,9 @@ compose-logs:
 
 compose-ps:
 	    $(COMPOSE) ps
+
+lint:
+	uv run ruff check
+
+lint-fix:
+	uv run ruff check --fix
