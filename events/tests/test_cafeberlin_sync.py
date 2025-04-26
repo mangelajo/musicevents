@@ -210,7 +210,8 @@ class TestCafeBerlinSync(TestCase):
 
 
 
-    def test_sync_events_success(self):
+    @patch('events.utils.sync_base.download_and_save_image', return_value=True)
+    def test_sync_events_success(self, mock_download):
         """Test successful event synchronization."""
         mock_events = [
             {
@@ -238,4 +239,5 @@ class TestCafeBerlinSync(TestCase):
         
         self.assertEqual(created, 2)  # Two events should be created
         self.assertEqual(updated, 0)  # No events should be updated
+        self.assertEqual(mock_download.call_count, 2)  # Should be called twice, once for each event
         self.assertIsNone(error)  # No errors should occur
