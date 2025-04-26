@@ -7,8 +7,7 @@ This document provides detailed instructions for installing the Music Events app
 - [Docker Compose Installation](#docker-compose-installation)
 - [Helm Chart Installation](#helm-chart-installation)
   - [Prerequisites](#prerequisites)
-  - [Installation from Source](#installation-from-source)
-  - [Installation from OCI Registry](#installation-from-oci-registry)
+  - [Installation](#installation)
   - [Configuration Options](#configuration-options)
   - [Upgrading](#upgrading)
   - [Uninstalling](#uninstalling)
@@ -18,13 +17,7 @@ This document provides detailed instructions for installing the Music Events app
 
 For local development or simple deployments, you can use Docker Compose:
 
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/mangelajo/musicevents.git
-   cd musicevents
-   ```
-
-2. Create a `.env` file with your configuration:
+1. Create a `.env` file with your configuration:
    ```
    TICKETMASTER_API_KEY=your_ticketmaster_api_key
    DJANGO_SECRET_KEY=your_django_secret_key
@@ -35,12 +28,12 @@ For local development or simple deployments, you can use Docker Compose:
    ADMIN_EMAIL=admin@example.com
    ```
 
-3. Start the application:
+2. Start the application:
    ```bash
    docker-compose up -d
    ```
 
-4. Access the application at http://localhost:8001
+3. Access the application at http://localhost:8001
 
 ## Helm Chart Installation
 
@@ -50,15 +43,9 @@ For local development or simple deployments, you can use Docker Compose:
 - Helm 3.0+
 - PV provisioner support in the underlying infrastructure (if persistence is enabled)
 
-### Installation from Source
+### Installation
 
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/mangelajo/musicevents.git
-   cd musicevents
-   ```
-
-2. Create a values file (e.g., `my-values.yaml`):
+1. Create a values file (e.g., `my-values.yaml`):
    ```yaml
    domain: musicevents.example.com
    ticketmasterApiKey: "your-ticketmaster-api-key"
@@ -80,22 +67,10 @@ For local development or simple deployments, you can use Docker Compose:
      password: "musicevents"
    ```
 
-3. Install the chart:
+2. Install the chart directly from the OCI registry:
    ```bash
-   helm install musicevents ./charts/musicevents -f my-values.yaml
+   helm install musicevents oci://ghcr.io/mangelajo/charts/musicevents --version <version> -f my-values.yaml
    ```
-
-### Installation from OCI Registry
-
-The Music Events Helm chart is also available from our OCI registry:
-
-```bash
-# Add the repository
-helm pull oci://ghcr.io/mangelajo/charts/musicevents --version <version>
-
-# Install with custom values
-helm install musicevents ./musicevents-<version>.tgz -f my-values.yaml
-```
 
 To list available versions:
 
@@ -145,12 +120,6 @@ For a complete list of configuration options, refer to the [values.yaml](./chart
 ### Upgrading
 
 To upgrade the release:
-
-```bash
-helm upgrade musicevents ./charts/musicevents -f my-values.yaml
-```
-
-Or if using the OCI registry:
 
 ```bash
 helm upgrade musicevents oci://ghcr.io/mangelajo/charts/musicevents --version <version> -f my-values.yaml
