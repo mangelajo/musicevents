@@ -33,7 +33,7 @@ services:
       bash -c "/.venv/bin/python3 manage.py migrate --noinput &&
                /.venv/bin/python3 manage.py collectstatic --noinput &&
                /.venv/bin/python3 manage.py ensure_admin &&
-               gunicorn music_events_project.wsgi:application --bind 0.0.0.0:8000 --workers 3 --threads 4 --timeout 30 --preload"
+               gunicorn music_events_project.wsgi:application --bind 0.0.0.0:8000 --workers 3 --threads 4 --timeout 30 --preload --log-level debug --enable-stdio-inheritance --capture-output --access-logfile -"
 
   db:
     image: postgres:15
