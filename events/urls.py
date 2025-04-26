@@ -11,6 +11,5 @@ urlpatterns = [
     path('artists/<int:pk>/', views.ArtistDetailView.as_view(), name='artist_detail'),
     path('venues/', views.VenueListView.as_view(), name='venue_list'),
     path('venues/<int:pk>/', views.VenueDetailView.as_view(), name='venue_detail'),
-    
-
+    path('terms/', views.TermsView.as_view(), name='terms'),
 ]

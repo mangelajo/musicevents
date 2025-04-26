@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-26 13:25+0000\n"
+"POT-Creation-Date: 2025-04-26 13:48+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -103,33 +103,38 @@ msgstr "イベント管理"
 msgid "Your source for the best music events in town."
 msgstr "街で最高の音楽イベントの情報源。"
 
-#: events/templates/events/base.html:65
+#: events/templates/events/base.html:66 events/templates/events/terms.html:4
+#: events/templates/events/terms.html:10
+msgid "Terms and Conditions"
+msgstr ""
+
+#: events/templates/events/base.html:68
 msgid "All rights reserved."
 msgstr "全ての権利を保有。"
 
-#: events/templates/events/base.html:77
+#: events/templates/events/base.html:80
 msgid "Cookie Consent Required"
 msgstr ""
 
-#: events/templates/events/base.html:80
+#: events/templates/events/base.html:83
 msgid ""
 "This website uses essential cookies to enable basic functionality like page "
 "navigation and access to secure areas. These cookies are necessary for the "
 "website to function properly and cannot be disabled."
 msgstr ""
 
-#: events/templates/events/base.html:81
+#: events/templates/events/base.html:84
 msgid ""
 "We do not use any tracking or analytics cookies, and we do not share any "
 "information with third parties."
 msgstr ""
 
-#: events/templates/events/base.html:82
+#: events/templates/events/base.html:85
 msgid ""
 "By clicking 'Accept', you consent to the use of these essential cookies."
 msgstr ""
 
-#: events/templates/events/base.html:85
+#: events/templates/events/base.html:88
 msgid "Accept"
 msgstr ""
 
@@ -192,6 +197,71 @@ msgstr "全ての会場を見る"
 #: events/templates/events/home.html:91
 msgid "No featured venues at this time."
 msgstr "現在、注目の会場はありません。"
+
+#: events/templates/events/terms.html:14
+msgid "Beta Service"
+msgstr ""
+
+#: events/templates/events/terms.html:15
+msgid ""
+"This service is currently in beta. We are continuously working to improve "
+"the platform and appreciate your patience and feedback during this phase."
+msgstr ""
+
+#: events/templates/events/terms.html:21
+msgid "Provided As Is"
+msgstr ""
+
+#: events/templates/events/terms.html:22
+msgid ""
+"The service is provided on an 'as is' and 'as available' basis without any "
+"representation or warranty, whether express, implied, or statutory. We make "
+"no claims as to the reliability, availability, or performance of our service."
+msgstr ""
+
+#: events/templates/events/terms.html:28
+#, fuzzy
+#| msgid "Events Admin"
+msgid "Event Information"
+msgstr "イベント管理"
+
+#: events/templates/events/terms.html:29
+msgid ""
+"While we strive to provide accurate information about events, dates, times, "
+"and venues, we strongly recommend that you double-check all event details "
+"with the official event organizers or venues before making any plans or "
+"purchases."
+msgstr ""
+
+#: events/templates/events/terms.html:30
+msgid ""
+"We cannot guarantee the accuracy of event information as it may change after "
+"being published on our platform."
+msgstr ""
+
+#: events/templates/events/terms.html:36
+msgid "Limitation of Liability"
+msgstr ""
+
+#: events/templates/events/terms.html:37
+msgid ""
+"We shall not be liable for any indirect, incidental, special, consequential, "
+"or punitive damages, or any loss of profits or revenues, whether incurred "
+"directly or indirectly, or any loss of data, use, goodwill, or other "
+"intangible losses resulting from your use of this service."
+msgstr ""
+
+#: events/templates/events/terms.html:43
+msgid "Changes to Terms"
+msgstr ""
+
+#: events/templates/events/terms.html:44
+msgid ""
+"We reserve the right to modify these terms at any time. We will provide "
+"notice of any material changes to these terms by posting the new terms on "
+"the site. Your continued use of the service after such modifications will "
+"constitute your acknowledgment of the modified terms."
+msgstr ""
 
 #: music_events_project/settings/base.py:124
 msgid "English"

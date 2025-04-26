@@ -62,6 +62,9 @@
                     <p>{% trans "Your source for the best music events in town." %}</p>
                 </div>
                 <div class="col-md-6 text-md-end">
+                    <p>
+                        <a href="{% url 'events:terms' %}" class="text-white text-decoration-underline">{% trans "Terms and Conditions" %}</a>
+                    </p>
                     <p>&copy; {% now "Y" %} {{ SITE_NAME }}. {% trans "All rights reserved." %}</p>
                 </div>
             </div>
