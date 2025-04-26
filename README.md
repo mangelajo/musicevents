@@ -4,6 +4,8 @@ A Django application for managing and displaying music events with Spotify integ
 
 ## Installation
 
+For detailed installation instructions, including Docker Compose and Kubernetes Helm chart deployment, see [INSTALLING.md](./INSTALLING.md).
+
 ### Basic Installation
 
 ```bash
