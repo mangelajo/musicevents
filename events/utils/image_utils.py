@@ -34,8 +34,7 @@ def download_and_save_image(url, model_instance, field_name='image'):
         image_name = f"{name}.jpg"
 
         # Download the image
-        response = requests.get(url, stream=True, timeout=10) # Added timeout
-        response.raise_for_status()
+        response = _download_image(url)
 
         # Read image into memory
         image_data = BytesIO(response.content)
@@ -81,3 +80,8 @@ def download_and_save_image(url, model_instance, field_name='image'):
         # Clean up temp file if it was created (though we moved away from NamedTemporaryFile)
         # This block might not be needed anymore if not using tempfile on disk
         pass
+
+def _download_image(url):
+    response = requests.get(url, stream=True, timeout=10) # Added timeout
+    response.raise_for_status()
+    return response

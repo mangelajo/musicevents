@@ -5,6 +5,7 @@ from unittest.mock import patch, MagicMock
 from bs4 import BeautifulSoup
 from django.test import TestCase
 from django.utils import timezone
+from .decorators import mock_download_image
 from events.utils.cafeberlin_sync import (
     CafeBerlinEventSync,
     _parse_date_element,
@@ -209,7 +210,7 @@ class TestCafeBerlinSync(TestCase):
         self.assertEqual(results[1]['title'], 'Event 2')
 
 
-
+    @mock_download_image(color='green')
     def test_sync_events_success(self):
         """Test successful event synchronization."""
         mock_events = [

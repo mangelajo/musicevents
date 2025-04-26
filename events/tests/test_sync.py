@@ -2,6 +2,7 @@
 from django.test import TestCase
 from django.utils import timezone
 from unittest.mock import patch
+from .decorators import mock_download_image
 from events.utils.sync_base import EventSyncBase
 from events.utils.ticketmaster import TicketmasterEventSync
 from events.utils.riviera_sync import RivieraEventSync
@@ -189,6 +190,7 @@ class TicketmasterSyncTests(TestCase):
         self.assertEqual(names, ['Test Artist'])
 
     @patch('events.utils.ticketmaster.fetch_events_for_city')
+    @mock_download_image(color='red')
     def test_sync_events(self, mock_fetch):
         """Test full event synchronization."""
         mock_fetch.return_value = {
@@ -251,6 +253,7 @@ class RivieraSyncTests(TestCase):
         )
 
     @patch('events.utils.riviera_sync.fetch_riviera_events')
+    @mock_download_image(color='blue')
     def test_sync_events(self, mock_fetch):
         """Test full event synchronization."""
         mock_fetch.return_value = [self.event_data]
