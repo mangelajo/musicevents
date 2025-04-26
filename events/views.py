@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, TemplateView
 from django.utils import timezone
 from .models import Artist, Venue, Event
 
@@ -85,4 +85,7 @@ class VenueDetailView(DetailView):
         return context
 
 
+class TermsView(TemplateView):
+    """View for the terms and conditions page."""
+    template_name = 'events/terms.html'
 

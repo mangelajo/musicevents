@@ -5,7 +5,7 @@ make sure to add it with `uv add <package>`. Then right after use
 `uv pip compile --output-file requirements.txt` to update the requirements.txt.
 
 # When modifying or extending templates
-Use internationalization (i18n) for any text that will be displayed to the user, and update the files in the `locale` folder, for all the supported languages.
+Use internationalization (i18n) for any text that will be displayed to the user, and update the files in the `locale` folder, providing the msgstr translations for: en, es, pt, fr, ja, zh_Hans.
 
 # Running python scripts
 When running python scripts, use the `uv run` command.
