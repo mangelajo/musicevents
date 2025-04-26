@@ -106,7 +106,7 @@ msgstr "Votre source pour les meilleurs événements musicaux en ville."
 #: events/templates/events/base.html:66 events/templates/events/terms.html:4
 #: events/templates/events/terms.html:10
 msgid "Terms and Conditions"
-msgstr ""
+msgstr "Conditions Générales"
 
 #: events/templates/events/base.html:68
 msgid "All rights reserved."
@@ -202,17 +202,20 @@ msgstr "Aucun lieu en vedette pour le moment."
 
 #: events/templates/events/terms.html:14
 msgid "Beta Service"
-msgstr ""
+msgstr "Service Bêta"
 
 #: events/templates/events/terms.html:15
 msgid ""
 "This service is currently in beta. We are continuously working to improve "
 "the platform and appreciate your patience and feedback during this phase."
 msgstr ""
+"Ce service est actuellement en version bêta. Nous travaillons continuellement "
+"à améliorer la plateforme et apprécions votre patience et vos commentaires "
+"pendant cette phase."
 
 #: events/templates/events/terms.html:21
 msgid "Provided As Is"
-msgstr ""
+msgstr "Fourni Tel Quel"
 
 #: events/templates/events/terms.html:22
 msgid ""
@@ -220,12 +223,16 @@ msgid ""
 "representation or warranty, whether express, implied, or statutory. We make "
 "no claims as to the reliability, availability, or performance of our service."
 msgstr ""
+"Le service est fourni 'tel quel' et 'selon disponibilité' sans aucune "
+"représentation ou garantie, qu'elle soit expresse, implicite ou légale. Nous "
+"ne faisons aucune déclaration quant à la fiabilité, la disponibilité ou la "
+"performance de notre service."
 
 #: events/templates/events/terms.html:28
 #, fuzzy
 #| msgid "Events Admin"
 msgid "Event Information"
-msgstr "Administration des Événements"
+msgstr "Informations sur les Événements"
 
 #: events/templates/events/terms.html:29
 msgid ""
@@ -234,16 +241,22 @@ msgid ""
 "with the official event organizers or venues before making any plans or "
 "purchases."
 msgstr ""
+"Bien que nous nous efforcions de fournir des informations précises sur les "
+"événements, les dates, les heures et les lieux, nous vous recommandons "
+"vivement de vérifier tous les détails de l'événement auprès des organisateurs "
+"officiels ou des lieux avant de faire des projets ou des achats."
 
 #: events/templates/events/terms.html:30
 msgid ""
 "We cannot guarantee the accuracy of event information as it may change after "
 "being published on our platform."
 msgstr ""
+"Nous ne pouvons pas garantir l'exactitude des informations sur les événements "
+"car elles peuvent changer après avoir été publiées sur notre plateforme."
 
 #: events/templates/events/terms.html:36
 msgid "Limitation of Liability"
-msgstr ""
+msgstr "Limitation de Responsabilité"
 
 #: events/templates/events/terms.html:37
 msgid ""
@@ -252,10 +265,15 @@ msgid ""
 "directly or indirectly, or any loss of data, use, goodwill, or other "
 "intangible losses resulting from your use of this service."
 msgstr ""
+"Nous ne serons pas responsables des dommages indirects, accessoires, spéciaux, "
+"consécutifs ou punitifs, ni de toute perte de profits ou de revenus, qu'ils "
+"soient encourus directement ou indirectement, ni de toute perte de données, "
+"d'utilisation, de clientèle ou d'autres pertes immatérielles résultant de "
+"votre utilisation de ce service."
 
 #: events/templates/events/terms.html:43
 msgid "Changes to Terms"
-msgstr ""
+msgstr "Modifications des Conditions"
 
 #: events/templates/events/terms.html:44
 msgid ""
@@ -264,6 +282,11 @@ msgid ""
 "the site. Your continued use of the service after such modifications will "
 "constitute your acknowledgment of the modified terms."
 msgstr ""
+"Nous nous réservons le droit de modifier ces conditions à tout moment. Nous "
+"fournirons un avis de tout changement important à ces conditions en publiant "
+"les nouvelles conditions sur le site. Votre utilisation continue du service "
+"après de telles modifications constituera votre reconnaissance des conditions "
+"modifiées."
 
 #: music_events_project/settings/base.py:124
 msgid "English"

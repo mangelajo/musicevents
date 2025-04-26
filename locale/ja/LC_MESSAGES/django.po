@@ -106,7 +106,7 @@ msgstr "街で最高の音楽イベントの情報源。"
 #: events/templates/events/base.html:66 events/templates/events/terms.html:4
 #: events/templates/events/terms.html:10
 msgid "Terms and Conditions"
-msgstr ""
+msgstr "利用規約"
 
 #: events/templates/events/base.html:68
 msgid "All rights reserved."
@@ -200,17 +200,19 @@ msgstr "現在、注目の会場はありません。"
 
 #: events/templates/events/terms.html:14
 msgid "Beta Service"
-msgstr ""
+msgstr "ベータサービス"
 
 #: events/templates/events/terms.html:15
 msgid ""
 "This service is currently in beta. We are continuously working to improve "
 "the platform and appreciate your patience and feedback during this phase."
 msgstr ""
+"このサービスは現在ベータ版です。私たちはプラットフォームの改善に継続的に取り組んでおり、"
+"この段階でのご忍耐とフィードバックに感謝します。"
 
 #: events/templates/events/terms.html:21
 msgid "Provided As Is"
-msgstr ""
+msgstr "現状有姿での提供"
 
 #: events/templates/events/terms.html:22
 msgid ""
@@ -218,12 +220,15 @@ msgid ""
 "representation or warranty, whether express, implied, or statutory. We make "
 "no claims as to the reliability, availability, or performance of our service."
 msgstr ""
+"本サービスは、明示的、黙示的、または法的を問わず、いかなる表明や保証もなく、「現状有姿」"
+"および「利用可能な状態」で提供されます。当社は、本サービスの信頼性、可用性、"
+"またはパフォーマンスについていかなる主張もいたしません。"
 
 #: events/templates/events/terms.html:28
 #, fuzzy
 #| msgid "Events Admin"
 msgid "Event Information"
-msgstr "イベント管理"
+msgstr "イベント情報"
 
 #: events/templates/events/terms.html:29
 msgid ""
@@ -232,16 +237,21 @@ msgid ""
 "with the official event organizers or venues before making any plans or "
 "purchases."
 msgstr ""
+"イベント、日付、時間、会場に関する正確な情報を提供するよう努めていますが、"
+"計画を立てたり購入したりする前に、公式のイベント主催者や会場ですべてのイベントの"
+"詳細を再確認することを強くお勧めします。"
 
 #: events/templates/events/terms.html:30
 msgid ""
 "We cannot guarantee the accuracy of event information as it may change after "
 "being published on our platform."
 msgstr ""
+"当社のプラットフォームに公開された後に変更される可能性があるため、"
+"イベント情報の正確性を保証することはできません。"
 
 #: events/templates/events/terms.html:36
 msgid "Limitation of Liability"
-msgstr ""
+msgstr "責任の制限"
 
 #: events/templates/events/terms.html:37
 msgid ""
@@ -250,10 +260,13 @@ msgid ""
 "directly or indirectly, or any loss of data, use, goodwill, or other "
 "intangible losses resulting from your use of this service."
 msgstr ""
+"当社は、間接的、偶発的、特別、結果的、または懲罰的な損害、または利益や収益の損失"
+"（直接的または間接的に発生したかどうかを問わず）、またはこのサービスの使用に起因する"
+"データ、使用、のれん、またはその他の無形の損失について責任を負いません。"
 
 #: events/templates/events/terms.html:43
 msgid "Changes to Terms"
-msgstr ""
+msgstr "利用規約の変更"
 
 #: events/templates/events/terms.html:44
 msgid ""
@@ -262,6 +275,10 @@ msgid ""
 "the site. Your continued use of the service after such modifications will "
 "constitute your acknowledgment of the modified terms."
 msgstr ""
+"当社はいつでもこれらの条件を変更する権利を留保します。当社は、サイトに新しい条件を"
+"掲載することにより、これらの条件に対する重要な変更の通知を提供します。"
+"そのような変更後にサービスを継続して使用することは、変更された条件に対する"
+"あなたの承認を構成します。"
 
 #: music_events_project/settings/base.py:124
 msgid "English"

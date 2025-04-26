@@ -106,7 +106,7 @@ msgstr "您城市最佳音乐活动的来源。"
 #: events/templates/events/base.html:66 events/templates/events/terms.html:4
 #: events/templates/events/terms.html:10
 msgid "Terms and Conditions"
-msgstr ""
+msgstr "条款和条件"
 
 #: events/templates/events/base.html:68
 msgid "All rights reserved."
@@ -200,17 +200,18 @@ msgstr "目前没有特色场地。"
 
 #: events/templates/events/terms.html:14
 msgid "Beta Service"
-msgstr ""
+msgstr "测试版服务"
 
 #: events/templates/events/terms.html:15
 msgid ""
 "This service is currently in beta. We are continuously working to improve "
 "the platform and appreciate your patience and feedback during this phase."
 msgstr ""
+"本服务目前处于测试阶段。我们正在不断努力改进平台，并感谢您在此阶段的耐心和反馈。"
 
 #: events/templates/events/terms.html:21
 msgid "Provided As Is"
-msgstr ""
+msgstr "按现状提供"
 
 #: events/templates/events/terms.html:22
 msgid ""
@@ -218,12 +219,14 @@ msgid ""
 "representation or warranty, whether express, implied, or statutory. We make "
 "no claims as to the reliability, availability, or performance of our service."
 msgstr ""
+"本服务按"现状"和"可用性"提供，不作任何明示、暗示或法定的陈述或保证。"
+"我们对服务的可靠性、可用性或性能不作任何声明。"
 
 #: events/templates/events/terms.html:28
 #, fuzzy
 #| msgid "Events Admin"
 msgid "Event Information"
-msgstr "活动管理"
+msgstr "活动信息"
 
 #: events/templates/events/terms.html:29
 msgid ""
@@ -232,16 +235,19 @@ msgid ""
 "with the official event organizers or venues before making any plans or "
 "purchases."
 msgstr ""
+"虽然我们努力提供关于活动、日期、时间和场地的准确信息，但我们强烈建议您在制定任何计划或"
+"购买前，向官方活动组织者或场地核实所有活动详情。"
 
 #: events/templates/events/terms.html:30
 msgid ""
 "We cannot guarantee the accuracy of event information as it may change after "
 "being published on our platform."
 msgstr ""
+"我们无法保证活动信息的准确性，因为这些信息可能在发布到我们的平台后发生变化。"
 
 #: events/templates/events/terms.html:36
 msgid "Limitation of Liability"
-msgstr ""
+msgstr "责任限制"
 
 #: events/templates/events/terms.html:37
 msgid ""
@@ -250,10 +256,12 @@ msgid ""
 "directly or indirectly, or any loss of data, use, goodwill, or other "
 "intangible losses resulting from your use of this service."
 msgstr ""
+"对于任何间接、偶然、特殊、后果性或惩罚性损害，或任何利润或收入损失（无论是直接还是间接"
+"产生），或因使用本服务而导致的任何数据、使用、商誉或其他无形损失，我们概不负责。"
 
 #: events/templates/events/terms.html:43
 msgid "Changes to Terms"
-msgstr ""
+msgstr "条款变更"
 
 #: events/templates/events/terms.html:44
 msgid ""
@@ -262,6 +270,8 @@ msgid ""
 "the site. Your continued use of the service after such modifications will "
 "constitute your acknowledgment of the modified terms."
 msgstr ""
+"我们保留随时修改这些条款的权利。我们将通过在网站上发布新条款来通知任何重大变更。"
+"在此类修改后继续使用本服务将构成您对修改后条款的确认。"
 
 #: music_events_project/settings/base.py:124
 msgid "English"

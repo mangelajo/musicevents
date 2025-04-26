@@ -102,7 +102,7 @@ msgstr ""
 #: events/templates/events/base.html:66 events/templates/events/terms.html:4
 #: events/templates/events/terms.html:10
 msgid "Terms and Conditions"
-msgstr ""
+msgstr "Terms and Conditions"
 
 #: events/templates/events/base.html:68
 msgid "All rights reserved."
@@ -196,17 +196,19 @@ msgstr ""
 
 #: events/templates/events/terms.html:14
 msgid "Beta Service"
-msgstr ""
+msgstr "Beta Service"
 
 #: events/templates/events/terms.html:15
 msgid ""
 "This service is currently in beta. We are continuously working to improve "
 "the platform and appreciate your patience and feedback during this phase."
 msgstr ""
+"This service is currently in beta. We are continuously working to improve "
+"the platform and appreciate your patience and feedback during this phase."
 
 #: events/templates/events/terms.html:21
 msgid "Provided As Is"
-msgstr ""
+msgstr "Provided As Is"
 
 #: events/templates/events/terms.html:22
 msgid ""
@@ -214,10 +216,13 @@ msgid ""
 "representation or warranty, whether express, implied, or statutory. We make "
 "no claims as to the reliability, availability, or performance of our service."
 msgstr ""
+"The service is provided on an 'as is' and 'as available' basis without any "
+"representation or warranty, whether express, implied, or statutory. We make "
+"no claims as to the reliability, availability, or performance of our service."
 
 #: events/templates/events/terms.html:28
 msgid "Event Information"
-msgstr ""
+msgstr "Event Information"
 
 #: events/templates/events/terms.html:29
 msgid ""
@@ -226,16 +231,22 @@ msgid ""
 "with the official event organizers or venues before making any plans or "
 "purchases."
 msgstr ""
+"While we strive to provide accurate information about events, dates, times, "
+"and venues, we strongly recommend that you double-check all event details "
+"with the official event organizers or venues before making any plans or "
+"purchases."
 
 #: events/templates/events/terms.html:30
 msgid ""
 "We cannot guarantee the accuracy of event information as it may change after "
 "being published on our platform."
 msgstr ""
+"We cannot guarantee the accuracy of event information as it may change after "
+"being published on our platform."
 
 #: events/templates/events/terms.html:36
 msgid "Limitation of Liability"
-msgstr ""
+msgstr "Limitation of Liability"
 
 #: events/templates/events/terms.html:37
 msgid ""
@@ -244,10 +255,14 @@ msgid ""
 "directly or indirectly, or any loss of data, use, goodwill, or other "
 "intangible losses resulting from your use of this service."
 msgstr ""
+"We shall not be liable for any indirect, incidental, special, consequential, "
+"or punitive damages, or any loss of profits or revenues, whether incurred "
+"directly or indirectly, or any loss of data, use, goodwill, or other "
+"intangible losses resulting from your use of this service."
 
 #: events/templates/events/terms.html:43
 msgid "Changes to Terms"
-msgstr ""
+msgstr "Changes to Terms"
 
 #: events/templates/events/terms.html:44
 msgid ""
@@ -256,6 +271,10 @@ msgid ""
 "the site. Your continued use of the service after such modifications will "
 "constitute your acknowledgment of the modified terms."
 msgstr ""
+"We reserve the right to modify these terms at any time. We will provide "
+"notice of any material changes to these terms by posting the new terms on "
+"the site. Your continued use of the service after such modifications will "
+"constitute your acknowledgment of the modified terms."
 
 #: music_events_project/settings/base.py:124
 msgid "English"
