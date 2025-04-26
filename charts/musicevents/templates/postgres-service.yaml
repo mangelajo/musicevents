@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "musicevents.fullname" . }}-postgres
+  labels:
+    {{- include "musicevents.labels" . | nindent 4 }}
+    app.kubernetes.io/component: database
+spec:
+  type: ClusterIP
+  ports:
+    - port: 5432
+      targetPort: postgres
+      protocol: TCP
+      name: postgres
+  selector:
+    {{- include "musicevents.selectorLabels" . | nindent 4 }}
+    app.kubernetes.io/component: database

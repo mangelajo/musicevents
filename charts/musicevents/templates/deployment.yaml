@@ -27,6 +27,10 @@ spec:
       serviceAccountName: {{ include "musicevents.serviceAccountName" . }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      initContainers:
+        - name: wait-for-db
+          image: busybox
+          command: ['sh', '-c', 'until nc -z {{ include "musicevents.fullname" . }}-postgres 5432; do echo waiting for postgres; sleep 2; done;']
       containers:
         - name: {{ .Chart.Name }}
           securityContext:
@@ -48,6 +52,62 @@ spec:
               value: {{ .Values.djangoDebug | quote }}
             - name: DJANGO_ALLOWED_HOSTS
               value: {{ .Values.domain | quote }}
+            - name: SPOTIFY_CLIENT_ID
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "musicevents.fullname" . }}
+                  key: spotify-client-id
+            - name: SPOTIFY_CLIENT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "musicevents.fullname" . }}
+                  key: spotify-client-secret
+            - name: DJANGO_SETTINGS_MODULE
+              value: {{ .Values.djangoSettingsModule | quote }}
+            - name: DJANGO_SECURE_SSL_REDIRECT
+              value: {{ .Values.djangoSecureSslRedirect | quote }}
+            - name: CORS_ALLOWED_ORIGINS
+              value: {{ .Values.corsAllowedOrigins | default (printf "https://%s" .Values.domain) | quote }}
+            - name: ALLOWED_HOSTS
+              value: {{ .Values.domain | quote }}
+              
+            # Database configuration
+            - name: POSTGRES_DB
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "musicevents.fullname" . }}
+                  key: postgres-db
+            - name: POSTGRES_USER
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "musicevents.fullname" . }}
+                  key: postgres-user
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "musicevents.fullname" . }}
+                  key: postgres-password
+            - name: POSTGRES_HOST
+              value: {{ include "musicevents.fullname" . }}-postgres
+            - name: POSTGRES_PORT
+              value: {{ .Values.database.port | quote }}
+              
+            # Admin configuration
+            - name: ADMIN_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "musicevents.fullname" . }}
+                  key: admin-username
+            - name: ADMIN_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "musicevents.fullname" . }}
+                  key: admin-password
+            - name: ADMIN_EMAIL
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "musicevents.fullname" . }}
+                  key: admin-email
           ports:
             - name: http
               containerPort: 8000
@@ -69,6 +129,14 @@ spec:
           volumeMounts:
             - name: media
               mountPath: /app/media
+          command:
+            - /bin/bash
+            - -c
+            - |
+              /.venv/bin/python3 manage.py migrate --noinput
+              /.venv/bin/python3 manage.py collectstatic --noinput
+              /.venv/bin/python3 manage.py ensure_admin
+              gunicorn music_events_project.wsgi:application --bind 0.0.0.0:8000 --workers 3 --threads 4 --timeout 30 --preload --log-level debug --enable-stdio-inheritance --capture-output --access-logfile -
       volumes:
         - name: media
           {{- if .Values.persistence.enabled }}
