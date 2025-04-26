@@ -1,4 +1,5 @@
 {% extends 'events/base.html' %}
+{% load i18n %}
 
 {% block title %}{{ event.title }} - Music Events{% endblock %}
 
@@ -36,10 +37,10 @@
                             <h5 class="card-title">{{ artist.name }}</h5>
                             <p class="card-text">{{ artist.bio|truncatewords:30 }}</p>
                             <div class="d-flex justify-content-between">
-                                <a href="{% url 'events:artist_detail' artist.pk %}" class="btn btn-outline-primary">View Artist</a>
+                                <a href="{% url 'events:artist_detail' artist.pk %}" class="btn btn-outline-primary">{% trans "View Artist" %}</a>
                                 {% if artist.spotify_url %}
                                     <a href="{{ artist.spotify_url }}" class="btn btn-success" target="_blank">
-                                        <i class="bi bi-spotify"></i> Spotify
+                                        <i class="bi bi-spotify"></i> {% trans "Spotify" %}
                                     </a>
                                 {% endif %}
                             </div>

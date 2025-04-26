@@ -1,4 +1,5 @@
 {% extends 'events/base.html' %}
+{% load i18n %}
 
 {% block title %}{{ artist.name }} - Music Events{% endblock %}
 
@@ -8,17 +9,17 @@
         {% if artist.get_image %}
             <img src="{{ artist.get_image.url }}" class="img-fluid rounded mb-4" alt="{{ artist.name }}">
         {% else %}
-            <div class="bg-secondary text-white text-center p-5 mb-4">No Image</div>
+            <div class="bg-secondary text-white text-center p-5 mb-4">{% trans "No Image" %}</div>
         {% endif %}
         
         <div class="mb-4">
             {% if artist.website %}
-                <a href="{{ artist.website }}" class="btn btn-primary mb-2" target="_blank">Visit Artist Website</a>
+                <a href="{{ artist.website }}" class="btn btn-primary mb-2" target="_blank">{% trans "Visit Artist Website" %}</a>
             {% endif %}
             
             {% if artist.spotify_url %}
                 <a href="{{ artist.spotify_url }}" class="btn btn-success mb-2" target="_blank">
-                    <i class="bi bi-spotify"></i> Open in Spotify
+                    <i class="bi bi-spotify"></i> {% trans "Open in Spotify" %}
                 </a>
             {% endif %}
         </div>
@@ -26,7 +27,7 @@
         {% if artist.spotify_id %}
             <div class="card mb-4">
                 <div class="card-header bg-success text-white">
-                    <i class="bi bi-spotify"></i> Spotify
+                    <i class="bi bi-spotify"></i> {% trans "Spotify" %}
                 </div>
                 <div class="card-body p-0">
                     <iframe src="{{ artist.get_spotify_embed_url }}" 
@@ -42,19 +43,19 @@
             
             {% if artist.spotify_followers or artist.spotify_popularity %}
                 <div class="card mb-4">
-                    <div class="card-header">Spotify Stats</div>
+                    <div class="card-header">{% trans "Spotify Stats" %}</div>
                     <div class="card-body">
                         <ul class="list-group list-group-flush">
                             {% if artist.spotify_followers %}
                                 <li class="list-group-item d-flex justify-content-between align-items-center">
-                                    Followers
+                                    {% trans "Followers" %}
                                     <span class="badge bg-primary rounded-pill">{{ artist.spotify_followers }}</span>
                                 </li>
                             {% endif %}
                             
                             {% if artist.spotify_popularity %}
                                 <li class="list-group-item d-flex justify-content-between align-items-center">
-                                    Popularity
+                                    {% trans "Popularity" %}
                                     <div class="progress" style="width: 60%;">
                                         <div class="progress-bar bg-success" 
                                              role="progressbar" 
@@ -95,7 +96,7 @@
             </div>
         {% else %}
             <div class="alert alert-info">
-                No upcoming events for this artist.
+                {% trans "No upcoming events for this artist." %}
             </div>
         {% endif %}
         
