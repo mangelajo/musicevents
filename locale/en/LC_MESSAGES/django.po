@@ -16,26 +16,21 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
-
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 #: events/templates/admin/events/event/cafeberlin_sync.html:6
 #: events/templates/admin/events/event/riviera_sync.html:6
 #: events/templates/admin/events/event/ticketmaster_sync.html:15
 #: events/templates/events/base.html:26 events/templates/events/home.html:4
 msgid "Home"
-msgstr "ホーム"
+msgstr ""
 
 #: events/templates/admin/events/event/change_list.html:7
-#, fuzzy
-#| msgid "Sync Ticketmaster"
 msgid "Sync Ticketmaster Events"
-msgstr "Ticketmasterと同期"
+msgstr ""
 
 #: events/templates/admin/events/event/change_list.html:12
-#, fuzzy
-#| msgid "Sync Sala Riviera"
 msgid "Sync Riviera Events"
-msgstr "Sala Rivieraと同期"
+msgstr ""
 
 #: events/templates/admin/events/event/change_list.html:17
 msgid "Sync Cafe Berlin Events"
@@ -44,15 +39,15 @@ msgstr ""
 #: events/templates/events/artist_detail.html:12
 #: events/templates/events/home.html:29
 msgid "No Image"
-msgstr "画像なし"
+msgstr "No Image"
 
 #: events/templates/events/artist_detail.html:17
 msgid "Visit Artist Website"
-msgstr "アーティストのウェブサイトを訪問"
+msgstr "Visit Artist Website"
 
 #: events/templates/events/artist_detail.html:22
 msgid "Open in Spotify"
-msgstr "Spotifyで開く"
+msgstr "Open in Spotify"
 
 #: events/templates/events/artist_detail.html:30
 #: events/templates/events/event_detail.html:43
@@ -61,19 +56,19 @@ msgstr "Spotify"
 
 #: events/templates/events/artist_detail.html:46
 msgid "Spotify Stats"
-msgstr "Spotifyの統計"
+msgstr "Spotify Stats"
 
 #: events/templates/events/artist_detail.html:51
 msgid "Followers"
-msgstr "フォロワー"
+msgstr "Followers"
 
 #: events/templates/events/artist_detail.html:58
 msgid "Popularity"
-msgstr "人気度"
+msgstr "Popularity"
 
 #: events/templates/events/artist_detail.html:99
 msgid "No upcoming events for this artist."
-msgstr "このアーティストの予定されているイベントはありません。"
+msgstr "No upcoming events for this artist."
 
 #: events/templates/events/base.html:18
 msgid "Logo"
@@ -81,31 +76,31 @@ msgstr ""
 
 #: events/templates/events/base.html:29
 msgid "Events"
-msgstr "イベント"
+msgstr ""
 
 #: events/templates/events/base.html:32 events/templates/events/home.html:36
 msgid "Artists"
-msgstr "アーティスト"
+msgstr ""
 
 #: events/templates/events/base.html:35
 msgid "Venues"
-msgstr "会場"
+msgstr ""
 
 #: events/templates/events/base.html:39
 msgid "Admin"
-msgstr "管理"
+msgstr ""
 
 #: events/templates/events/base.html:42
 msgid "Events Admin"
-msgstr "イベント管理"
+msgstr ""
 
 #: events/templates/events/base.html:62
 msgid "Your source for the best music events in town."
-msgstr "街で最高の音楽イベントの情報源。"
+msgstr ""
 
 #: events/templates/events/base.html:65
 msgid "All rights reserved."
-msgstr "全ての権利を保有。"
+msgstr ""
 
 #: events/templates/events/base.html:77
 msgid "Cookie Consent Required"
@@ -135,89 +130,80 @@ msgstr ""
 
 #: events/templates/events/event_detail.html:40
 msgid "View Artist"
-msgstr "アーティストを見る"
+msgstr "View Artist"
 
 #: events/templates/events/home.html:8
 msgid "Welcome to"
-msgstr "ようこそ"
+msgstr ""
 
 #: events/templates/events/home.html:9
 msgid "Discover the best music events in your area."
-msgstr "あなたの地域の最高の音楽イベントを発見しましょう。"
+msgstr ""
 
 #: events/templates/events/home.html:11
 msgid "Browse upcoming events, artists, and venues all in one place."
-msgstr "今後のイベント、アーティスト、会場をひとつの場所で閲覧できます。"
+msgstr ""
 
 #: events/templates/events/home.html:12
 msgid "View Events"
-msgstr "イベントを見る"
+msgstr ""
 
 #: events/templates/events/home.html:17
 msgid "Upcoming Events"
-msgstr "今後のイベント"
+msgstr ""
 
 #: events/templates/events/home.html:35
 msgid "Venue"
-msgstr "会場"
+msgstr ""
 
 #: events/templates/events/home.html:48
 msgid "View All Events"
-msgstr "全てのイベントを見る"
+msgstr ""
 
 #: events/templates/events/home.html:51
 msgid "No upcoming events at this time."
-msgstr "現在、予定されているイベントはありません。"
+msgstr ""
 
 #: events/templates/events/home.html:56
 msgid "Featured Artists"
-msgstr "注目のアーティスト"
+msgstr ""
 
 #: events/templates/events/home.html:69
 msgid "View All Artists"
-msgstr "全てのアーティストを見る"
+msgstr ""
 
 #: events/templates/events/home.html:72
 msgid "No featured artists at this time."
-msgstr "現在、注目のアーティストはいません。"
+msgstr ""
 
 #: events/templates/events/home.html:75
 msgid "Featured Venues"
-msgstr "注目の会場"
+msgstr ""
 
 #: events/templates/events/home.html:88
 msgid "View All Venues"
-msgstr "全ての会場を見る"
+msgstr ""
 
 #: events/templates/events/home.html:91
 msgid "No featured venues at this time."
-msgstr "現在、注目の会場はありません。"
+msgstr ""
 
 #: music_events_project/settings/base.py:124
 msgid "English"
-msgstr "英語"
+msgstr ""
 
 #: music_events_project/settings/base.py:125
 msgid "Spanish"
-msgstr "スペイン語"
+msgstr ""
 
 #: music_events_project/settings/base.py:126
 msgid "French"
-msgstr "フランス語"
+msgstr ""
 
 #: music_events_project/settings/base.py:127
 msgid "Simplified Chinese"
-msgstr "簡体字中国語"
+msgstr ""
 
 #: music_events_project/settings/base.py:128
 msgid "Japanese"
-msgstr "日本語"
-
-#~ msgid "Sync Sources"
-#~ msgstr "同期ソース"
-
-#~ msgid "Music Events Logo"
-#~ msgstr "音楽イベントロゴ"
-
-#~ msgid "Music Events"
-#~ msgstr "音楽イベント"
+msgstr ""
