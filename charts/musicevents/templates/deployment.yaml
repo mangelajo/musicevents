@@ -72,25 +72,11 @@ spec:
               value: {{ .Values.domain | quote }}
               
             # Database configuration
-            - name: POSTGRES_DB
+            - name: DATABASE_URL
               valueFrom:
                 secretKeyRef:
                   name: {{ include "musicevents.fullname" . }}
-                  key: postgres-db
-            - name: POSTGRES_USER
-              valueFrom:
-                secretKeyRef:
-                  name: {{ include "musicevents.fullname" . }}
-                  key: postgres-user
-            - name: POSTGRES_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: {{ include "musicevents.fullname" . }}
-                  key: postgres-password
-            - name: POSTGRES_HOST
-              value: {{ include "musicevents.fullname" . }}-postgres
-            - name: POSTGRES_PORT
-              value: {{ .Values.database.port | quote }}
+                  key: database-url
               
             # Admin configuration
             - name: ADMIN_USERNAME

@@ -27,6 +27,25 @@ playwright install
 
 ## Configuration
 
+The project uses django-environ for configuration management through environment variables. Copy the `.env.example` file to `.env` and customize the values:
+
+```bash
+cp .env.example .env
+```
+
+### Environment Variables
+
+Key configuration variables:
+
+- `DEBUG`: Enable/disable debug mode (True/False)
+- `DJANGO_SECRET_KEY`: Secret key for Django (required)
+- `DJANGO_ALLOWED_HOSTS`: Comma-separated list of allowed hosts
+- `DATABASE_URL`: Database connection URL (postgres://user:password@host:port/dbname)
+
+### Configuration Validation
+
+The application validates essential settings at startup. If any required configuration is missing or invalid, the application will fail with a descriptive error message. This helps ensure all necessary environment variables are properly set before the application runs.
+
 ### Spotify API Integration
 
 To enable Spotify integration, you need to set up Spotify API credentials:
@@ -35,7 +54,7 @@ To enable Spotify integration, you need to set up Spotify API credentials:
 2. Log in with your Spotify account
 3. Create a new app
 4. Copy the Client ID and Client Secret
-5. Add them to your environment variables or .env file:
+5. Add them to your `.env` file:
 
 ```
 SPOTIFY_CLIENT_ID=your_spotify_client_id_here

@@ -16,15 +16,15 @@ def create_fake_image_response(format='JPEG', size=(1, 1), color='red'):
     mock_response.content = buffer.read()
     mock_response.status_code = 200
     # Mock raise_for_status to do nothing for success codes
-    mock_response.raise_for_status.side_effect = None 
+    mock_response.raise_for_status.side_effect = None
     # Ensure stream=True works if needed (though content is pre-loaded here)
-    mock_response.iter_content.return_value = iter([mock_response.content]) 
+    mock_response.iter_content.return_value = iter([mock_response.content])
 
     return mock_response
 
 def mock_download_image(format='JPEG', size=(1, 1), color='blue'):
     """
-    Decorator to patch 'events.utils.image_utils._download_image' 
+    Decorator to patch 'events.utils.image_utils._download_image'
     and return a fake image response.
     """
     def decorator(func):
@@ -34,7 +34,7 @@ def mock_download_image(format='JPEG', size=(1, 1), color='blue'):
             # Patch the target function within the image_utils module
             with patch('events.utils.image_utils._download_image', return_value=fake_response):
                 # You can optionally pass the mock into the test function if needed
-                # return func(mock_download, *args, **kwargs) 
+                # return func(mock_download, *args, **kwargs)
                 return func(*args, **kwargs)
         return wrapper
     return decorator

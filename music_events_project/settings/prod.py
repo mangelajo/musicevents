@@ -1,27 +1,20 @@
 import os
 from .base import *  # noqa: F403
 
+# Read environment variables from .env file if it exists
+environ.Env.read_env(os.path.join(BASE_DIR, '.env'))  # noqa: F405
+
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.getenv('DJANGO_DEBUG', 'False').lower() == 'true'
+DEBUG = env('DEBUG') # noqa: F405
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', SECRET_KEY)  # noqa: F405
-
-# ALLOWED_HOSTS configuration
-ALLOWED_HOSTS = os.getenv('DJANGO_ALLOWED_HOSTS', '').split(',')
+SECRET_KEY = env('DJANGO_SECRET_KEY', default=SECRET_KEY)  # noqa: F405
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.getenv('POSTGRES_DB', 'musicevents'),
-        'USER': os.getenv('POSTGRES_USER', 'musicevents'),
-        'PASSWORD': os.getenv('POSTGRES_PASSWORD', 'musicevents'),
-        'HOST': os.getenv('POSTGRES_HOST', 'localhost'),
-        'PORT': os.getenv('POSTGRES_PORT', '5432'),
-    }
+    'default': env.db('DATABASE_URL', default='postgres://musicevents:musicevents@localhost:5432/musicevents') # noqa: F405
 }
 
 # CORS settings
@@ -48,6 +41,6 @@ SECURE_HSTS_SECONDS = 31536000  # 1 year
 SECURE_HSTS_INCLUDE_SUBDOMAINS = True
 SECURE_HSTS_PRELOAD = True
 
-MIDDLEWARE += [
+MIDDLEWARE += [ # noqa: F405
     'whitenoise.middleware.WhiteNoiseMiddleware',  # or whatever you need
 ]
