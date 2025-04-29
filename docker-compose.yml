@@ -14,11 +14,7 @@ services:
       - DJANGO_SECRET_KEY=${DJANGO_SECRET_KEY:-secure-production-key}
       - DJANGO_ALLOWED_HOSTS=localhost,127.0.0.1
       - ALLOWED_HOSTS=localhost,127.0.0.1
-      - POSTGRES_DB=musicevents
-      - POSTGRES_USER=musicevents
-      - POSTGRES_PASSWORD=musicevents
-      - POSTGRES_HOST=db
-      - POSTGRES_PORT=5432
+      - DATABASE_URL=postgres://musicevents:musicevents@db:5432/musicevents
       - CORS_ALLOWED_ORIGINS=http://localhost:8001
       - DJANGO_SECURE_SSL_REDIRECT=False
       - ADMIN_USERNAME=${ADMIN_USERNAME:-admin}

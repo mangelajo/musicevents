@@ -64,12 +64,7 @@ adminPassword: "admin"
 adminEmail: "admin@example.com"
 
 # Database configuration
-database:
-  host: "postgres-service"
-  port: "5432"
-  name: "musicevents"
-  user: "musicevents"
-  password: "musicevents"
+databaseUrl: "postgres://musicevents:musicevents@postgres-service:5432/musicevents"
 
 service:
   type: ClusterIP

@@ -25,20 +25,11 @@ spec:
               name: postgres
           env:
             - name: POSTGRES_DB
-              valueFrom:
-                secretKeyRef:
-                  name: {{ include "musicevents.fullname" . }}
-                  key: postgres-db
+              value: {{ include "musicevents.database.name" . | quote }}
             - name: POSTGRES_USER
-              valueFrom:
-                secretKeyRef:
-                  name: {{ include "musicevents.fullname" . }}
-                  key: postgres-user
+              value: {{ include "musicevents.database.user" . | quote }}
             - name: POSTGRES_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: {{ include "musicevents.fullname" . }}
-                  key: postgres-password
+              value: {{ include "musicevents.database.password" . | quote }}
           volumeMounts:
             - name: postgres-data
               mountPath: /var/lib/postgresql/data

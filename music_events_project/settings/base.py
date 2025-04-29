@@ -10,16 +10,29 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
-import os
 from pathlib import Path
+import environ
 from django.utils.translation import gettext_lazy as _
+
+# Initialize environ
+env = environ.Env(
+    DEBUG=(bool, False),
+    SECRET_KEY=(str, None),
+    DJANGO_ALLOWED_HOSTS=(list, []),
+    TICKETMASTER_API_KEY=(str, None),
+    SPOTIFY_CLIENT_ID=(str, None),
+    SPOTIFY_CLIENT_SECRET=(str, None),
+    SITE_LOGO=(str, 'images/logo.png'),
+    SITE_NAME=(str, 'music.madrid'),
+)
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 # This is only used in development, production should override it
-SECRET_KEY = 'django-insecure-p(fny*1)j=!x=xp1%ga+7nk2y98s7(814q@k9*t-=6g9@fgzap'
+# For development only - will be overridden in production
+SECRET_KEY = env('SECRET_KEY', default='django-insecure-p(fny*1)j=!x=xp1%ga+7nk2y98s7(814q@k9*t-=6g9@fgzap')
 
 # CSRF Trusted Origins
 CSRF_TRUSTED_ORIGINS = [
@@ -34,6 +47,7 @@ CSRF_EXEMPT_URLS = [r'^admin/login/$']
 # Application definition
 
 INSTALLED_APPS = [
+    'music_events_project.apps.MusicEventsProjectConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -156,12 +170,12 @@ MEDIA_ROOT = BASE_DIR / 'media'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Ticketmaster API settings
-TICKETMASTER_API_KEY = os.environ.get('TICKETMASTER_API_KEY', 'YOUR_API_KEY_HERE')
+TICKETMASTER_API_KEY = env('TICKETMASTER_API_KEY')
 
 # Spotify API settings
-SPOTIFY_CLIENT_ID = os.environ.get('SPOTIFY_CLIENT_ID', '')
-SPOTIFY_CLIENT_SECRET = os.environ.get('SPOTIFY_CLIENT_SECRET', '')
+SPOTIFY_CLIENT_ID = env('SPOTIFY_CLIENT_ID')
+SPOTIFY_CLIENT_SECRET = env('SPOTIFY_CLIENT_SECRET')
 
 # Site branding settings
-SITE_LOGO = os.environ.get('SITE_LOGO', 'images/logo.png')  # Default logo path relative to static directory
-SITE_NAME = os.environ.get('SITE_NAME', 'music.madrid')  # Default site name
+SITE_LOGO = env('SITE_LOGO')  # Default logo path relative to static directory
+SITE_NAME = env('SITE_NAME')  # Default site name

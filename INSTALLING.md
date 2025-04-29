@@ -19,10 +19,20 @@ For local development or simple deployments, you can use Docker Compose:
 
 1. Create a `.env` file with your configuration:
    ```
-   TICKETMASTER_API_KEY=your_ticketmaster_api_key
+   # Django settings
+   DEBUG=False
    DJANGO_SECRET_KEY=your_django_secret_key
+   DJANGO_ALLOWED_HOSTS=localhost,127.0.0.1
+   
+   # Database URL (follows RFC-1738 format)
+   DATABASE_URL=postgres://musicevents:musicevents@postgres:5432/musicevents
+   
+   # API keys
+   TICKETMASTER_API_KEY=your_ticketmaster_api_key
    SPOTIFY_CLIENT_ID=your_spotify_client_id
    SPOTIFY_CLIENT_SECRET=your_spotify_client_secret
+   
+   # Admin configuration
    ADMIN_USERNAME=admin
    ADMIN_PASSWORD=secure_password
    ADMIN_EMAIL=admin@example.com
@@ -58,13 +68,8 @@ For local development or simple deployments, you can use Docker Compose:
    adminPassword: "secure_password"
    adminEmail: "admin@example.com"
    
-   # Database configuration (optional, defaults shown)
-   database:
-     host: "postgres-service"
-     port: "5432"
-     name: "musicevents"
-     user: "musicevents"
-     password: "musicevents"
+   # Database configuration (using DATABASE_URL format)
+   databaseUrl: "postgres://musicevents:musicevents@postgres-service:5432/musicevents"
    ```
 
 2. Install the chart directly from the OCI registry:
@@ -97,11 +102,9 @@ The following table lists the main configurable parameters of the Music Events c
 | `adminUsername` | Admin username | `"admin"` |
 | `adminPassword` | Admin password | `"admin"` |
 | `adminEmail` | Admin email | `"admin@example.com"` |
-| `database.host` | Database host | `"postgres-service"` |
-| `database.port` | Database port | `"5432"` |
-| `database.name` | Database name | `"musicevents"` |
-| `database.user` | Database username | `"musicevents"` |
-| `database.password` | Database password | `"musicevents"` |
+| `databaseUrl` | Database URL (RFC-1738 format) | `"postgres://musicevents:musicevents@postgres-service:5432/musicevents"` |
+
+The `databaseUrl` parameter follows the RFC-1738 format: `postgres://user:password@host:port/dbname`. The PostgreSQL database container will automatically extract the credentials from this URL.
 | `image.repository` | Image repository | `ghcr.io/mangelajo/music-events` |
 | `image.tag` | Image tag | `latest` |
 | `image.pullPolicy` | Image pull policy | `IfNotPresent` |
